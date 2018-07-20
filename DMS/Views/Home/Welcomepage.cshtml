@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Welcomepage";
+    Layout = null;
+}
+
+
+
+
+@*<link href="~/Content/style.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>*@
+
+<link href="~/css/Fonts/Font_Roboto_Condensed.css" rel="stylesheet" />
+<link href="~/css/Fonts/Font_SansPro.css" rel="stylesheet" />
+<link href="~/Content/style.css" rel="stylesheet" />
+
+<div @*id="wrapper"*@>
+    <h1>Choose Section</h1>
+    <ul class="nav">
+        <a href="@Url.Action("Accounts_Index", "Accounts")">
+            <li class="hm">
+                <img class="icon" src="~/images/icons/WelcomePage/ruppeeSymbol.png" alt="">
+                <span>Accounts</span>
+            </li>
+        </a>
+        <a href="@Url.Action("OfficeIndex","Office")">
+            <li class="fb">
+                <img class="icon" src="~/images/icons/WelcomePage/office.png" alt="">
+                <span>Office</span>
+            </li>
+        </a>
+        <a href="@Url.Action("PurchaseIndex","Purchase")">
+            <li class="gp">
+                <img class="icon" src="~/images/icons/WelcomePage/purchase.png" alt="" />
+                <span>Purchase</span>
+            </li>
+        </a>
+        <a href="@Url.Action("Recruit_Index", "Recruitment")">
+            <li class="tw">
+
+                <img class="icon" src="~/images/icons/WelcomePage/recruitment.png" alt="">
+                <span>Recruitment</span>
+
+            </li>
+        </a>
+        <a href="@Url.Action("Dean_Index","Dean")">
+            <li class="cl">
+                <img class="icon" src="~/images/icons/WelcomePage/Dean.png" alt="">
+                <span>Dean Office</span>
+            </li>
+        </a>
+    </ul>
+</div>
+
+
+@*<div class="row" id="inputSection">
+
+        <div class=" box box-primary">
+
+            <div class="col-sm-12 col-lg-12">
+                <h1 class="page-header">Choose Section</h1>
+                <div class="row placeholders">
+                    <div class="col-xs-6 col-sm-3 placeholder">
+                        <a href="~/Views/Home/Index.cshtml">
+                            <img src="~/img/icons/accountsIcon.png"
+                                 class="img-responsive" alt="Generic placeholder thumbnail">
+                        </a>
+                        <h3>Accounts</h3>
+                        <span class="text-muted"></span>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 placeholder">
+                        <a href="~/Views/Home/Index.cshtml">
+                            <img src="~/img/icons/purchaseIcon.png" class="img-responsive" alt="Generic placeholder thumbnail">
+                        </a>
+                        <h3>Purchase</h3>
+                        <span class="text-muted">Something else</span>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 placeholder">
+                        <a href="@Url.Action("RecruitIndex", "Recruit")">
+                            <img src="~/img/icons/recruitmentIcon.png" class="img-responsive" alt="Generic placeholder thumbnail">
+                        </a>
+                        <h3>Recruitment</h3>
+                        <span class="text-muted">Something else</span>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 placeholder">
+                        <a href="~/Views/Home/Index.cshtml">
+                            <img src="~/img/icons/officeIcon.png" class="img-responsive" alt="Generic placeholder thumbnail">
+                        </a>
+                        <h3>Office</h3>
+                        <span class="text-muted">Something else</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+

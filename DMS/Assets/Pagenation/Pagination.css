@@ -1,0 +1,36 @@
+
+
+ .paging-nav {
+  display: inline-block;
+    /*padding: 2px;*/
+    margin: 0;
+   /*padding-left: 758px;*/
+   /*margin-top: -37px;*/
+}
+
+/*.paging-nav {display: inline;}*/
+
+.paging-nav a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+.paging-nav .selected-page {
+    background-color: #367fa9;
+    color: white;
+    border: 1px solid #367fa9;
+}
+
+.paging-nav a:hover:not(.active) {background-color: #367fa9;}
+
+/*.paging-nav a:hover:not(.active) {background-color: #ddd;} changed by karthik at 07-mar-2016*/
+
+
+
+ 
+
+

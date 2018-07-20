@@ -1,0 +1,152 @@
+﻿@model Data_Layer.Models.DropdownList
+@Scripts.Render("~/bundles/sweet")
+@Styles.Render("~/bundles/sweetcss")
+
+@{
+    Layout = null;
+}
+<style type="text/css">
+        .swalcss {
+            font-size: 9px;
+            background-color: aliceblue;
+            width: auto;
+        }
+    </style>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Index</title>
+    </head>
+    <body>
+        <div style="width:100%;text-align:center" id="divpartial">
+            <div style=" color:black;display: inline-block; margin-bottom:3%">
+                <h2> Advanced Search</h2>
+            </div>
+            <br />
+            <table align="center" cellpadding="10" style="background-color: lavender;font-family:Calibri">
+
+                <tr>
+                    <td>
+                        @Html.Label("Appointment Mode")
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.Mode, Model.AppointmentMode, "--Select Appoinment Mode--")
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.Label("Department")
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.DepartmentName, Model.Departments, "--Select Department--")
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.Label("Coordinator")
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.PIName, Model.CoorList, "--Select Coordinator--")
+                    </td>
+                </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <p>
+                                <input type="button" class="SubmitViolet" value="Show Results" onclick="button()" />                           
+                         
+                            </p>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+    </body>
+</html>
+
+<script type="text/javascript">
+    function button() {
+        $('#table_id').dataTable({
+            "processing": true, // for show progress bar
+            "serverSide": true, // for process server side
+            //"filter": false, // this is for disable filter (search box)
+            "orderMulti": false, // for disable multiple column at once
+            "destroy": true,
+            
+            "ajax": {
+                "url": "../Recruitment/Adv_Load",
+                "data": { mode: $('#Mode').val(), dept: $('#DepartmentName').val(), coor: $('#PIName').val() },
+                "type": "POST",
+                "datatype": "json"
+            },
+           
+            "columns": [
+                { 'data': 'recruit_trx_id', 'name': 'recruit_trx_id' },
+                { 'data': 'EmployeeID', 'name': 'EmployeeID' },
+                { 'data': 'EmployeeName', 'name': 'EmployeeName' },
+                { 'data': 'Appoint_mode', 'name': 'Appoint_mode' },
+                { 'data': 'file_name', 'name': 'file_name' },
+                { 'data': 'page_count', 'name': 'page_count' },
+                { 'data': 'uploadedBy', 'name': 'uploadedBy' },
+                {
+                    'data': 'path',
+                    "render": function (data) {
+                        var link = '../Recruitment/ViewDoc?iID=' + data;
+                        return "<a href=" + link + " target=_blank>View</a>"
+                    }, "orderable": false
+                },
+                {
+                    'data': 'path', "render": function (data) {
+                        var link = '../Recruitment/Download?iID=' + data;
+                        return "<a href=" + link + ">Download</a>"
+                    }, "orderable": false
+                }],
+
+            "language": {
+                "emptyTable": "No data available"
+            }
+            
+             
+        });
+        $('#myModal').hide();
+        //$.ajax({
+        //    url: '../Recruitment/Adv_Load',
+        //    data: { mode: $('#Mode').val(), dept: $('#DepartmentName').val(), coor: $('#PIName').val()},
+        //    method: 'POST',
+        //    dataType: 'json',
+        //    success: function (data) {
+        //        $('#table_id').dataTable({
+        //            data: data,
+        //            serverside: true,
+        //            destroy: true,
+        //            columns: [
+        //                { 'data': 'recruit_trx_id' },
+        //                { 'data': 'EmployeeID' },
+        //                { 'data': 'EmployeeName' },
+        //                { 'data': 'Appoint_mode' },
+        //                { 'data': 'file_name' },
+        //                { 'data': 'page_count' },
+        //                { 'data': 'uploadedBy' },
+        //                { 'data': 'is_active' },
+        //                {
+        //                    'data': 'path',
+        //                    "render": function (data) {
+        //                        var link = '../Recruitment/ViewDoc?iID=' + data;
+        //                        return "<a href=" + link + " target=_blank>View</a>"
+        //                    }, "orderable": false
+        //                },
+        //                {
+        //                    'data': 'path', "render": function (data) {
+        //                        var link = '../Recruitment/Download?iID=' + data;
+        //                        return "<a href=" + link + ">Download</a>"
+        //                    }, "orderable": false
+        //                }],
+        //            "order": [0, 'desc'],
+        //            "language": {
+        //                "emptyTable": "No data available"
+        //            }
+        //        });
+        //        $('#myModal').hide();
+        //    }
+        //});
+      
+    }
+</script>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="57e7106378074b9498ec3dd9d88fd8cb" Name="Diagram1">
+        <EntityTypeShape EntityType="RecruitModel.designa" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitModel.OutSourcingDesignation" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitModel.AppointmentProject" Width="1.5" PointX="6.25" PointY="1.25" />
+        <AssociationConnector Association="RecruitModel.FK_ProjectDesignationCode" />
+        <EntityTypeShape EntityType="RecruitModel.NEWADH" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="RecruitModel.NEWREG" Width="1.5" PointX="3" PointY="30" />
+        <EntityTypeShape EntityType="RecruitModel.PART" Width="1.5" PointX="3" PointY="15.875" />
+        <AssociationConnector Association="RecruitModel.FK_NEWREG_designa" />
+        <AssociationConnector Association="RecruitModel.FK_PART_designa1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

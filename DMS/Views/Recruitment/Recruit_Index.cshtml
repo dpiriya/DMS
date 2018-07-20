@@ -1,0 +1,206 @@
+﻿@using System.Data
+@model DataSet
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DMS - Recruitment</title>
+
+    <!-- Our Custom CSS -->
+    <link href="~/Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/sidebar/sideBar.css" rel="stylesheet" />
+    <link href="~/css/Index/mCustomScrollbar.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div id="dismiss">
+                <i class="glyphicon glyphicon-arrow-left"></i>
+            </div>
+            <div class="sidebar-header">
+                <h3>File Upload</h3>
+            </div>
+            <ul class="list-unstyled components">
+                <p>Choose section</p>
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Appointment</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li><a href="#" id="Adhoc" onclick="_Upload(this.id)">   Adhoc       </a></li>
+                        <li><a href="#" id="Part" onclick="_Upload(this.id)">   PartTime    </a></li>
+                        <li><a href="#" id="Selection" onclick="_Upload(this.id)">   Selection   </a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" id="Outsource" onclick="_Upload(this.id)">Outsourcing</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Page Content Holder -->
+        <div id="content" style="padding-top:2%;background:url('../../DMS/images/circles-light.png');">
+            <nav class="navbar navbar-default" style="padding: 0px 0px;">
+                <div class="container-fluid">
+                    <table width="100%">
+                        <tr>
+                            <td width="20%" align="left">
+                                <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                                    <i class="glyphicon glyphicon-align-left "></i>
+                                    <span>Upload Files</span>
+                                </button>
+                            </td>
+                            <td width="50%" align="center">
+                                <h2>Recruitment</h2>
+                            </td>
+                            <td width="15%" align="left">
+                                <a href="@Url.Action("Welcomepage","Home")">
+                                    <div class="glyphicon glyphicon-home" style="margin-left:80%;color:royalblue">Home</div>
+                                </a>
+                            </td>
+                            <td width="15%" align="left">
+                                <a href="@Url.Action("LogOut","Home")">
+                                    <div class="glyphicon glyphicon-off" style="margin-left:40%;color:orangered">SignOut</div>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </nav>
+            <div style="padding-left:40% ">
+                <table cellpadding="5" cellspacing="10" width="30%" align="left" style="background-color:whitesmoke">
+                    <tr>
+                        <th>Description</th>
+                        <th>Count</th>
+
+                    </tr>
+                    @foreach (DataRow row in Model.Tables[0].Rows)
+                    {
+                        <tr>
+                            <td>@row["Description"]</td>
+                            <td>@row["Count"]</td>
+
+                        </tr>
+                    }
+                </table>
+                <div align="right" style="color:blue">
+                    <a href="#" onclick="_AdvancedSearch()">Advanced Search>></a>
+                </div>
+            </div>
+        
+        <div>
+            @ViewBag.Message
+            @Html.Partial("_Search")
+        </div>
+    </div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <!-- jQuery  -->
+    @*<script src="~/js/jquery-1.12.4.min.js"></script>*@
+    @*<script src="~/js/jquery-1.12.0.min.js"></script>*@
+    <script src="~/Assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/script/index/jquery.mCustomScrollbar.concat.min.js"></script>
+
+
+    <div id='myModal' style="text-align:right; background-color:transparent; color:cornflowerblue" class="modal fade"
+         data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" id="_Asearch" style="width:45%; height:auto; padding:10px;top:35%; color:white ">
+            <div class="modal-content"
+                 style="overflow: auto;padding: 2%; padding-left:5%">
+
+                <button type="button" id="closbtn" class="btn btn-info navbar-btn" style="background-color:palevioletred; margin-top:0px; margin-bottom:0px;">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    <span>Close</span>
+                </button>
+
+                <div style="height:auto"> </div>
+                <div id='myModalContent'
+                     style="width:auto; height:auto; padding:10px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#dismiss, .overlay').on('click', function () {
+                $('#sidebar').removeClass('active');
+                $('.overlay').fadeOut();
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').addClass('active');
+                $('.overlay').fadeIn();
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+
+        function _Upload(_AppMode) {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("_UploadRecruit", "Recruitment",new { area=""})',
+                data: { AppMode: _AppMode },
+                success: function (data) {
+                    {                                 //debugger;
+                        $('#myModalContent').html(data);
+                        //   $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+                        $('#myModal').modal({ backdrop: 'static', keyboard: false })
+
+                        $.fn.modal.prototype.constructor.Constructor.DEFAULTS.backdrop = 'static';
+                        $.fn.modal.prototype.constructor.Constructor.DEFAULTS.keyboard = false;
+                    }
+                },
+                failure: function (data) {
+                    alert("Failure");
+                },
+                error: function (data) {
+                    alert("Unexpected Error Occured");
+                }
+            });
+        }
+        function _AdvancedSearch() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("_AdvancedSearch","Recruitment",new { area=""})',             
+                success: function (data) {
+                    $('#myModalContent').html(data);
+                    //   $('#myModal').modal(options);
+                    $('#myModal').modal('show');
+                    $('#myModal').show();
+                    $('#myModal').modal({ backdrop: 'static', keyboard: false })
+                    $.fn.modal.prototype.constructor.Constructor.DEFAULTS.backdrop = 'static';
+                    $.fn.modal.prototype.constructor.Constructor.DEFAULTS.keyboard = false;
+                },               
+                failure: function (data) {
+                    alert("Unidentified Error Occured");
+                },
+                error: function (data) {
+                    alert("Unexpected Error Occured");
+                }
+            });
+        }
+        $("#closbtn").click(function () {
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+

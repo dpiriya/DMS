@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetData_Office">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetData_OfficeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetData_Recruit">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetData_RecruitResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetData_Accounts">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetData_AccountsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetData_Purchase">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetData_PurchaseResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetData_OfficeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetData_Office" />
+  </wsdl:message>
+  <wsdl:message name="GetData_OfficeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetData_OfficeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetData_RecruitSoapIn">
+    <wsdl:part name="parameters" element="tns:GetData_Recruit" />
+  </wsdl:message>
+  <wsdl:message name="GetData_RecruitSoapOut">
+    <wsdl:part name="parameters" element="tns:GetData_RecruitResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetData_AccountsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetData_Accounts" />
+  </wsdl:message>
+  <wsdl:message name="GetData_AccountsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetData_AccountsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetData_PurchaseSoapIn">
+    <wsdl:part name="parameters" element="tns:GetData_Purchase" />
+  </wsdl:message>
+  <wsdl:message name="GetData_PurchaseSoapOut">
+    <wsdl:part name="parameters" element="tns:GetData_PurchaseResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WSDatatableSoap">
+    <wsdl:operation name="GetData_Office">
+      <wsdl:input message="tns:GetData_OfficeSoapIn" />
+      <wsdl:output message="tns:GetData_OfficeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetData_Recruit">
+      <wsdl:input message="tns:GetData_RecruitSoapIn" />
+      <wsdl:output message="tns:GetData_RecruitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetData_Accounts">
+      <wsdl:input message="tns:GetData_AccountsSoapIn" />
+      <wsdl:output message="tns:GetData_AccountsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetData_Purchase">
+      <wsdl:input message="tns:GetData_PurchaseSoapIn" />
+      <wsdl:output message="tns:GetData_PurchaseSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSDatatableSoap" type="tns:WSDatatableSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetData_Office">
+      <soap:operation soapAction="http://tempuri.org/GetData_Office" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetData_Recruit">
+      <soap:operation soapAction="http://tempuri.org/GetData_Recruit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetData_Accounts">
+      <soap:operation soapAction="http://tempuri.org/GetData_Accounts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetData_Purchase">
+      <soap:operation soapAction="http://tempuri.org/GetData_Purchase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSDatatableSoap12" type="tns:WSDatatableSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetData_Office">
+      <soap12:operation soapAction="http://tempuri.org/GetData_Office" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetData_Recruit">
+      <soap12:operation soapAction="http://tempuri.org/GetData_Recruit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetData_Accounts">
+      <soap12:operation soapAction="http://tempuri.org/GetData_Accounts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetData_Purchase">
+      <soap12:operation soapAction="http://tempuri.org/GetData_Purchase" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSDatatable">
+    <wsdl:port name="WSDatatableSoap" binding="tns:WSDatatableSoap">
+      <soap:address location="http://localhost:2435/WSDatatable.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSDatatableSoap12" binding="tns:WSDatatableSoap12">
+      <soap12:address location="http://localhost:2435/WSDatatable.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

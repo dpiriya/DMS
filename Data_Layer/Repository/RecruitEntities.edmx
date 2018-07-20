@@ -1,0 +1,930 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RecruitModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AppointmentProject">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="MeetingID" />
+          </Key>
+          <Property Name="EmployeeID" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="MeetingID" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="DesignationCode" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="DesignationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProjectType" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="ProjectNo" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="PICode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="PIName" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="DepartmentCode" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="AppointmentDate" Type="date" Nullable="false" />
+          <Property Name="ToDate" Type="date" Nullable="false" />
+          <Property Name="ProjectRelieveDate" Type="date" />
+          <Property Name="RelievedOn" Type="date" />
+          <Property Name="RelievedBy" Type="nvarchar" MaxLength="30" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="designa">
+          <Key>
+            <PropertyRef Name="descod" />
+          </Key>
+          <Property Name="descod" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="design" Type="nvarchar" MaxLength="50" />
+          <Property Name="curdesi" Type="nvarchar" MaxLength="1" />
+          <Property Name="desorder" Type="nvarchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="NEWADH">
+          <Key>
+            <PropertyRef Name="FILENO" />
+          </Key>
+          <Property Name="EMPCODE" Type="nvarchar" MaxLength="5" />
+          <Property Name="STAT" Type="nvarchar" MaxLength="1" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="120" />
+          <Property Name="PROJECTNO" Type="nvarchar" MaxLength="25" />
+          <Property Name="PTYPE" Type="nvarchar" MaxLength="3" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="150" />
+          <Property Name="DEPT" Type="nvarchar" MaxLength="7" />
+          <Property Name="SPON" Type="nvarchar" MaxLength="4" />
+          <Property Name="DESIG" Type="nvarchar" MaxLength="3" />
+          <Property Name="DTAP" Type="smalldatetime" />
+          <Property Name="EXTN" Type="smalldatetime" />
+          <Property Name="DRLF" Type="smalldatetime" />
+          <Property Name="BASIC" Type="float" />
+          <Property Name="INCR" Type="float" />
+          <Property Name="DINC" Type="smalldatetime" />
+          <Property Name="LDINC" Type="smalldatetime" />
+          <Property Name="COOR" Type="nvarchar" MaxLength="4" />
+          <Property Name="REM" Type="nvarchar" MaxLength="20" />
+          <Property Name="SCSTOS" Type="nvarchar" MaxLength="2" />
+          <Property Name="FILENO" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="OLD_FILENO" Type="nvarchar" MaxLength="6" />
+          <Property Name="DESIGN" Type="nvarchar" MaxLength="35" />
+          <Property Name="COO" Type="nvarchar" MaxLength="60" />
+          <Property Name="PFLAG" Type="nvarchar" MaxLength="1" />
+          <Property Name="HRA" Type="float" />
+          <Property Name="DT_INP" Type="smalldatetime" />
+          <Property Name="DT_CHG" Type="smalldatetime" />
+          <Property Name="PCODE" Type="nvarchar" MaxLength="30" />
+          <Property Name="DOB" Type="smalldatetime" />
+          <Property Name="DEPARTMENT" Type="nvarchar" MaxLength="500" />
+          <Property Name="FATHER" Type="nvarchar" MaxLength="50" />
+          <Property Name="ADDRESS1" Type="nvarchar" MaxLength="30" />
+          <Property Name="ADDRESS2" Type="nvarchar" MaxLength="30" />
+          <Property Name="ADDRESS3" Type="nvarchar" MaxLength="30" />
+          <Property Name="ADDRESS4" Type="nvarchar" MaxLength="30" />
+          <Property Name="CITY" Type="nvarchar" MaxLength="20" />
+          <Property Name="MONTH" Type="float" />
+          <Property Name="RATE" Type="float" />
+          <Property Name="SEX" Type="nvarchar" MaxLength="1" />
+          <Property Name="BLDGRP" Type="nvarchar" MaxLength="3" />
+          <Property Name="RH" Type="nvarchar" MaxLength="3" />
+          <Property Name="PHONE" Type="nvarchar" MaxLength="12" />
+          <Property Name="R_ADDR1" Type="nvarchar" MaxLength="30" />
+          <Property Name="R_ADDR2" Type="nvarchar" MaxLength="30" />
+          <Property Name="R_CITY" Type="nvarchar" MaxLength="20" />
+          <Property Name="R_PIN" Type="nvarchar" MaxLength="7" />
+          <Property Name="R_PHONE" Type="nvarchar" MaxLength="12" />
+          <Property Name="R_ADDR3" Type="nvarchar" MaxLength="30" />
+          <Property Name="R_ADDR4" Type="nvarchar" MaxLength="30" />
+          <Property Name="COURSE" Type="nvarchar" MaxLength="10" />
+          <Property Name="SEMESTER" Type="nvarchar" MaxLength="20" />
+          <Property Name="YR" Type="char" MaxLength="4" />
+          <Property Name="PROVISIONAL" Type="nvarchar" MaxLength="50" />
+          <Property Name="MEDICAL" Type="nvarchar" MaxLength="10" />
+          <Property Name="extn_date" Type="datetime" />
+          <Property Name="paybill_id" Type="nvarchar" MaxLength="4" />
+          <Property Name="paybill_no" Type="nvarchar" MaxLength="5" />
+          <Property Name="email_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pensioner" Type="varchar" MaxLength="3" />
+          <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+          <Property Name="coo_email_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="duration" Type="nvarchar" MaxLength="50" />
+          <Property Name="age" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="NEWREG">
+          <Key>
+            <PropertyRef Name="FILENO" />
+          </Key>
+          <Property Name="EMPCODE" Type="nvarchar" MaxLength="5" />
+          <Property Name="STAT" Type="nvarchar" MaxLength="1" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="320" />
+          <Property Name="PROJECTNO" Type="nvarchar" MaxLength="25" />
+          <Property Name="PTYPE" Type="nvarchar" MaxLength="3" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="DEPT" Type="nvarchar" MaxLength="30" />
+          <Property Name="SPON" Type="nvarchar" MaxLength="4" />
+          <Property Name="DESIG" Type="nvarchar" MaxLength="3" />
+          <Property Name="DTAP" Type="smalldatetime" />
+          <Property Name="EXTN" Type="smalldatetime" />
+          <Property Name="DRLF" Type="smalldatetime" />
+          <Property Name="BASIC" Type="float" />
+          <Property Name="INCR" Type="float" />
+          <Property Name="DINC" Type="smalldatetime" />
+          <Property Name="LDINC" Type="smalldatetime" />
+          <Property Name="COOR" Type="nvarchar" MaxLength="4" />
+          <Property Name="REM" Type="nvarchar" MaxLength="20" />
+          <Property Name="SCSTOS" Type="nvarchar" MaxLength="2" />
+          <Property Name="FILENO" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="OLD_FILENO" Type="nvarchar" MaxLength="6" />
+          <Property Name="DESIGN" Type="nvarchar" MaxLength="35" />
+          <Property Name="COO" Type="nvarchar" MaxLength="50" />
+          <Property Name="PFLAG" Type="nvarchar" MaxLength="1" />
+          <Property Name="HRA" Type="float" />
+          <Property Name="DT_INP" Type="smalldatetime" />
+          <Property Name="DT_CHG" Type="smalldatetime" />
+          <Property Name="PCODE" Type="nvarchar" MaxLength="30" />
+          <Property Name="DOB" Type="smalldatetime" />
+          <Property Name="DEPARTMENT" Type="nvarchar" MaxLength="40" />
+          <Property Name="FATHER" Type="nvarchar" MaxLength="30" />
+          <Property Name="ADDRESS1" Type="nvarchar" MaxLength="30" />
+          <Property Name="ADDRESS2" Type="nvarchar" MaxLength="30" />
+          <Property Name="ADDRESS3" Type="nvarchar" MaxLength="30" />
+          <Property Name="ADDRESS4" Type="nvarchar" MaxLength="30" />
+          <Property Name="CITY" Type="nvarchar" MaxLength="20" />
+          <Property Name="MONTH" Type="float" />
+          <Property Name="RATE" Type="float" />
+          <Property Name="SEX" Type="nvarchar" MaxLength="1" />
+          <Property Name="BLDGRP" Type="nvarchar" MaxLength="3" />
+          <Property Name="RH" Type="nvarchar" MaxLength="3" />
+          <Property Name="PHONE" Type="nvarchar" MaxLength="12" />
+          <Property Name="R_ADDR1" Type="nvarchar" MaxLength="30" />
+          <Property Name="R_ADDR2" Type="nvarchar" MaxLength="30" />
+          <Property Name="R_CITY" Type="nvarchar" MaxLength="20" />
+          <Property Name="R_PIN" Type="nvarchar" MaxLength="7" />
+          <Property Name="R_PHONE" Type="nvarchar" MaxLength="12" />
+          <Property Name="R_ADDR3" Type="nvarchar" MaxLength="30" />
+          <Property Name="R_ADDR4" Type="nvarchar" MaxLength="30" />
+          <Property Name="COURSE" Type="nvarchar" MaxLength="5" />
+          <Property Name="SEMESTER" Type="nvarchar" MaxLength="20" />
+          <Property Name="YR" Type="char" MaxLength="4" />
+          <Property Name="PROVISIONAL" Type="nvarchar" MaxLength="50" />
+          <Property Name="MEDICAL" Type="nvarchar" MaxLength="10" />
+          <Property Name="extn_date" Type="datetime" />
+          <Property Name="paybill_id" Type="nvarchar" MaxLength="4" />
+          <Property Name="paybill_no" Type="nvarchar" MaxLength="5" />
+          <Property Name="email_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pensioner" Type="varchar" MaxLength="3" />
+          <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+          <Property Name="coo_email_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="duration" Type="nvarchar" MaxLength="50" />
+          <Property Name="age" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OutSourcingDesignation">
+          <Key>
+            <PropertyRef Name="DesignationCode" />
+          </Key>
+          <Property Name="DesignationCode" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="DesignationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LowerAgeLimit" Type="smallint" />
+          <Property Name="UpperAgeLimit" Type="smallint" />
+          <Property Name="Qualifications" Type="nvarchar" MaxLength="50" />
+          <Property Name="Experience" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="30" />
+          <Property Name="UpdatedOn" Type="date" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="PART">
+          <Key>
+            <PropertyRef Name="FILENO" />
+          </Key>
+          <Property Name="EMPCODE" Type="nvarchar" MaxLength="5" />
+          <Property Name="STAT" Type="nvarchar" MaxLength="1" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="120" />
+          <Property Name="PROJECTNO" Type="nvarchar" MaxLength="30" />
+          <Property Name="PTYPE" Type="nvarchar" MaxLength="3" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="DEPT" Type="nvarchar" MaxLength="30" />
+          <Property Name="SPON" Type="nvarchar" MaxLength="15" />
+          <Property Name="DESIG" Type="nvarchar" MaxLength="3" />
+          <Property Name="DTAP" Type="smalldatetime" />
+          <Property Name="EXTN" Type="smalldatetime" />
+          <Property Name="DRLF" Type="smalldatetime" />
+          <Property Name="BASIC" Type="float" />
+          <Property Name="INCR" Type="float" />
+          <Property Name="DINC" Type="smalldatetime" />
+          <Property Name="LDINC" Type="smalldatetime" />
+          <Property Name="COOR" Type="nvarchar" MaxLength="4" />
+          <Property Name="REM" Type="nvarchar" MaxLength="20" />
+          <Property Name="SCSTOS" Type="nvarchar" MaxLength="2" />
+          <Property Name="FILENO" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="OLD_FILENO" Type="nvarchar" MaxLength="6" />
+          <Property Name="DESIGN" Type="nvarchar" MaxLength="35" />
+          <Property Name="COO" Type="nvarchar" MaxLength="50" />
+          <Property Name="PFLAG" Type="nvarchar" MaxLength="1" />
+          <Property Name="HRA" Type="float" />
+          <Property Name="DT_INP" Type="smalldatetime" />
+          <Property Name="DT_CHG" Type="smalldatetime" />
+          <Property Name="PCODE" Type="nvarchar" MaxLength="30" />
+          <Property Name="DOB" Type="smalldatetime" />
+          <Property Name="DEPARTMENT" Type="nvarchar" MaxLength="60" />
+          <Property Name="FATHER" Type="nvarchar" MaxLength="35" />
+          <Property Name="ADDRESS1" Type="nvarchar" MaxLength="30" />
+          <Property Name="ADDRESS2" Type="nvarchar" MaxLength="30" />
+          <Property Name="ADDRESS3" Type="nvarchar" MaxLength="30" />
+          <Property Name="ADDRESS4" Type="nvarchar" MaxLength="30" />
+          <Property Name="CITY" Type="nvarchar" MaxLength="20" />
+          <Property Name="MONTH" Type="float" />
+          <Property Name="RATE" Type="float" />
+          <Property Name="SEX" Type="nvarchar" MaxLength="1" />
+          <Property Name="BLDGRP" Type="nvarchar" MaxLength="3" />
+          <Property Name="RH" Type="nvarchar" MaxLength="3" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="12" />
+          <Property Name="R_ADDR1" Type="nvarchar" MaxLength="30" />
+          <Property Name="R_ADDR2" Type="nvarchar" MaxLength="30" />
+          <Property Name="R_CITY" Type="nvarchar" MaxLength="20" />
+          <Property Name="R_PIN" Type="nvarchar" MaxLength="7" />
+          <Property Name="R_PHONE" Type="nvarchar" MaxLength="12" />
+          <Property Name="R_ADDR3" Type="nvarchar" MaxLength="30" />
+          <Property Name="R_ADDR4" Type="nvarchar" MaxLength="30" />
+          <Property Name="COURSE" Type="nvarchar" MaxLength="10" />
+          <Property Name="SEMESTER" Type="nvarchar" MaxLength="20" />
+          <Property Name="YR" Type="char" MaxLength="4" />
+          <Property Name="PROVISIONAL" Type="nvarchar" MaxLength="50" />
+          <Property Name="MEDICAL" Type="nvarchar" MaxLength="10" />
+          <Property Name="extn_date" Type="datetime" />
+          <Property Name="paybill_id" Type="nvarchar" MaxLength="4" />
+          <Property Name="paybill_no" Type="nvarchar" MaxLength="5" />
+          <Property Name="email_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pensioner" Type="varchar" MaxLength="3" />
+          <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+          <Property Name="coo_email_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="duration" Type="nvarchar" MaxLength="50" />
+          <Property Name="age" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_NEWREG_designa">
+          <End Role="designa" Type="Self.designa" Multiplicity="0..1" />
+          <End Role="NEWREG" Type="Self.NEWREG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="designa">
+              <PropertyRef Name="descod" />
+            </Principal>
+            <Dependent Role="NEWREG">
+              <PropertyRef Name="DESIG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PART_designa1">
+          <End Role="designa" Type="Self.designa" Multiplicity="0..1" />
+          <End Role="PART" Type="Self.PART" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="designa">
+              <PropertyRef Name="descod" />
+            </Principal>
+            <Dependent Role="PART">
+              <PropertyRef Name="DESIG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectDesignationCode">
+          <End Role="OutSourcingDesignation" Type="Self.OutSourcingDesignation" Multiplicity="1" />
+          <End Role="AppointmentProject" Type="Self.AppointmentProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OutSourcingDesignation">
+              <PropertyRef Name="DesignationCode" />
+            </Principal>
+            <Dependent Role="AppointmentProject">
+              <PropertyRef Name="DesignationCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Department" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="RecruitModelStoreContainer">
+          <EntitySet Name="AppointmentProject" EntityType="Self.AppointmentProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="designa" EntityType="Self.designa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NEWADH" EntityType="Self.NEWADH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NEWREG" EntityType="Self.NEWREG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OutSourcingDesignation" EntityType="Self.OutSourcingDesignation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PART" EntityType="Self.PART" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_NEWREG_designa" Association="Self.FK_NEWREG_designa">
+            <End Role="designa" EntitySet="designa" />
+            <End Role="NEWREG" EntitySet="NEWREG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PART_designa1" Association="Self.FK_PART_designa1">
+            <End Role="designa" EntitySet="designa" />
+            <End Role="PART" EntitySet="PART" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDesignationCode" Association="Self.FK_ProjectDesignationCode">
+            <End Role="OutSourcingDesignation" EntitySet="OutSourcingDesignation" />
+            <End Role="AppointmentProject" EntitySet="AppointmentProject" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RecruitModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="designa">
+          <Key>
+            <PropertyRef Name="descod" />
+          </Key>
+          <Property Name="descod" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="design" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="curdesi" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="desorder" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NEWREG" Relationship="RecruitModel.FK_NEWREG_designa" FromRole="designa" ToRole="NEWREG" />
+          <NavigationProperty Name="PART" Relationship="RecruitModel.FK_PART_designa1" FromRole="designa" ToRole="PART" />
+        </EntityType>
+        <EntityType Name="OutSourcingDesignation">
+          <Key>
+            <PropertyRef Name="DesignationCode" />
+          </Key>
+          <Property Name="DesignationCode" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DesignationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LowerAgeLimit" Type="Int16" />
+          <Property Name="UpperAgeLimit" Type="Int16" />
+          <Property Name="Qualifications" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Experience" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AppointmentProjects" Relationship="RecruitModel.FK_ProjectDesignationCode" FromRole="OutSourcingDesignation" ToRole="AppointmentProject" />
+        </EntityType>
+        <EntityContainer Name="RecruitEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="designas" EntityType="Self.designa" />
+          <EntitySet Name="OutSourcingDesignations" EntityType="Self.OutSourcingDesignation" />
+          <FunctionImport Name="Department" ReturnType="Collection(RecruitModel.Department_Result)" />
+          <EntitySet Name="AppointmentProjects" EntityType="RecruitModel.AppointmentProject" />
+          <AssociationSet Name="FK_ProjectDesignationCode" Association="RecruitModel.FK_ProjectDesignationCode">
+            <End Role="OutSourcingDesignation" EntitySet="OutSourcingDesignations" />
+            <End Role="AppointmentProject" EntitySet="AppointmentProjects" />
+          </AssociationSet>
+          <EntitySet Name="NEWADH" EntityType="RecruitModel.NEWADH" />
+          <EntitySet Name="NEWREG" EntityType="RecruitModel.NEWREG" />
+          <EntitySet Name="PART" EntityType="RecruitModel.PART" />
+          <AssociationSet Name="FK_NEWREG_designa" Association="RecruitModel.FK_NEWREG_designa">
+            <End Role="designa" EntitySet="designas" />
+            <End Role="NEWREG" EntitySet="NEWREG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PART_designa1" Association="RecruitModel.FK_PART_designa1">
+            <End Role="designa" EntitySet="designas" />
+            <End Role="PART" EntitySet="PART" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="Department_Result">
+          <Property Type="String" Name="DepartmentCode" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="DeptOrCentre" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <EntityType Name="AppointmentProject">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="MeetingID" />
+          </Key>
+          <Property Name="EmployeeID" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="MeetingID" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="DesignationCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="DesignationName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectType" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectNo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PICode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="PIName" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="AppointmentDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ProjectRelieveDate" Type="DateTime" Precision="0" />
+          <Property Name="RelievedOn" Type="DateTime" Precision="0" />
+          <Property Name="RelievedBy" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OutSourcingDesignation" Relationship="RecruitModel.FK_ProjectDesignationCode" FromRole="AppointmentProject" ToRole="OutSourcingDesignation" />
+        </EntityType>
+        <Association Name="FK_ProjectDesignationCode">
+          <End Type="RecruitModel.OutSourcingDesignation" Role="OutSourcingDesignation" Multiplicity="1" />
+          <End Type="RecruitModel.AppointmentProject" Role="AppointmentProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OutSourcingDesignation">
+              <PropertyRef Name="DesignationCode" />
+            </Principal>
+            <Dependent Role="AppointmentProject">
+              <PropertyRef Name="DesignationCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NEWADH">
+          <Key>
+            <PropertyRef Name="FILENO" />
+          </Key>
+          <Property Name="EMPCODE" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="STAT" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TITLE" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="PROJECTNO" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="PTYPE" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DEPT" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="SPON" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="DESIG" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="DTAP" Type="DateTime" Precision="0" />
+          <Property Name="EXTN" Type="DateTime" Precision="0" />
+          <Property Name="DRLF" Type="DateTime" Precision="0" />
+          <Property Name="BASIC" Type="Double" />
+          <Property Name="INCR" Type="Double" />
+          <Property Name="DINC" Type="DateTime" Precision="0" />
+          <Property Name="LDINC" Type="DateTime" Precision="0" />
+          <Property Name="COOR" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="REM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SCSTOS" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="FILENO" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="OLD_FILENO" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="DESIGN" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="COO" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="PFLAG" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="HRA" Type="Double" />
+          <Property Name="DT_INP" Type="DateTime" Precision="0" />
+          <Property Name="DT_CHG" Type="DateTime" Precision="0" />
+          <Property Name="PCODE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="DEPARTMENT" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FATHER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS3" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS4" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CITY" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MONTH" Type="Double" />
+          <Property Name="RATE" Type="Double" />
+          <Property Name="SEX" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="BLDGRP" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="RH" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="PHONE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="R_ADDR1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="R_ADDR2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="R_CITY" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="R_PIN" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="R_PHONE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="R_ADDR3" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="R_ADDR4" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="COURSE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SEMESTER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="YR" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="PROVISIONAL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MEDICAL" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="extn_date" Type="DateTime" Precision="3" />
+          <Property Name="paybill_id" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="paybill_no" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="email_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pensioner" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="coo_email_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="duration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NEWREG">
+          <Key>
+            <PropertyRef Name="FILENO" />
+          </Key>
+          <Property Name="EMPCODE" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="STAT" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TITLE" Type="String" MaxLength="320" FixedLength="false" Unicode="true" />
+          <Property Name="PROJECTNO" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="PTYPE" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DEPT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SPON" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="DESIG" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="DTAP" Type="DateTime" Precision="0" />
+          <Property Name="EXTN" Type="DateTime" Precision="0" />
+          <Property Name="DRLF" Type="DateTime" Precision="0" />
+          <Property Name="BASIC" Type="Double" />
+          <Property Name="INCR" Type="Double" />
+          <Property Name="DINC" Type="DateTime" Precision="0" />
+          <Property Name="LDINC" Type="DateTime" Precision="0" />
+          <Property Name="COOR" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="REM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SCSTOS" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="FILENO" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="OLD_FILENO" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="DESIGN" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="COO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PFLAG" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="HRA" Type="Double" />
+          <Property Name="DT_INP" Type="DateTime" Precision="0" />
+          <Property Name="DT_CHG" Type="DateTime" Precision="0" />
+          <Property Name="PCODE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="DEPARTMENT" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="FATHER" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS3" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS4" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CITY" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MONTH" Type="Double" />
+          <Property Name="RATE" Type="Double" />
+          <Property Name="SEX" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="BLDGRP" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="RH" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="PHONE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="R_ADDR1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="R_ADDR2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="R_CITY" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="R_PIN" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="R_PHONE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="R_ADDR3" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="R_ADDR4" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="COURSE" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="SEMESTER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="YR" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="PROVISIONAL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MEDICAL" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="extn_date" Type="DateTime" Precision="3" />
+          <Property Name="paybill_id" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="paybill_no" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="email_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pensioner" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="coo_email_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="duration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="designa" Relationship="RecruitModel.FK_NEWREG_designa" FromRole="NEWREG" ToRole="designa" />
+        </EntityType>
+        <EntityType Name="PART">
+          <Key>
+            <PropertyRef Name="FILENO" />
+          </Key>
+          <Property Name="EMPCODE" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="STAT" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TITLE" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="PROJECTNO" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PTYPE" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DEPT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SPON" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="DESIG" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="DTAP" Type="DateTime" Precision="0" />
+          <Property Name="EXTN" Type="DateTime" Precision="0" />
+          <Property Name="DRLF" Type="DateTime" Precision="0" />
+          <Property Name="BASIC" Type="Double" />
+          <Property Name="INCR" Type="Double" />
+          <Property Name="DINC" Type="DateTime" Precision="0" />
+          <Property Name="LDINC" Type="DateTime" Precision="0" />
+          <Property Name="COOR" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="REM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SCSTOS" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="FILENO" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="OLD_FILENO" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="DESIGN" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="COO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PFLAG" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="HRA" Type="Double" />
+          <Property Name="DT_INP" Type="DateTime" Precision="0" />
+          <Property Name="DT_CHG" Type="DateTime" Precision="0" />
+          <Property Name="PCODE" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="DEPARTMENT" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="FATHER" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS3" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS4" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CITY" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MONTH" Type="Double" />
+          <Property Name="RATE" Type="Double" />
+          <Property Name="SEX" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="BLDGRP" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="RH" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="R_ADDR1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="R_ADDR2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="R_CITY" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="R_PIN" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="R_PHONE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="R_ADDR3" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="R_ADDR4" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="COURSE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SEMESTER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="YR" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="PROVISIONAL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MEDICAL" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="extn_date" Type="DateTime" Precision="3" />
+          <Property Name="paybill_id" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="paybill_no" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="email_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pensioner" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="coo_email_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="duration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="designa" Relationship="RecruitModel.FK_PART_designa1" FromRole="PART" ToRole="designa" />
+        </EntityType>
+        <Association Name="FK_NEWREG_designa">
+          <End Type="RecruitModel.designa" Role="designa" Multiplicity="0..1" />
+          <End Type="RecruitModel.NEWREG" Role="NEWREG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="designa">
+              <PropertyRef Name="descod" />
+            </Principal>
+            <Dependent Role="NEWREG">
+              <PropertyRef Name="DESIG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PART_designa1">
+          <End Type="RecruitModel.designa" Role="designa" Multiplicity="0..1" />
+          <End Type="RecruitModel.PART" Role="PART" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="designa">
+              <PropertyRef Name="descod" />
+            </Principal>
+            <Dependent Role="PART">
+              <PropertyRef Name="DESIG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RecruitModelStoreContainer" CdmEntityContainer="RecruitEntities">
+          <EntitySetMapping Name="designas">
+            <EntityTypeMapping TypeName="RecruitModel.designa">
+              <MappingFragment StoreEntitySet="designa">
+                <ScalarProperty Name="descod" ColumnName="descod" />
+                <ScalarProperty Name="design" ColumnName="design" />
+                <ScalarProperty Name="curdesi" ColumnName="curdesi" />
+                <ScalarProperty Name="desorder" ColumnName="desorder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OutSourcingDesignations">
+            <EntityTypeMapping TypeName="RecruitModel.OutSourcingDesignation">
+              <MappingFragment StoreEntitySet="OutSourcingDesignation">
+                <ScalarProperty Name="DesignationCode" ColumnName="DesignationCode" />
+                <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+                <ScalarProperty Name="LowerAgeLimit" ColumnName="LowerAgeLimit" />
+                <ScalarProperty Name="UpperAgeLimit" ColumnName="UpperAgeLimit" />
+                <ScalarProperty Name="Qualifications" ColumnName="Qualifications" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Department" FunctionName="RecruitModel.Store.Department">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RecruitModel.Department_Result">
+                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DeptOrCentre" ColumnName="DeptOrCentre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="AppointmentProjects">
+            <EntityTypeMapping TypeName="RecruitModel.AppointmentProject">
+              <MappingFragment StoreEntitySet="AppointmentProject">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="RelievedBy" ColumnName="RelievedBy" />
+                <ScalarProperty Name="RelievedOn" ColumnName="RelievedOn" />
+                <ScalarProperty Name="ProjectRelieveDate" ColumnName="ProjectRelieveDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+                <ScalarProperty Name="PIName" ColumnName="PIName" />
+                <ScalarProperty Name="PICode" ColumnName="PICode" />
+                <ScalarProperty Name="ProjectNo" ColumnName="ProjectNo" />
+                <ScalarProperty Name="ProjectType" ColumnName="ProjectType" />
+                <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+                <ScalarProperty Name="DesignationCode" ColumnName="DesignationCode" />
+                <ScalarProperty Name="MeetingID" ColumnName="MeetingID" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NEWADH">
+            <EntityTypeMapping TypeName="RecruitModel.NEWADH">
+              <MappingFragment StoreEntitySet="NEWADH">
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="coo_email_id" ColumnName="coo_email_id" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Pensioner" ColumnName="Pensioner" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="paybill_no" ColumnName="paybill_no" />
+                <ScalarProperty Name="paybill_id" ColumnName="paybill_id" />
+                <ScalarProperty Name="extn_date" ColumnName="extn_date" />
+                <ScalarProperty Name="MEDICAL" ColumnName="MEDICAL" />
+                <ScalarProperty Name="PROVISIONAL" ColumnName="PROVISIONAL" />
+                <ScalarProperty Name="YR" ColumnName="YR" />
+                <ScalarProperty Name="SEMESTER" ColumnName="SEMESTER" />
+                <ScalarProperty Name="COURSE" ColumnName="COURSE" />
+                <ScalarProperty Name="R_ADDR4" ColumnName="R_ADDR4" />
+                <ScalarProperty Name="R_ADDR3" ColumnName="R_ADDR3" />
+                <ScalarProperty Name="R_PHONE" ColumnName="R_PHONE" />
+                <ScalarProperty Name="R_PIN" ColumnName="R_PIN" />
+                <ScalarProperty Name="R_CITY" ColumnName="R_CITY" />
+                <ScalarProperty Name="R_ADDR2" ColumnName="R_ADDR2" />
+                <ScalarProperty Name="R_ADDR1" ColumnName="R_ADDR1" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="RH" ColumnName="RH" />
+                <ScalarProperty Name="BLDGRP" ColumnName="BLDGRP" />
+                <ScalarProperty Name="SEX" ColumnName="SEX" />
+                <ScalarProperty Name="RATE" ColumnName="RATE" />
+                <ScalarProperty Name="MONTH" ColumnName="MONTH" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="ADDRESS4" ColumnName="ADDRESS4" />
+                <ScalarProperty Name="ADDRESS3" ColumnName="ADDRESS3" />
+                <ScalarProperty Name="ADDRESS2" ColumnName="ADDRESS2" />
+                <ScalarProperty Name="ADDRESS1" ColumnName="ADDRESS1" />
+                <ScalarProperty Name="FATHER" ColumnName="FATHER" />
+                <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="PCODE" ColumnName="PCODE" />
+                <ScalarProperty Name="DT_CHG" ColumnName="DT_CHG" />
+                <ScalarProperty Name="DT_INP" ColumnName="DT_INP" />
+                <ScalarProperty Name="HRA" ColumnName="HRA" />
+                <ScalarProperty Name="PFLAG" ColumnName="PFLAG" />
+                <ScalarProperty Name="COO" ColumnName="COO" />
+                <ScalarProperty Name="DESIGN" ColumnName="DESIGN" />
+                <ScalarProperty Name="OLD_FILENO" ColumnName="OLD_FILENO" />
+                <ScalarProperty Name="FILENO" ColumnName="FILENO" />
+                <ScalarProperty Name="SCSTOS" ColumnName="SCSTOS" />
+                <ScalarProperty Name="REM" ColumnName="REM" />
+                <ScalarProperty Name="COOR" ColumnName="COOR" />
+                <ScalarProperty Name="LDINC" ColumnName="LDINC" />
+                <ScalarProperty Name="DINC" ColumnName="DINC" />
+                <ScalarProperty Name="INCR" ColumnName="INCR" />
+                <ScalarProperty Name="BASIC" ColumnName="BASIC" />
+                <ScalarProperty Name="DRLF" ColumnName="DRLF" />
+                <ScalarProperty Name="EXTN" ColumnName="EXTN" />
+                <ScalarProperty Name="DTAP" ColumnName="DTAP" />
+                <ScalarProperty Name="DESIG" ColumnName="DESIG" />
+                <ScalarProperty Name="SPON" ColumnName="SPON" />
+                <ScalarProperty Name="DEPT" ColumnName="DEPT" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PTYPE" ColumnName="PTYPE" />
+                <ScalarProperty Name="PROJECTNO" ColumnName="PROJECTNO" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="STAT" ColumnName="STAT" />
+                <ScalarProperty Name="EMPCODE" ColumnName="EMPCODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NEWREG">
+            <EntityTypeMapping TypeName="RecruitModel.NEWREG">
+              <MappingFragment StoreEntitySet="NEWREG">
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="coo_email_id" ColumnName="coo_email_id" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Pensioner" ColumnName="Pensioner" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="paybill_no" ColumnName="paybill_no" />
+                <ScalarProperty Name="paybill_id" ColumnName="paybill_id" />
+                <ScalarProperty Name="extn_date" ColumnName="extn_date" />
+                <ScalarProperty Name="MEDICAL" ColumnName="MEDICAL" />
+                <ScalarProperty Name="PROVISIONAL" ColumnName="PROVISIONAL" />
+                <ScalarProperty Name="YR" ColumnName="YR" />
+                <ScalarProperty Name="SEMESTER" ColumnName="SEMESTER" />
+                <ScalarProperty Name="COURSE" ColumnName="COURSE" />
+                <ScalarProperty Name="R_ADDR4" ColumnName="R_ADDR4" />
+                <ScalarProperty Name="R_ADDR3" ColumnName="R_ADDR3" />
+                <ScalarProperty Name="R_PHONE" ColumnName="R_PHONE" />
+                <ScalarProperty Name="R_PIN" ColumnName="R_PIN" />
+                <ScalarProperty Name="R_CITY" ColumnName="R_CITY" />
+                <ScalarProperty Name="R_ADDR2" ColumnName="R_ADDR2" />
+                <ScalarProperty Name="R_ADDR1" ColumnName="R_ADDR1" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="RH" ColumnName="RH" />
+                <ScalarProperty Name="BLDGRP" ColumnName="BLDGRP" />
+                <ScalarProperty Name="SEX" ColumnName="SEX" />
+                <ScalarProperty Name="RATE" ColumnName="RATE" />
+                <ScalarProperty Name="MONTH" ColumnName="MONTH" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="ADDRESS4" ColumnName="ADDRESS4" />
+                <ScalarProperty Name="ADDRESS3" ColumnName="ADDRESS3" />
+                <ScalarProperty Name="ADDRESS2" ColumnName="ADDRESS2" />
+                <ScalarProperty Name="ADDRESS1" ColumnName="ADDRESS1" />
+                <ScalarProperty Name="FATHER" ColumnName="FATHER" />
+                <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="PCODE" ColumnName="PCODE" />
+                <ScalarProperty Name="DT_CHG" ColumnName="DT_CHG" />
+                <ScalarProperty Name="DT_INP" ColumnName="DT_INP" />
+                <ScalarProperty Name="HRA" ColumnName="HRA" />
+                <ScalarProperty Name="PFLAG" ColumnName="PFLAG" />
+                <ScalarProperty Name="COO" ColumnName="COO" />
+                <ScalarProperty Name="DESIGN" ColumnName="DESIGN" />
+                <ScalarProperty Name="OLD_FILENO" ColumnName="OLD_FILENO" />
+                <ScalarProperty Name="FILENO" ColumnName="FILENO" />
+                <ScalarProperty Name="SCSTOS" ColumnName="SCSTOS" />
+                <ScalarProperty Name="REM" ColumnName="REM" />
+                <ScalarProperty Name="COOR" ColumnName="COOR" />
+                <ScalarProperty Name="LDINC" ColumnName="LDINC" />
+                <ScalarProperty Name="DINC" ColumnName="DINC" />
+                <ScalarProperty Name="INCR" ColumnName="INCR" />
+                <ScalarProperty Name="BASIC" ColumnName="BASIC" />
+                <ScalarProperty Name="DRLF" ColumnName="DRLF" />
+                <ScalarProperty Name="EXTN" ColumnName="EXTN" />
+                <ScalarProperty Name="DTAP" ColumnName="DTAP" />
+                <ScalarProperty Name="DESIG" ColumnName="DESIG" />
+                <ScalarProperty Name="SPON" ColumnName="SPON" />
+                <ScalarProperty Name="DEPT" ColumnName="DEPT" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PTYPE" ColumnName="PTYPE" />
+                <ScalarProperty Name="PROJECTNO" ColumnName="PROJECTNO" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="STAT" ColumnName="STAT" />
+                <ScalarProperty Name="EMPCODE" ColumnName="EMPCODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PART">
+            <EntityTypeMapping TypeName="RecruitModel.PART">
+              <MappingFragment StoreEntitySet="PART">
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="coo_email_id" ColumnName="coo_email_id" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Pensioner" ColumnName="Pensioner" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="paybill_no" ColumnName="paybill_no" />
+                <ScalarProperty Name="paybill_id" ColumnName="paybill_id" />
+                <ScalarProperty Name="extn_date" ColumnName="extn_date" />
+                <ScalarProperty Name="MEDICAL" ColumnName="MEDICAL" />
+                <ScalarProperty Name="PROVISIONAL" ColumnName="PROVISIONAL" />
+                <ScalarProperty Name="YR" ColumnName="YR" />
+                <ScalarProperty Name="SEMESTER" ColumnName="SEMESTER" />
+                <ScalarProperty Name="COURSE" ColumnName="COURSE" />
+                <ScalarProperty Name="R_ADDR4" ColumnName="R_ADDR4" />
+                <ScalarProperty Name="R_ADDR3" ColumnName="R_ADDR3" />
+                <ScalarProperty Name="R_PHONE" ColumnName="R_PHONE" />
+                <ScalarProperty Name="R_PIN" ColumnName="R_PIN" />
+                <ScalarProperty Name="R_CITY" ColumnName="R_CITY" />
+                <ScalarProperty Name="R_ADDR2" ColumnName="R_ADDR2" />
+                <ScalarProperty Name="R_ADDR1" ColumnName="R_ADDR1" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="RH" ColumnName="RH" />
+                <ScalarProperty Name="BLDGRP" ColumnName="BLDGRP" />
+                <ScalarProperty Name="SEX" ColumnName="SEX" />
+                <ScalarProperty Name="RATE" ColumnName="RATE" />
+                <ScalarProperty Name="MONTH" ColumnName="MONTH" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="ADDRESS4" ColumnName="ADDRESS4" />
+                <ScalarProperty Name="ADDRESS3" ColumnName="ADDRESS3" />
+                <ScalarProperty Name="ADDRESS2" ColumnName="ADDRESS2" />
+                <ScalarProperty Name="ADDRESS1" ColumnName="ADDRESS1" />
+                <ScalarProperty Name="FATHER" ColumnName="FATHER" />
+                <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="PCODE" ColumnName="PCODE" />
+                <ScalarProperty Name="DT_CHG" ColumnName="DT_CHG" />
+                <ScalarProperty Name="DT_INP" ColumnName="DT_INP" />
+                <ScalarProperty Name="HRA" ColumnName="HRA" />
+                <ScalarProperty Name="PFLAG" ColumnName="PFLAG" />
+                <ScalarProperty Name="COO" ColumnName="COO" />
+                <ScalarProperty Name="DESIGN" ColumnName="DESIGN" />
+                <ScalarProperty Name="OLD_FILENO" ColumnName="OLD_FILENO" />
+                <ScalarProperty Name="FILENO" ColumnName="FILENO" />
+                <ScalarProperty Name="SCSTOS" ColumnName="SCSTOS" />
+                <ScalarProperty Name="REM" ColumnName="REM" />
+                <ScalarProperty Name="COOR" ColumnName="COOR" />
+                <ScalarProperty Name="LDINC" ColumnName="LDINC" />
+                <ScalarProperty Name="DINC" ColumnName="DINC" />
+                <ScalarProperty Name="INCR" ColumnName="INCR" />
+                <ScalarProperty Name="BASIC" ColumnName="BASIC" />
+                <ScalarProperty Name="DRLF" ColumnName="DRLF" />
+                <ScalarProperty Name="EXTN" ColumnName="EXTN" />
+                <ScalarProperty Name="DTAP" ColumnName="DTAP" />
+                <ScalarProperty Name="DESIG" ColumnName="DESIG" />
+                <ScalarProperty Name="SPON" ColumnName="SPON" />
+                <ScalarProperty Name="DEPT" ColumnName="DEPT" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PTYPE" ColumnName="PTYPE" />
+                <ScalarProperty Name="PROJECTNO" ColumnName="PROJECTNO" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="STAT" ColumnName="STAT" />
+                <ScalarProperty Name="EMPCODE" ColumnName="EMPCODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

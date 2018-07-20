@@ -1,0 +1,193 @@
+﻿@model Data_Layer.Models.Dean_trxModel
+@Scripts.Render("~/bundles/sweet")
+@Styles.Render("~/bundles/sweetcss")
+<script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+@{
+    Layout = null;
+}
+<style type="text/css">
+    .swalcss {
+        font-size: 9px;
+        background-color: aliceblue;
+        width: auto;
+    }
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" http-equiv="X-UA-Compatible" />
+    <title>Fileupload</title>
+
+</head>
+<body>
+    <div style="width: 100%;  text-align: center;">
+        <div style=" color:black;display: inline-block; margin-bottom:3%">
+            <h2>Dean - @Model.Appmode </h2>
+        </div>
+        <br />
+        <div style=" color:black;display: inline-block; margin-bottom:3%;width:100%">
+            <form>
+                <table width="100%">
+                    <tr>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Agreement_No)
+                                @Html.TextBoxFor(m => m.Agreement_No, new { @class = "form-control", @placeholder = "Enter Agreement No" })
+                                @Html.ValidationMessageFor(m => m.Agreement_No,"", new { @style = "color:red" })
+                            </div>
+                        </td>
+                        <td width="10%"></td>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Year)
+                                @Html.TextBoxFor(m => m.Year, new { @class = "form-control", @placeholder = "Enter Year" })
+                                @Html.ValidationMessageFor(m => m.Year,"", new { @style = "color:red" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Partner)
+                                @Html.TextBoxFor(m => m.Partner, new { @class = "form-control", @placeholder = "Enter Partner Name" })
+                                @Html.ValidationMessageFor(m => m.Partner,"",new { @style="color:red" })
+                            </div>
+                        </td>
+                        <td width="10%"> </td>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Agreement_type)
+                                @Html.DropDownListFor(m => m.Agreement_type, Model.AgreementtypeList, "--Select Agreement Type--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m=>m.Agreement_type,"",new { @style="color:red"})
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.projectno)
+                                @Html.TextBoxFor(m => m.projectno, new { @class = "form-control", @placeholder = "Enter Projectno (if any)" })
+                            </div>
+                        </td>
+                        <td width="10%"></td>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Title)
+                                @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Enter Title" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Faculty)
+                                @Html.TextBoxFor(m => m.Faculty, new { @class = "form-control", @placeholder = "Enter Faculty Name" })
+
+                            </div>
+                        </td>
+                        <td width="10%"></td>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.DepartmentCode)
+                                @Html.TextBoxFor(m => m.DepartmentCode, new { @class = "form-control", @placeholder = "Enter DepartmentCode" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Signed_date)
+                                @Html.TextBoxFor(m => m.Signed_date, new { @id = "datepickerid", @class = "form-control", @placeholder = "dd/MM/yyyy" })
+                            </div>
+                        </td>
+                        <td width="10%"></td>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Expiry_date)
+                                @Html.TextBoxFor(m => m.Expiry_date, new { @id = "datepickerid1", @class = "form-control", @placeholder = "dd/MM/yyyy" })
+                                @*<input type="text" id="datepickerid" class="form-control" placeholder="dd/MM/yyyy" />*@
+                            </div>
+                        </td>                        
+                    </tr>
+                    <tr>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.CheckBoxFor(m => m.Followup)
+                                @Html.Label("Need Followup")
+                            </div>
+                        </td>
+                        <td width="10%"></td>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.Label("Select Files")
+                                <input type="file" id="FileUpload1" name="postedFiles" />
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="Upload" onclick="Upload_Dean()" />
+                        </td>
+                        <td>
+                            <span style="color:green">@Html.Raw(ViewBag.Message)</span>
+                        </td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $('#datepickerid').datepicker({ dateFormat: 'dd/mm/yy' }).val();
+    $('#datepickerid1').datepicker({ dateFormat: 'dd/mm/yy' }).val();
+    function Upload_Dean() {
+        alert('HI');
+        //check whether form data is available
+        if (window.FormData != undefined) {
+            var fileUpload = $("#FileUpload1").get(0);
+            var files = fileUpload.files;
+
+            //create formdata object
+            var fileData = new FormData($('form').get(0));
+            //fileData.append(files[0].name, files[0]);
+           fileData.append("Appmode",'@Model.Appmode');
+           $.ajax({
+               type: "post",
+               url: '@Url.Action("UploadFiles", "Dean",new { area=""})',
+               data: fileData,
+               processData: false,
+               contentType: false,
+               success: function (data) {
+                  if (data.success) {
+                       if (data.title == "File Upload Status") {
+                           var mydata = data.message;
+                           mydata = mydata.split(',').join('\n');
+                           swal({
+                               title: data.title,
+                               customClass: "swalcss",
+                               text: mydata
+                           });
+                       }
+                       else
+                           swal(data.title, data.message, "Success");
+                   }
+                   else {
+                       if (data.title === "File already exists")
+                           swal(data.title, data.message, "Warning");
+                       else if (data.title === "File type is not PDF")
+                           swal(data.title, data.message, "Warning");
+                       else if (data.title === "Session Expired")
+                           window.location.href = "/Home/Login";                                     
+                       else
+                           swal(data.title, data.message, "error");
+                   }
+               }             
+           })
+        }
+    }
+</script>
