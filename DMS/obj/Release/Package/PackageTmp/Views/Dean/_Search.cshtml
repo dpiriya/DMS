@@ -1,0 +1,119 @@
+﻿<div>
+    @ViewBag.Message
+    <table id="table_id" class="table table-striped table-bordered">
+        <thead style="color: black">
+            <tr style="text-align:center">
+                <th style="text-align:center; background-color:white; width:auto">
+                    Trans_ID
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Agreement No
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Year
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Type
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Partner
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Title
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Expiry Date
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Project no
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Followup
+                </th>
+                @*<th style="text-align:center; background-color:white; width:auto">
+                        File Name
+                    </th>
+                    <th style="text-align:center; background-color:white; width:auto">
+                        Page Count
+                    </th>*@
+                <th style="text-align:center; background-color:white; width:auto">
+                    Uploaded By
+                </th>
+                <th></th>
+        </thead>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+    //var selected = [];
+    var table = $('#table_id').DataTable({
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        //"filter": false, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "ajax": {
+            "url": "../Dean/LoadData",
+            "type": "POST",
+            //"data": function (data) { return data;},
+            "datatype": "json"
+        },
+        //"rowCallback": function (row, data) {
+        //    if ($.inArray(data.dean_trx_id, selected) !== -1) {
+        //        $(row).addClass('selected');
+        //    }
+        //},
+        "columns": [
+            { 'data': 'dean_trx_id', 'name': 'dean_trx_id' },
+            { 'data': 'Agreement_No', 'name': 'Agreement_No' },
+            { 'data': 'Year', 'name': 'Year' },
+            { 'data': 'Agreement_type', 'name': 'Agreement_type' },
+            { 'data': 'Partner', 'name': 'Partner' },
+            { 'data': 'Title', 'name': 'Title' },
+            {
+                'data': 'Expiry_date', 'name': 'Expiry_date',
+                //"type": "date ",
+                //"render": function (value) {
+                //    if (value === null) return "";
+
+                //    var pattern = /Date\(([^)]+)\)/;
+                //    var results = pattern.exec(value);
+                //    var dt = new Date(parseFloat(results[1]));
+
+                //    return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+                //}
+            },
+            { 'data': 'projectno', 'name': 'projectno' },
+            { 'data': 'Followup', 'name': 'Followup' },
+            { 'data': 'uploadedBy', 'name': 'uploadedBy' },
+            {
+                'data': null,
+                'render': function (data) {
+                    return '<button class="btn btn-info btn-sm edit_btn" id="' + data.dean_trx_id + '">Edit</button>';
+                    //return '<a href="#" onclick="_Upload('+row[0]+')">Edit</a>'
+                    //return '<a href="edit?id='+row[0]+'">Edit</a>'
+                }
+            }
+        ],
+        "language": {
+            "emptyTable": "No data available"
+        }
+    });
+    $('#table_id tbody').on('click', '.edit_btn', function () {
+        var data_row = table.row($(this).closest('tr')).data();
+        $('#myModal1').modal('show');       
+        $('#myModal1').on('shown.bs.modal', function () {
+            $('#AgreementNo').val(data_row.Agreement_No);
+            $('#Year').val(data_row.Year);
+            $('#Type').val(data_row.Agreement_type);
+            $('#Partner').val(data_row.Partner);
+            $('#Title').val(data_row.Title);
+            $('#Faculty').val(data_row.Faculty);
+            $('#Signed_Date').val(data_row.SignedDate);
+            $('#Expiry_Date').val(data_row.Expiry_Date);
+            $('#ProjectNo').val(data_row.projectno);           
+        });
+    });
+    
+
+</script>

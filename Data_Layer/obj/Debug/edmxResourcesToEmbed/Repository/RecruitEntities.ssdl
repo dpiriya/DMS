@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RecruitModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AppointmentProject">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="MeetingID" />
+    </Key>
+    <Property Name="EmployeeID" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="75" Nullable="false" />
+    <Property Name="MeetingID" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="DesignationCode" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="DesignationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProjectType" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="ProjectNo" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="PICode" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="PIName" Type="nvarchar" MaxLength="75" Nullable="false" />
+    <Property Name="DepartmentCode" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="AppointmentDate" Type="date" Nullable="false" />
+    <Property Name="ToDate" Type="date" Nullable="false" />
+    <Property Name="ProjectRelieveDate" Type="date" />
+    <Property Name="RelievedOn" Type="date" />
+    <Property Name="RelievedBy" Type="nvarchar" MaxLength="30" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="designa">
+    <Key>
+      <PropertyRef Name="descod" />
+    </Key>
+    <Property Name="descod" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="design" Type="nvarchar" MaxLength="50" />
+    <Property Name="curdesi" Type="nvarchar" MaxLength="1" />
+    <Property Name="desorder" Type="nvarchar" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="NEWADH">
+    <Key>
+      <PropertyRef Name="FILENO" />
+    </Key>
+    <Property Name="EMPCODE" Type="nvarchar" MaxLength="5" />
+    <Property Name="STAT" Type="nvarchar" MaxLength="1" />
+    <Property Name="TITLE" Type="nvarchar" MaxLength="120" />
+    <Property Name="PROJECTNO" Type="nvarchar" MaxLength="25" />
+    <Property Name="PTYPE" Type="nvarchar" MaxLength="3" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="150" />
+    <Property Name="DEPT" Type="nvarchar" MaxLength="7" />
+    <Property Name="SPON" Type="nvarchar" MaxLength="4" />
+    <Property Name="DESIG" Type="nvarchar" MaxLength="3" />
+    <Property Name="DTAP" Type="smalldatetime" />
+    <Property Name="EXTN" Type="smalldatetime" />
+    <Property Name="DRLF" Type="smalldatetime" />
+    <Property Name="BASIC" Type="float" />
+    <Property Name="INCR" Type="float" />
+    <Property Name="DINC" Type="smalldatetime" />
+    <Property Name="LDINC" Type="smalldatetime" />
+    <Property Name="COOR" Type="nvarchar" MaxLength="4" />
+    <Property Name="REM" Type="nvarchar" MaxLength="20" />
+    <Property Name="SCSTOS" Type="nvarchar" MaxLength="2" />
+    <Property Name="FILENO" Type="nvarchar" MaxLength="9" Nullable="false" />
+    <Property Name="OLD_FILENO" Type="nvarchar" MaxLength="6" />
+    <Property Name="DESIGN" Type="nvarchar" MaxLength="35" />
+    <Property Name="COO" Type="nvarchar" MaxLength="60" />
+    <Property Name="PFLAG" Type="nvarchar" MaxLength="1" />
+    <Property Name="HRA" Type="float" />
+    <Property Name="DT_INP" Type="smalldatetime" />
+    <Property Name="DT_CHG" Type="smalldatetime" />
+    <Property Name="PCODE" Type="nvarchar" MaxLength="30" />
+    <Property Name="DOB" Type="smalldatetime" />
+    <Property Name="DEPARTMENT" Type="nvarchar" MaxLength="500" />
+    <Property Name="FATHER" Type="nvarchar" MaxLength="50" />
+    <Property Name="ADDRESS1" Type="nvarchar" MaxLength="30" />
+    <Property Name="ADDRESS2" Type="nvarchar" MaxLength="30" />
+    <Property Name="ADDRESS3" Type="nvarchar" MaxLength="30" />
+    <Property Name="ADDRESS4" Type="nvarchar" MaxLength="30" />
+    <Property Name="CITY" Type="nvarchar" MaxLength="20" />
+    <Property Name="MONTH" Type="float" />
+    <Property Name="RATE" Type="float" />
+    <Property Name="SEX" Type="nvarchar" MaxLength="1" />
+    <Property Name="BLDGRP" Type="nvarchar" MaxLength="3" />
+    <Property Name="RH" Type="nvarchar" MaxLength="3" />
+    <Property Name="PHONE" Type="nvarchar" MaxLength="12" />
+    <Property Name="R_ADDR1" Type="nvarchar" MaxLength="30" />
+    <Property Name="R_ADDR2" Type="nvarchar" MaxLength="30" />
+    <Property Name="R_CITY" Type="nvarchar" MaxLength="20" />
+    <Property Name="R_PIN" Type="nvarchar" MaxLength="7" />
+    <Property Name="R_PHONE" Type="nvarchar" MaxLength="12" />
+    <Property Name="R_ADDR3" Type="nvarchar" MaxLength="30" />
+    <Property Name="R_ADDR4" Type="nvarchar" MaxLength="30" />
+    <Property Name="COURSE" Type="nvarchar" MaxLength="10" />
+    <Property Name="SEMESTER" Type="nvarchar" MaxLength="20" />
+    <Property Name="YR" Type="char" MaxLength="4" />
+    <Property Name="PROVISIONAL" Type="nvarchar" MaxLength="50" />
+    <Property Name="MEDICAL" Type="nvarchar" MaxLength="10" />
+    <Property Name="extn_date" Type="datetime" />
+    <Property Name="paybill_id" Type="nvarchar" MaxLength="4" />
+    <Property Name="paybill_no" Type="nvarchar" MaxLength="5" />
+    <Property Name="email_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pensioner" Type="varchar" MaxLength="3" />
+    <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+    <Property Name="coo_email_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="duration" Type="nvarchar" MaxLength="50" />
+    <Property Name="age" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="NEWREG">
+    <Key>
+      <PropertyRef Name="FILENO" />
+    </Key>
+    <Property Name="EMPCODE" Type="nvarchar" MaxLength="5" />
+    <Property Name="STAT" Type="nvarchar" MaxLength="1" />
+    <Property Name="TITLE" Type="nvarchar" MaxLength="320" />
+    <Property Name="PROJECTNO" Type="nvarchar" MaxLength="25" />
+    <Property Name="PTYPE" Type="nvarchar" MaxLength="3" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="DEPT" Type="nvarchar" MaxLength="30" />
+    <Property Name="SPON" Type="nvarchar" MaxLength="4" />
+    <Property Name="DESIG" Type="nvarchar" MaxLength="3" />
+    <Property Name="DTAP" Type="smalldatetime" />
+    <Property Name="EXTN" Type="smalldatetime" />
+    <Property Name="DRLF" Type="smalldatetime" />
+    <Property Name="BASIC" Type="float" />
+    <Property Name="INCR" Type="float" />
+    <Property Name="DINC" Type="smalldatetime" />
+    <Property Name="LDINC" Type="smalldatetime" />
+    <Property Name="COOR" Type="nvarchar" MaxLength="4" />
+    <Property Name="REM" Type="nvarchar" MaxLength="20" />
+    <Property Name="SCSTOS" Type="nvarchar" MaxLength="2" />
+    <Property Name="FILENO" Type="nvarchar" MaxLength="9" Nullable="false" />
+    <Property Name="OLD_FILENO" Type="nvarchar" MaxLength="6" />
+    <Property Name="DESIGN" Type="nvarchar" MaxLength="35" />
+    <Property Name="COO" Type="nvarchar" MaxLength="50" />
+    <Property Name="PFLAG" Type="nvarchar" MaxLength="1" />
+    <Property Name="HRA" Type="float" />
+    <Property Name="DT_INP" Type="smalldatetime" />
+    <Property Name="DT_CHG" Type="smalldatetime" />
+    <Property Name="PCODE" Type="nvarchar" MaxLength="30" />
+    <Property Name="DOB" Type="smalldatetime" />
+    <Property Name="DEPARTMENT" Type="nvarchar" MaxLength="40" />
+    <Property Name="FATHER" Type="nvarchar" MaxLength="30" />
+    <Property Name="ADDRESS1" Type="nvarchar" MaxLength="30" />
+    <Property Name="ADDRESS2" Type="nvarchar" MaxLength="30" />
+    <Property Name="ADDRESS3" Type="nvarchar" MaxLength="30" />
+    <Property Name="ADDRESS4" Type="nvarchar" MaxLength="30" />
+    <Property Name="CITY" Type="nvarchar" MaxLength="20" />
+    <Property Name="MONTH" Type="float" />
+    <Property Name="RATE" Type="float" />
+    <Property Name="SEX" Type="nvarchar" MaxLength="1" />
+    <Property Name="BLDGRP" Type="nvarchar" MaxLength="3" />
+    <Property Name="RH" Type="nvarchar" MaxLength="3" />
+    <Property Name="PHONE" Type="nvarchar" MaxLength="12" />
+    <Property Name="R_ADDR1" Type="nvarchar" MaxLength="30" />
+    <Property Name="R_ADDR2" Type="nvarchar" MaxLength="30" />
+    <Property Name="R_CITY" Type="nvarchar" MaxLength="20" />
+    <Property Name="R_PIN" Type="nvarchar" MaxLength="7" />
+    <Property Name="R_PHONE" Type="nvarchar" MaxLength="12" />
+    <Property Name="R_ADDR3" Type="nvarchar" MaxLength="30" />
+    <Property Name="R_ADDR4" Type="nvarchar" MaxLength="30" />
+    <Property Name="COURSE" Type="nvarchar" MaxLength="5" />
+    <Property Name="SEMESTER" Type="nvarchar" MaxLength="20" />
+    <Property Name="YR" Type="char" MaxLength="4" />
+    <Property Name="PROVISIONAL" Type="nvarchar" MaxLength="50" />
+    <Property Name="MEDICAL" Type="nvarchar" MaxLength="10" />
+    <Property Name="extn_date" Type="datetime" />
+    <Property Name="paybill_id" Type="nvarchar" MaxLength="4" />
+    <Property Name="paybill_no" Type="nvarchar" MaxLength="5" />
+    <Property Name="email_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pensioner" Type="varchar" MaxLength="3" />
+    <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+    <Property Name="coo_email_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="duration" Type="nvarchar" MaxLength="50" />
+    <Property Name="age" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="OutSourcingDesignation">
+    <Key>
+      <PropertyRef Name="DesignationCode" />
+    </Key>
+    <Property Name="DesignationCode" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="DesignationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LowerAgeLimit" Type="smallint" />
+    <Property Name="UpperAgeLimit" Type="smallint" />
+    <Property Name="Qualifications" Type="nvarchar" MaxLength="50" />
+    <Property Name="Experience" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="date" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="30" />
+    <Property Name="UpdatedOn" Type="date" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="PART">
+    <Key>
+      <PropertyRef Name="FILENO" />
+    </Key>
+    <Property Name="EMPCODE" Type="nvarchar" MaxLength="5" />
+    <Property Name="STAT" Type="nvarchar" MaxLength="1" />
+    <Property Name="TITLE" Type="nvarchar" MaxLength="120" />
+    <Property Name="PROJECTNO" Type="nvarchar" MaxLength="30" />
+    <Property Name="PTYPE" Type="nvarchar" MaxLength="3" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="DEPT" Type="nvarchar" MaxLength="30" />
+    <Property Name="SPON" Type="nvarchar" MaxLength="15" />
+    <Property Name="DESIG" Type="nvarchar" MaxLength="3" />
+    <Property Name="DTAP" Type="smalldatetime" />
+    <Property Name="EXTN" Type="smalldatetime" />
+    <Property Name="DRLF" Type="smalldatetime" />
+    <Property Name="BASIC" Type="float" />
+    <Property Name="INCR" Type="float" />
+    <Property Name="DINC" Type="smalldatetime" />
+    <Property Name="LDINC" Type="smalldatetime" />
+    <Property Name="COOR" Type="nvarchar" MaxLength="4" />
+    <Property Name="REM" Type="nvarchar" MaxLength="20" />
+    <Property Name="SCSTOS" Type="nvarchar" MaxLength="2" />
+    <Property Name="FILENO" Type="nvarchar" MaxLength="9" Nullable="false" />
+    <Property Name="OLD_FILENO" Type="nvarchar" MaxLength="6" />
+    <Property Name="DESIGN" Type="nvarchar" MaxLength="35" />
+    <Property Name="COO" Type="nvarchar" MaxLength="50" />
+    <Property Name="PFLAG" Type="nvarchar" MaxLength="1" />
+    <Property Name="HRA" Type="float" />
+    <Property Name="DT_INP" Type="smalldatetime" />
+    <Property Name="DT_CHG" Type="smalldatetime" />
+    <Property Name="PCODE" Type="nvarchar" MaxLength="30" />
+    <Property Name="DOB" Type="smalldatetime" />
+    <Property Name="DEPARTMENT" Type="nvarchar" MaxLength="60" />
+    <Property Name="FATHER" Type="nvarchar" MaxLength="35" />
+    <Property Name="ADDRESS1" Type="nvarchar" MaxLength="30" />
+    <Property Name="ADDRESS2" Type="nvarchar" MaxLength="30" />
+    <Property Name="ADDRESS3" Type="nvarchar" MaxLength="30" />
+    <Property Name="ADDRESS4" Type="nvarchar" MaxLength="30" />
+    <Property Name="CITY" Type="nvarchar" MaxLength="20" />
+    <Property Name="MONTH" Type="float" />
+    <Property Name="RATE" Type="float" />
+    <Property Name="SEX" Type="nvarchar" MaxLength="1" />
+    <Property Name="BLDGRP" Type="nvarchar" MaxLength="3" />
+    <Property Name="RH" Type="nvarchar" MaxLength="3" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="12" />
+    <Property Name="R_ADDR1" Type="nvarchar" MaxLength="30" />
+    <Property Name="R_ADDR2" Type="nvarchar" MaxLength="30" />
+    <Property Name="R_CITY" Type="nvarchar" MaxLength="20" />
+    <Property Name="R_PIN" Type="nvarchar" MaxLength="7" />
+    <Property Name="R_PHONE" Type="nvarchar" MaxLength="12" />
+    <Property Name="R_ADDR3" Type="nvarchar" MaxLength="30" />
+    <Property Name="R_ADDR4" Type="nvarchar" MaxLength="30" />
+    <Property Name="COURSE" Type="nvarchar" MaxLength="10" />
+    <Property Name="SEMESTER" Type="nvarchar" MaxLength="20" />
+    <Property Name="YR" Type="char" MaxLength="4" />
+    <Property Name="PROVISIONAL" Type="nvarchar" MaxLength="50" />
+    <Property Name="MEDICAL" Type="nvarchar" MaxLength="10" />
+    <Property Name="extn_date" Type="datetime" />
+    <Property Name="paybill_id" Type="nvarchar" MaxLength="4" />
+    <Property Name="paybill_no" Type="nvarchar" MaxLength="5" />
+    <Property Name="email_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pensioner" Type="varchar" MaxLength="3" />
+    <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
+    <Property Name="coo_email_id" Type="nvarchar" MaxLength="50" />
+    <Property Name="duration" Type="nvarchar" MaxLength="50" />
+    <Property Name="age" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_NEWREG_designa">
+    <End Role="designa" Type="Self.designa" Multiplicity="0..1" />
+    <End Role="NEWREG" Type="Self.NEWREG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="designa">
+        <PropertyRef Name="descod" />
+      </Principal>
+      <Dependent Role="NEWREG">
+        <PropertyRef Name="DESIG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PART_designa1">
+    <End Role="designa" Type="Self.designa" Multiplicity="0..1" />
+    <End Role="PART" Type="Self.PART" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="designa">
+        <PropertyRef Name="descod" />
+      </Principal>
+      <Dependent Role="PART">
+        <PropertyRef Name="DESIG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectDesignationCode">
+    <End Role="OutSourcingDesignation" Type="Self.OutSourcingDesignation" Multiplicity="1" />
+    <End Role="AppointmentProject" Type="Self.AppointmentProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OutSourcingDesignation">
+        <PropertyRef Name="DesignationCode" />
+      </Principal>
+      <Dependent Role="AppointmentProject">
+        <PropertyRef Name="DesignationCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Department" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="RecruitModelStoreContainer">
+    <EntitySet Name="AppointmentProject" EntityType="Self.AppointmentProject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="designa" EntityType="Self.designa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NEWADH" EntityType="Self.NEWADH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NEWREG" EntityType="Self.NEWREG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OutSourcingDesignation" EntityType="Self.OutSourcingDesignation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PART" EntityType="Self.PART" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_NEWREG_designa" Association="Self.FK_NEWREG_designa">
+      <End Role="designa" EntitySet="designa" />
+      <End Role="NEWREG" EntitySet="NEWREG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PART_designa1" Association="Self.FK_PART_designa1">
+      <End Role="designa" EntitySet="designa" />
+      <End Role="PART" EntitySet="PART" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectDesignationCode" Association="Self.FK_ProjectDesignationCode">
+      <End Role="OutSourcingDesignation" EntitySet="OutSourcingDesignation" />
+      <End Role="AppointmentProject" EntitySet="AppointmentProject" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

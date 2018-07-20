@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DMSModelStoreContainer" CdmEntityContainer="DMSEntities">
+    <EntitySetMapping Name="tbl_mst_dropdown">
+      <EntityTypeMapping TypeName="DMSModel.tbl_mst_dropdown">
+        <MappingFragment StoreEntitySet="tbl_mst_dropdown">
+          <ScalarProperty Name="ListId" ColumnName="ListId" />
+          <ScalarProperty Name="ListName" ColumnName="ListName" />
+          <ScalarProperty Name="ListItemValue" ColumnName="ListItemValue" />
+          <ScalarProperty Name="ListItemText" ColumnName="ListItemText" />
+          <ScalarProperty Name="ListGroup" ColumnName="ListGroup" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+          <ScalarProperty Name="updatedOn" ColumnName="updatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_mst_filepath">
+      <EntityTypeMapping TypeName="DMSModel.tbl_mst_filepath">
+        <MappingFragment StoreEntitySet="tbl_mst_filepath">
+          <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+          <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_mst_Mapping">
+      <EntityTypeMapping TypeName="DMSModel.tbl_mst_Mapping">
+        <MappingFragment StoreEntitySet="tbl_mst_Mapping">
+          <ScalarProperty Name="mapId" ColumnName="mapId" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="func_allowed" ColumnName="func_allowed" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+          <ScalarProperty Name="updatedOn" ColumnName="updatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_mst_Menu">
+      <EntityTypeMapping TypeName="DMSModel.tbl_mst_Menu">
+        <MappingFragment StoreEntitySet="tbl_mst_Menu">
+          <ScalarProperty Name="menuId" ColumnName="menuId" />
+          <ScalarProperty Name="menuName" ColumnName="menuName" />
+          <ScalarProperty Name="menuSubLevel" ColumnName="menuSubLevel" />
+          <ScalarProperty Name="menuLevel" ColumnName="menuLevel" />
+          <ScalarProperty Name="pageName" ColumnName="pageName" />
+          <ScalarProperty Name="controller" ColumnName="controller" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_mst_Roles">
+      <EntityTypeMapping TypeName="DMSModel.tbl_mst_Roles">
+        <MappingFragment StoreEntitySet="tbl_mst_Roles">
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="sectionId" ColumnName="sectionId" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+          <ScalarProperty Name="updatedOn" ColumnName="updatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_mst_section">
+      <EntityTypeMapping TypeName="DMSModel.tbl_mst_section">
+        <MappingFragment StoreEntitySet="tbl_mst_section">
+          <ScalarProperty Name="sectionId" ColumnName="sectionId" />
+          <ScalarProperty Name="section" ColumnName="section" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_mst_Users">
+      <EntityTypeMapping TypeName="DMSModel.tbl_mst_Users">
+        <MappingFragment StoreEntitySet="tbl_mst_Users">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="last_login" ColumnName="last_login" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createdon" ColumnName="createdon" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+          <ScalarProperty Name="updatedon" ColumnName="updatedon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_trx_accounts">
+      <EntityTypeMapping TypeName="DMSModel.tbl_trx_accounts">
+        <MappingFragment StoreEntitySet="tbl_trx_accounts">
+          <ScalarProperty Name="is_spon" ColumnName="is_spon" />
+          <ScalarProperty Name="accounts_trx_id" ColumnName="accounts_trx_id" />
+          <ScalarProperty Name="voucher_no" ColumnName="voucher_no" />
+          <ScalarProperty Name="project_no" ColumnName="project_no" />
+          <ScalarProperty Name="file_voucher" ColumnName="file_voucher" />
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
+          <ScalarProperty Name="file_Namee" ColumnName="file_Namee" />
+          <ScalarProperty Name="page_count" ColumnName="page_count" />
+          <ScalarProperty Name="uploadedBy" ColumnName="uploadedBy" />
+          <ScalarProperty Name="uploadedOn" ColumnName="uploadedOn" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="is_approved" ColumnName="is_approved" />
+          <ScalarProperty Name="approvedBy" ColumnName="approvedBy" />
+          <ScalarProperty Name="approvedOn" ColumnName="approvedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_trx_office">
+      <EntityTypeMapping TypeName="DMSModel.tbl_trx_office">
+        <MappingFragment StoreEntitySet="tbl_trx_office">
+          <ScalarProperty Name="office_trx_id" ColumnName="office_trx_id" />
+          <ScalarProperty Name="project_no" ColumnName="project_no" />
+          <ScalarProperty Name="doc_type" ColumnName="doc_type" />
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
+          <ScalarProperty Name="file_Namee" ColumnName="file_Namee" />
+          <ScalarProperty Name="page_count" ColumnName="page_count" />
+          <ScalarProperty Name="uploadedBy" ColumnName="uploadedBy" />
+          <ScalarProperty Name="uploadedOn" ColumnName="uploadedOn" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="is_approved" ColumnName="is_approved" />
+          <ScalarProperty Name="approvedBy" ColumnName="approvedBy" />
+          <ScalarProperty Name="approvedOn" ColumnName="approvedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_trx_purchase">
+      <EntityTypeMapping TypeName="DMSModel.tbl_trx_purchase">
+        <MappingFragment StoreEntitySet="tbl_trx_purchase">
+          <ScalarProperty Name="purchase_trx_id" ColumnName="purchase_trx_id" />
+          <ScalarProperty Name="indent_no" ColumnName="indent_no" />
+          <ScalarProperty Name="project_no" ColumnName="project_no" />
+          <ScalarProperty Name="indent_desc" ColumnName="indent_desc" />
+          <ScalarProperty Name="project_coordinator" ColumnName="project_coordinator" />
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
+          <ScalarProperty Name="file_namee" ColumnName="file_namee" />
+          <ScalarProperty Name="page_count" ColumnName="page_count" />
+          <ScalarProperty Name="uploadedBy" ColumnName="uploadedBy" />
+          <ScalarProperty Name="uploadedOn" ColumnName="uploadedOn" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="is_approved" ColumnName="is_approved" />
+          <ScalarProperty Name="approvedBy" ColumnName="approvedBy" />
+          <ScalarProperty Name="approvedOn" ColumnName="approvedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_appointment_summary" FunctionName="DMSModel.Store.sp_appointment_summary">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DMSModel.sp_appointment_summary_Result">
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_insert_fileupload" FunctionName="DMSModel.Store.sp_insert_fileupload" />
+    <FunctionImportMapping FunctionImportName="sp_outsource_summary" FunctionName="DMSModel.Store.sp_outsource_summary">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DMSModel.sp_outsource_summary_Result">
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_recruit_summary" FunctionName="DMSModel.Store.sp_recruit_summary">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DMSModel.sp_recruit_summary_Result">
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tbl_trx_recruitment">
+      <EntityTypeMapping TypeName="DMSModel.tbl_trx_recruitment">
+        <MappingFragment StoreEntitySet="tbl_trx_recruitment">
+          <ScalarProperty Name="approvedOn" ColumnName="approvedOn" />
+          <ScalarProperty Name="approvedBy" ColumnName="approvedBy" />
+          <ScalarProperty Name="is_approved" ColumnName="is_approved" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="uploadedOn" ColumnName="uploadedOn" />
+          <ScalarProperty Name="uploadedBy" ColumnName="uploadedBy" />
+          <ScalarProperty Name="file_name" ColumnName="file_name" />
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
+          <ScalarProperty Name="page_count" ColumnName="page_count" />
+          <ScalarProperty Name="Appoint_mode" ColumnName="Appoint_mode" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="recruit_trx_id" ColumnName="recruit_trx_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_trx_dean">
+      <EntityTypeMapping TypeName="DMSModel.tbl_trx_dean">
+        <MappingFragment StoreEntitySet="tbl_trx_dean">
+          <ScalarProperty Name="Signed_date" ColumnName="Signed_date" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+          <ScalarProperty Name="Faculty" ColumnName="Faculty" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="uploadedOn" ColumnName="uploadedOn" />
+          <ScalarProperty Name="uploadedBy" ColumnName="uploadedBy" />
+          <ScalarProperty Name="file_name" ColumnName="file_name" />
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
+          <ScalarProperty Name="page_count" ColumnName="page_count" />
+          <ScalarProperty Name="projectno" ColumnName="projectno" />
+          <ScalarProperty Name="Followup" ColumnName="Followup" />
+          <ScalarProperty Name="Expiry_date" ColumnName="Expiry_date" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Agreement_type" ColumnName="Agreement_type" />
+          <ScalarProperty Name="Partner" ColumnName="Partner" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Agreement_No" ColumnName="Agreement_No" />
+          <ScalarProperty Name="dean_trx_id" ColumnName="dean_trx_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

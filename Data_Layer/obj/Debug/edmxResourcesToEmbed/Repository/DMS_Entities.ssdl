@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_mst_filepath">
+    <Key>
+      <PropertyRef Name="RecordId" />
+    </Key>
+    <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SectionId" Type="int" Nullable="false" />
+    <Property Name="SectionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SubSection" Type="nvarchar" MaxLength="50" />
+    <Property Name="FilePath" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedOn" Type="date" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="date" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_mst_Mapping">
+    <Key>
+      <PropertyRef Name="mapId" />
+    </Key>
+    <Property Name="mapId" Type="int" Nullable="false" />
+    <Property Name="roleId" Type="int" Nullable="false" />
+    <Property Name="func_allowed" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="updatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="updatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_mst_Menu">
+    <Key>
+      <PropertyRef Name="menuId" />
+    </Key>
+    <Property Name="menuId" Type="int" Nullable="false" />
+    <Property Name="menuName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="menuSubLevel" Type="int" Nullable="false" />
+    <Property Name="menuLevel" Type="int" Nullable="false" />
+    <Property Name="pageName" Type="varchar" MaxLength="100" />
+    <Property Name="controller" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_mst_Roles">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="int" Nullable="false" />
+    <Property Name="roleName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" Nullable="false" />
+    <Property Name="updatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="updatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_mst_section">
+    <Key>
+      <PropertyRef Name="sectionId" />
+    </Key>
+    <Property Name="sectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="section" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdOn" Type="datetime" />
+    <Property Name="is_active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_mst_Users">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="userPassword" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="roleId" Type="int" />
+    <Property Name="last_login" Type="datetime" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="createdby" Type="varchar" MaxLength="50" />
+    <Property Name="createdon" Type="datetime" />
+    <Property Name="updatedby" Type="varchar" MaxLength="50" />
+    <Property Name="updatedon" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_trx_accounts">
+    <Key>
+      <PropertyRef Name="accounts_trx_id" />
+    </Key>
+    <Property Name="accounts_trx_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="voucher_no" Type="nvarchar(max)" />
+    <Property Name="project_no" Type="nvarchar(max)" />
+    <Property Name="file_voucher" Type="char" MaxLength="1" />
+    <Property Name="file_path" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="file_Namee" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="page_count" Type="int" Nullable="false" />
+    <Property Name="uploadedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="uploadedOn" Type="datetime" Nullable="false" />
+    <Property Name="is_active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_trx_office">
+    <Key>
+      <PropertyRef Name="office_trx_id" />
+    </Key>
+    <Property Name="office_trx_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="project_no" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="doc_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="file_path" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="file_Namee" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="page_count" Type="int" Nullable="false" />
+    <Property Name="uploadedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="uploadedOn" Type="datetime" />
+    <Property Name="isactive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_trx_purchase">
+    <Key>
+      <PropertyRef Name="purchase_trx_id" />
+    </Key>
+    <Property Name="purchase_trx_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="indent_no" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="project_no" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="indent_desc" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="project_coordinator" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="file_path" Type="nvarchar(max)" />
+    <Property Name="file_namee" Type="nvarchar(max)" />
+    <Property Name="page_count" Type="int" />
+    <Property Name="uploadedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="uploadedOn" Type="datetime" />
+    <Property Name="is_active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_trx_recruitment">
+    <Key>
+      <PropertyRef Name="recruit_trx_id" />
+    </Key>
+    <Property Name="recruit_trx_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeID" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="75" Nullable="false" />
+    <Property Name="Appoint_mode" Type="nvarchar" MaxLength="20" />
+    <Property Name="page_count" Type="int" Nullable="false" />
+    <Property Name="file_path" Type="nvarchar(max)" />
+    <Property Name="file_name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="uploadedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="uploadedOn" Type="datetime" />
+    <Property Name="is_active" Type="bit" />
+  </EntityType>
+  <Function Name="sp_recruit_summary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="DMSModelStoreContainer">
+    <EntitySet Name="tbl_mst_filepath" EntityType="Self.tbl_mst_filepath" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_mst_Mapping" EntityType="Self.tbl_mst_Mapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_mst_Menu" EntityType="Self.tbl_mst_Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_mst_Roles" EntityType="Self.tbl_mst_Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_mst_section" EntityType="Self.tbl_mst_section" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_mst_Users" EntityType="Self.tbl_mst_Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_trx_accounts" EntityType="Self.tbl_trx_accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_trx_office" EntityType="Self.tbl_trx_office" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_trx_purchase" EntityType="Self.tbl_trx_purchase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_trx_recruitment" EntityType="Self.tbl_trx_recruitment" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

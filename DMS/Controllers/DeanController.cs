@@ -225,11 +225,10 @@ namespace DMS.Controllers
         {
             try
             {
-                string document = iID + ".pdf";
-                
-                if (System.IO.File.Exists(document))
+                string path = dMS_BusinessLayer.GetPath(iID);
+                if (System.IO.File.Exists(path))
                 {
-                    var filestream = new FileStream(document, FileMode.Open, FileAccess.Read);
+                    var filestream = new FileStream(path, FileMode.Open, FileAccess.Read);
                     return new FileStreamResult(filestream, "application/pdf");
                 }
                 else
@@ -251,9 +250,10 @@ namespace DMS.Controllers
                 if (iID != null)
                 {
                     string document = iID + ".pdf";
+                    string path = dMS_BusinessLayer.GetPath(iID);
                     //string path = @"\\10.18.0.29\dms\DeanOffice\Agreement\";
                     //path += document;
-                    return File(document, "application/pdf", document);
+                    return File(path, "application/pdf", document);
                 }
                 else
                     return Json("The respective file is not available", JsonRequestBehavior.AllowGet);

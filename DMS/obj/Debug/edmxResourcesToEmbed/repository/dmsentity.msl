@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DMSModelStoreContainer" CdmEntityContainer="DMSEntities">
+    <EntitySetMapping Name="tbl_trx_accounts">
+      <EntityTypeMapping TypeName="DMSModel.tbl_trx_accounts">
+        <MappingFragment StoreEntitySet="tbl_trx_accounts">
+          <ScalarProperty Name="accounts_trx_id" ColumnName="accounts_trx_id" />
+          <ScalarProperty Name="voucher_no" ColumnName="voucher_no" />
+          <ScalarProperty Name="project_no" ColumnName="project_no" />
+          <ScalarProperty Name="file_voucher" ColumnName="file_voucher" />
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
+          <ScalarProperty Name="file_Namee" ColumnName="file_Namee" />
+          <ScalarProperty Name="page_count" ColumnName="page_count" />
+          <ScalarProperty Name="uploadedBy" ColumnName="uploadedBy" />
+          <ScalarProperty Name="uploadedOn" ColumnName="uploadedOn" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_trx_office">
+      <EntityTypeMapping TypeName="DMSModel.tbl_trx_office">
+        <MappingFragment StoreEntitySet="tbl_trx_office">
+          <ScalarProperty Name="office_trx_id" ColumnName="office_trx_id" />
+          <ScalarProperty Name="project_no" ColumnName="project_no" />
+          <ScalarProperty Name="doc_type" ColumnName="doc_type" />
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
+          <ScalarProperty Name="file_Namee" ColumnName="file_Namee" />
+          <ScalarProperty Name="page_count" ColumnName="page_count" />
+          <ScalarProperty Name="uploadedBy" ColumnName="uploadedBy" />
+          <ScalarProperty Name="uploadedOn" ColumnName="uploadedOn" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_trx_purchase">
+      <EntityTypeMapping TypeName="DMSModel.tbl_trx_purchase">
+        <MappingFragment StoreEntitySet="tbl_trx_purchase">
+          <ScalarProperty Name="purchase_trx_id" ColumnName="purchase_trx_id" />
+          <ScalarProperty Name="indent_no" ColumnName="indent_no" />
+          <ScalarProperty Name="project_no" ColumnName="project_no" />
+          <ScalarProperty Name="indent_desc" ColumnName="indent_desc" />
+          <ScalarProperty Name="project_coordinator" ColumnName="project_coordinator" />
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
+          <ScalarProperty Name="file_namee" ColumnName="file_namee" />
+          <ScalarProperty Name="page_count" ColumnName="page_count" />
+          <ScalarProperty Name="uploadedBy" ColumnName="uploadedBy" />
+          <ScalarProperty Name="uploadedOn" ColumnName="uploadedOn" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_trx_recruitment">
+      <EntityTypeMapping TypeName="DMSModel.tbl_trx_recruitment">
+        <MappingFragment StoreEntitySet="tbl_trx_recruitment">
+          <ScalarProperty Name="recruit_trx_id" ColumnName="recruit_trx_id" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="Appoint_mode" ColumnName="Appoint_mode" />
+          <ScalarProperty Name="page_count" ColumnName="page_count" />
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
+          <ScalarProperty Name="file_name" ColumnName="file_name" />
+          <ScalarProperty Name="uploadedBy" ColumnName="uploadedBy" />
+          <ScalarProperty Name="uploadedOn" ColumnName="uploadedOn" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

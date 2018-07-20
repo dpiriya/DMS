@@ -1,0 +1,93 @@
+﻿@model Data_Layer.Models.Dean_trxModel
+@Scripts.Render("~/bundles/sweet")
+@Styles.Render("~/bundles/sweetcss")
+
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ASearch</title>
+</head>
+<body>
+    <div style="width:100%;text-align:center" id="divpartial">
+        <div style="color:black;display:inline-block;margin-bottom:3%">
+            <h2>Advanced Search</h2>
+        </div>
+        <br />
+        <table align="center" cellpadding="10" style="background-color:lavender;font-family:Calibri">
+            <tr>
+                <td>
+                    
+                        @Html.LabelFor(m => m.Agreement_type)
+                        @Html.DropDownListFor(m => m.Agreement_type, Model.AgreementtypeList, "--Select Agreement Type--", new { @class = "form-control" })
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                        @Html.LabelFor(m => m.Year)
+                        @Html.TextBoxFor(m => m.Year, new { @class = "form-control" })
+                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <p>
+                        <input type="button" class="SubmitViolet" value="Show Results" onclick="button()" />
+
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function button() {
+        $('#table_id').dataTable({
+            "processing": true,
+            "serverSide": true,
+            "orderMulti": false,
+            "destroy": true,
+            "ajax": {
+                "url": "../Dean/Adv_Load",
+                "data": { type: $('#Agreement_type').val(), year: $('#Year').val() },
+                "type": 'POST',
+                "datatype": 'json'
+            },
+            "columns": [
+                { 'data': 'dean_trx_id', 'name': 'dean_trx_id' },
+                { 'data': 'Agreement_No', 'name': 'Agreement_No' },
+                { 'data': 'Year', 'name': 'Year' },
+                { 'data': 'Agreement_type', 'name': 'Agreement_type' },
+                { 'data': 'Partner', 'name': 'Partner' },
+                { 'data': 'Title', 'name': 'Title' },
+                { 'data': 'Expiry_date', 'name': 'Expiry_date' },
+                { 'data': 'projectno', 'name': 'projectno' },
+                { 'data': 'Followup', 'name': 'Followup' },
+                //{ 'data': 'file_name', 'name': 'file_name' },
+                //{ 'data': 'page_count', 'name': 'page_count' },
+                { 'data': 'uploadedBy', 'name': 'uploadedBy' },
+                {
+                    'data': 'path',
+                    "render": function (data) {
+                        var link = '../Dean/ViewDoc?iID=' + data;
+                        return "<a href=" + link + " target=_blank>View</a>"
+                    }, "orderable": false
+                },
+                {
+                    'data': 'path', "render": function (data) {
+                        var link = '../Dean/Download?iID=' + data;
+                        return "<a href=" + link + ">Download</a>"
+                    }, "orderable": false
+                }],
+            "language": {
+                "emptyTable": "No data available"
+            }
+        });
+        $('#myModal').hide();
+    }
+</script>

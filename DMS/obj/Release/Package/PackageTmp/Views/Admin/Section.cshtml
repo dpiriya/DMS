@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Section";
+    Layout = null;
+}
+
+<link href="~/Content/style.css" rel="stylesheet" />
+@*<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>*@
+<link href="~/css/Fonts/Font_Roboto_Condensed.css" rel="stylesheet" />
+<link href="~/css/Fonts/Font_SansPro.css" rel="stylesheet" />
+<div @*id="wrapper"*@>
+    <h2>Section</h2>
+    <ul class="nav">
+        <li class="hm">
+            <a href="~/Views/Home/Index.cshtml">
+                <img class="icon" src="~/img/ruppeeSymbol.png" alt="">
+                <span>Accounts</span>
+            </a>
+        </li>
+        <li class="gp">
+            <a href="~/Views/Home/Index.cshtml">
+                <img class="icon" src="~/img/purchase.png" />
+                <span>Purchase</span>
+            </a>
+        </li>
+        <li class="tw">
+            <a onclick="window.location.href = '@Url.Action("recruit_home", "Recruit")';">
+                <img class="icon" src="~/img/recruitment.png" alt="">
+                <span>Recruitment</span>
+            </a>
+        </li>
+        <li class="fb">
+            <a href="~/Views/Home/Index.cshtml">
+                <img class="icon" src="~/img/office.png" alt="">
+                <span>Office</span>
+            </a>
+        </li>
+
+
+        @*<li class="cl">
+                <img class="icon" src="~/img/Dean.png" alt="">
+                <span>Dean Office</span>
+            </li>*@
+    </ul>
+</div>
+@*<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="align-items:center;align-self:center">
+        <h1 class="page-header">Choose Section</h1>
+
+        <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <a href="~/Views/Home/Index.cshtml">
+                    <img src="~/img/icons/accountsIcon.png"
+                         class="img-responsive" alt="Generic placeholder thumbnail">
+                </a>
+                <h3>Accounts</h3>
+                <span class="text-muted"></span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <a href="~/Views/Home/Index.cshtml">
+                    <img src="~/img/icons/purchaseIcon.png" class="img-responsive" alt="Generic placeholder thumbnail">
+                </a>
+                <h3>Purchase</h3>
+                <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <a onclick="window.location.href = '@Url.Action("recruit_home", "Recruit")';" >
+                    <img src="~/img/icons/recruitmentIcon.png" class="img-responsive" alt="Generic placeholder thumbnail">
+                </a>
+                <h3>Recruitment</h3>
+                <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <a href="~/Views/Home/Index.cshtml">
+                    <img src="~/img/icons/officeIcon.png" class="img-responsive" alt="Generic placeholder thumbnail">
+                </a>
+                <h3>Office</h3>
+                <span class="text-muted">Something else</span>
+            </div>
+        </div>
+    </div>*@

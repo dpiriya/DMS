@@ -1,0 +1,126 @@
+﻿@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/datatable")
+@Styles.Render("~/bundles/datatablecss")
+<div>
+    <table id="table_id" class="table table-striped table-bordered">
+        <thead style="color: black">
+            <tr style="text-align:center">
+                <th style="text-align:center; background-color:white; width:auto">
+                    Trans_ID
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Project No
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Type
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    File Name
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Page Count
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Uploaded By
+                </th>
+
+                <th>
+                </th>
+                <th></th>
+        </thead>
+    </table>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#table_id').dataTable({
+            'processing': true,
+            'serverSide': true,
+            'orderMulti': false,
+            'ajax': {
+                'url': '../Office/LoadData',
+                'type': 'post',
+                'datatype': 'json'
+            },
+            'columns': [
+                { 'data': 'office_trx_id', 'name': 'office_trx_id' },
+                { 'data': 'project_no', 'name': 'project_no' },
+                { 'data': 'doc_type', 'name': 'doc_type' },
+                { 'data': 'file_Namee', 'name': 'file_Namee' },
+                { 'data': 'page_count', 'name': 'page_count' },
+                { 'data': 'uploadedBy', 'name': 'uploadedBy' },
+                {
+                    'data': 'path', "render": function (data) {
+                        var link = '../Office/ViewDoc?iID=' + data;
+                        return "<a href=" + link + " target=_blank>View</a>"
+                    },
+                    "orderable": false
+                },
+                {
+                    'data': 'path', "render": function (data) {
+                        var link = '../Office/Download?iID=' + data;
+                        return "<a href=" + link + ">Download</a>"
+                    },
+                    "orderable": false
+                }],
+            "language": {
+                "emptyTable": "No data available"
+            }
+
+        });
+    });
+</script>
+@*$.ajax({
+                          url: '../WSDatatable.asmx/GetData_Office',
+
+                    method: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#table_id').dataTable({
+                            data: data,
+                            columns: [
+                                { 'data': 'office_trx_id' },
+                                { 'data': 'project_no' },
+                                { 'data': 'doc_type' },
+                                { 'data': 'file_Namee' },
+                                { 'data': 'page_count' },
+                                { 'data': 'uploadedBy' },
+                                { 'data': 'is_active' },
+                                {
+                                    'data': 'path', "render": function (data) {
+                                        var link = '../Office/ViewDoc?iID=' + data;
+                                        return "<a href=" + link + " target=_blank>View</a>"
+                                    },
+                                    "orderable": false
+                                },
+                                {
+                                    'data': 'path', "render": function (data) {
+                                        var link = '../Office/Download?iID=' + data;
+                                        return "<a href="  + link + ">Download</a>"
+    "<a href='@string.Format("http://myurltest.com/{0}/go/5/true", check1)'>"
+
+                                        //"<button type='submit' id='Table' class='btn btndefault btn-info' onclick='#ViewDoc(" + data + ")'>View</button>"
+                                    //return "<a class='btn btndefault btn-info' onclick=view("+data+")><i class='fa fa-info-circle'></i>View</a>"
+                                },
+                                    "orderable":false
+                                }],
+                            "order": [0, 'desc'],
+
+                            //select: true,
+                            //buttons: [
+                            //    { extend: "edit", editor: editor },
+                            //    {
+                            //        action: function (e, dt, node, config) {
+                            //            editor
+                            //                .edit(table.row({ selected: true }).index(), false)
+                            //                .submit();
+                            //        }
+                            //    },],
+                            "language": {
+                                "emptyTable": "No data available"
+                            }
+
+
+
+                        });
+                    }
+                });*@

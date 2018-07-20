@@ -1,0 +1,125 @@
+﻿@model Data_Layer.Models.Home.UserModel
+
+@{
+    Layout = null;
+}
+    <link href="~/Assets/custom/css/custom.min.css" rel="stylesheet" />
+    <link href="~/Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Assets/ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="~/Assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery-1.12.4.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>login</title>
+@using (Html.BeginForm("login", "Home", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    <body class="login-page" style="background: url('../DMS/images/login_bg2.jpg') no-repeat center center fixed; /*-webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;*/
+        background-size: cover; width:55%; margin:0%">
+       <div class="login-box" style="padding-top:25%;padding-left:0%; width:35%">
+  @*  <div class="login-box-body">*@
+                <div>
+                    <i id="ErrorActive" style="color:red; visibility:hidden">@ViewBag.ErrorActive</i>
+                    <i class="UserName" style="color:red; visibility:hidden"> Enter username.</i>
+                    <i class="Password" style="color:red; visibility:hidden"> Enter your password.</i>
+                </div>
+                @{if (@ViewBag.ErrorActive != null)
+                    {
+                        <script>
+                            $("#ErrorActive").css("visibility", "visible");
+                            $('.Password').hide();
+                            $('.UserName').hide();
+                            ViewBag.ErrorActive = null;
+                        </script>
+                    }
+                }
+                <form method="post" id="loginForm" >
+                    <div class="form-group has-feedback" >
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Enter your username", id = "UserName" })
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter your password", id = "Password" })
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6" style="width:100%;height:5%" >
+                            <button type="submit"  onclick="Proceed()" value="Submit" style="width:100%; height:100%; background-color:#f0ba73"><i class="fa fa-sign-in"></i>&nbsp; Sign In</button>
+                        </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-xs-6 text-right" style="width:100%;height:6%; padding-top:3%">
+                            <button type="reset" onclick="clearlogin()" value="Clear" style="width:100%;height:100%;background-color:#f0ba73"><i class="fa fa-times-circle"></i>&nbsp; Cancel</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <br>
+                        <div class="col-xs-12  ">
+                            <!--<a href="#">forgot password?</a>-->
+                        </div>
+                    </div>
+                </form>
+            @*</div>*@
+        </div>
+
+    </body>
+                    }
+<script type="text/javascript">
+    $("#UserName").focus(); 
+
+    $('form').on('submit', function () {
+
+        var un = document.getElementById('UserName').value;
+        var pw = document.getElementById('Password').value;
+
+        if (un == "" || pw == "") {
+            if (un == "") {
+                $('.UserName').css('visibility', 'visible');
+                $('.Password').hide();
+                $('#ErrorActive').hide();
+                //$('#UserName').css('border-color', 'red');
+                //$("#usererror").show();
+                //$('#usererror').html('<p><font color="red">Enter your UserName..!</font> </p>');
+                $('#UserName').focus();
+                return false;
+            }
+            //else {
+            //  $('#UserName').css('border-color', 'green');
+            //$("#usererror").hide();
+            //}
+            else if (pw == "") {
+                $('.UserName').hide();
+                $('.Password').show();
+                $('.Password').css('visibility', 'visible');
+                $('#ErrorActive').hide();
+                //  $('#Password').css('border-color', 'red');
+                // $("#pswderror").show();
+                //$('#pswderror').html('<p><font color="red">Enter your Password..!</font> </p');
+                $('#Password').focus();
+
+                return false;
+            }
+            else {
+                $('#Password').css('border-color', 'green');
+                $("#pswderror").hide();
+
+            }
+            return false;
+        }
+    });
+    function clearlogin() {
+        document.getElementById('UserName').value = "";
+        document.getElementById('Password').value = "";
+        $('#ErrorActive').css('visibility', 'hidden');
+        $('.UserName').css('visibility', 'hidden');
+        $('.Password').css('visibility', 'hidden');
+        $("#ErrorActive").css('visibility', 'hidden');
+        $("#UserName").focus();
+    }
+</script>
+
+
+              

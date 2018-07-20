@@ -1,0 +1,310 @@
+﻿@using System.Data
+@model DataSet
+@{
+    Layout = null;
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/datatable")
+@Styles.Render("~/bundles/datatablecss")
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DMS - Dean</title>
+    <link href="~/Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/sidebar/sideBar.css" rel="stylesheet" />
+    <link href="~/css/Index/mCustomScrollbar.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="~/Content/HelperStyle1.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div id="dismiss">
+                <i class="glyphicon glyphicon-arrow-left"></i>
+            </div>
+            <div class="sidebar-header">
+                <h3>File Upload</h3>
+            </div>
+            <ul class="list-unstyled components">
+                <p>Choose section</p>
+                <li>
+                    <a href="#" id="Agreement" onclick="_Upload(this.id)">Agreement</a>
+                </li>
+            </ul>
+        </nav>
+        <div id="content" style="padding-top:2%;background:url('../../DMS/images/circles-light.png');">
+            <nav class="navbar navbar-default" style="padding: 0px 0px;">
+                <div class="container-fluid">
+                    <table width="100%">
+                        <tr>
+                            <td width="20%" align="left">
+                                <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                                    <i class="glyphicon glyphicon-align-left"></i>
+                                    <span>Upload Files</span>
+                                </button>
+                            </td>
+                            <td width="50%" align="center">
+                                <h2>Dean Office</h2>
+                            </td>
+                            <td width="15%" align="right">
+                                <a href="@Url.Action("Welcomepage","Home")">
+                                    <div class="glyphicon glyphicon-home" style="margin-left:80%; color:royalblue">Home</div>
+                                </a>
+                            </td>
+                            <td width="15%" align="left">
+                                <a href="@Url.Action("LogOut","Home")">
+                                    <div class="glyphicon glyphicon-off" style="margin-left:40%;color:orangered">SignOut</div>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </nav>
+            <div style="padding-left:40%">
+                <table cellpadding="5" cellspacing="10" width="30%" align="left" style="background-color:whitesmoke">
+                    <tr>
+                        <th>Year</th>
+                        <th>Count</th>
+
+                    </tr>
+                    @foreach (DataRow row in Model.Tables[0].Rows)
+                    {
+                        <tr>
+                            <td>@row["Description"]</td>
+                            <td>@row["Count"]</td>
+
+                        </tr>
+                    }
+                </table>
+                <div align="right" style="color:blue">
+                    <a href="#" onclick="_AdvancedSearch()">Advanced Search>></a>
+                </div>
+            </div>
+            <div>
+                @ViewBag.Message
+                @Html.Partial("_Search")
+            </div>
+        </div>
+    </div>
+    <div class="overlay"></div>
+    <script src="~/Assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/script/index/jquery.mCustomScrollbar.concat.min.js"></script>
+    <div id='myModal' style="text-align:right; background-color:transparent; color:cornflowerblue" class="modal fade"
+         data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" style="width:60%; height:auto; padding:10px;top:5%; color:white ">
+            <div class="modal-content" style="overflow: auto;padding: 2%; padding-left:5%">
+                <button type="button" id="closbtn" class="btn btn-info navbar-btn" style="background-color:palevioletred">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    <span>Close</span>
+                </button>
+                <div style="height:auto"> </div>
+                <div id='myModalContent'
+                     style="width:auto; height:auto; padding:10px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal1" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width:1000px">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <table width="100%">
+                            <tr>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="Agreement">Name</label>
+                                        <input type="AgreementNo" class="form-control" id="AgreementNo">
+                                    </div>
+                                </td>
+                                <td width="10%"></td>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="Year">Year</label>
+                                        <input type="Year" class="form-control" id="Year">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="Partner">Partner</label>
+                                        <input type="Partner" class="form-control" id="Partner">
+                                    </div>
+
+                                </td>
+                                <td width="10%"></td>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="Agreement_type">Type</label>
+                                        <input type="Agreement_type" class="form-control" id="Type">
+                                    </div>
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="ProjectNo">Project No</label>
+                                        <input type="ProjectNo" class="form-control" id="ProjectNo">
+                                    </div>
+
+                                </td>
+                                <td width="10%"></td>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="Title">Title</label>
+                                        <input type="Title" class="form-control" id="Title">
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="Faculty">Faculty</label>
+                                        <input type="Faculty" class="form-control" id="Faculty">
+                                    </div>
+
+                                </td>
+                                <td width="10%"></td>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="DepartmentCode">Department Code</label>
+                                        <input type="DepartmentCode" class="form-control" id="DepartmentCode">
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="Signed_Date">Signed Date</label>
+                                        <input type="Signed_Date" class="form-control" id="Signed_Date">
+                                    </div>
+
+                                </td>
+                                <td width="10%"></td>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="Expiry_Date">Expiry Date</label>
+                                        <input type="Expiry_Date" class="form-control" id="Expiry_Date">
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="Edit">Edit</button>
+                    <button type="button" class="btn btn-default" id="View">View</button>
+                    <button type="button" class="btn btn-default" id="Download">Download</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.form-control').attr('readonly', 'true');
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#dismiss, .overlay').on('click', function () {
+                $('#sidebar').removeClass('active');
+                $('.overlay').fadeOut();
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').addClass('active');
+                $('.overlay').fadeIn();
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+            $('#Edit').on('click', function () {
+                $('.form-control').removeAttr('readonly');
+                $('#Edit').text("Update");
+                $('#Edit').attr("id","Update");
+            });
+            
+            $('#View').on('click', function () {
+                window.open("/Dean/ViewDoc?iID=" + $('#AgreementNo').val(),'_blank');
+            });
+            $('#Download').on('click', function () {
+                window.open("/Dean/Download?iID=" + $('#AgreementNo').val());
+            });
+
+            $('#Signed_Date').datepicker({ dateFormat: 'dd/mm/yy' }).val();
+            $('#Expiry_Date').datepicker({ dateFormat: 'dd/mm/yy' }).val();
+        });
+        $('#Update').on('click', function () {
+            var fileData = new FormData($('form').get(0));
+            window.open("/Dean/Update?deanModel=" + fileData);
+        });
+        $("#closbtn").click(function () {
+            window.location.reload();
+        });
+        function _Upload(_AppMode) {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("_UploadDean", "Dean",new { area=""})',
+                data: { AppMode: _AppMode },
+                success: function (data) {
+                    {                                 //debugger;
+                        $('#myModalContent').html(data);
+                        //   $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+                        $('#myModal').modal({ backdrop: 'static', keyboard: false })
+
+                        $.fn.modal.prototype.constructor.Constructor.DEFAULTS.backdrop = 'static';
+                        $.fn.modal.prototype.constructor.Constructor.DEFAULTS.keyboard = false;
+                    }
+                },
+                failure: function (data) {
+                    alert("Failure");
+                },
+                error: function (data) {
+                    alert("Unexpected Error occured");
+                }
+            });
+        }
+        function _AdvancedSearch() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("_AdvancedSearch","Dean",new { area=""})',
+                success: function (data) {
+                    $('#myModalContent').html(data);
+                    //   $('#myModal').modal(options);
+                    $('#myModal').modal('show');
+                    $('#myModal').show();
+                    $('#myModal').modal({ backdrop: 'static', keyboard: false })
+                    $.fn.modal.prototype.constructor.Constructor.DEFAULTS.backdrop = 'static';
+                    $.fn.modal.prototype.constructor.Constructor.DEFAULTS.keyboard = false;
+                },
+                failure: function (data) {
+                    alert("Failure");
+                },
+                error: function (data) {
+                    alert("Unexpected Error occured");
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

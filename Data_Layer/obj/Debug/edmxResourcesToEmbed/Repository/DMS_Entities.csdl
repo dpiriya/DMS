@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_mst_Mapping">
+    <Key>
+      <PropertyRef Name="mapId" />
+    </Key>
+    <Property Name="mapId" Type="Int32" Nullable="false" />
+    <Property Name="roleId" Type="Int32" Nullable="false" />
+    <Property Name="func_allowed" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="createdOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="updatedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbl_mst_Menu">
+    <Key>
+      <PropertyRef Name="menuId" />
+    </Key>
+    <Property Name="menuId" Type="Int32" Nullable="false" />
+    <Property Name="menuName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="menuSubLevel" Type="Int32" Nullable="false" />
+    <Property Name="menuLevel" Type="Int32" Nullable="false" />
+    <Property Name="pageName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="controller" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_mst_Roles">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="Int32" Nullable="false" />
+    <Property Name="roleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="createdOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="updatedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbl_mst_section">
+    <Key>
+      <PropertyRef Name="sectionId" />
+    </Key>
+    <Property Name="sectionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="section" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="created_time" Type="DateTime" Precision="3" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="createdOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbl_mst_Users">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="roleId" Type="Int32" />
+    <Property Name="last_login" Type="DateTime" Precision="3" />
+    <Property Name="is_active" Type="Boolean" />
+    <Property Name="createdby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createdon" Type="DateTime" Precision="3" />
+    <Property Name="updatedby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="updatedon" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbl_trx_accounts">
+    <Key>
+      <PropertyRef Name="accounts_trx_id" />
+    </Key>
+    <Property Name="accounts_trx_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="voucher_no" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="project_no" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="file_voucher" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="file_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="file_Namee" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="page_count" Type="Int32" Nullable="false" />
+    <Property Name="uploadedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="uploadedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="is_active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbl_trx_office">
+    <Key>
+      <PropertyRef Name="office_trx_id" />
+    </Key>
+    <Property Name="office_trx_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="project_no" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="doc_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="file_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="file_Namee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="page_count" Type="Int32" Nullable="false" />
+    <Property Name="uploadedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="uploadedOn" Type="DateTime" Precision="3" />
+    <Property Name="isactive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_trx_purchase">
+    <Key>
+      <PropertyRef Name="purchase_trx_id" />
+    </Key>
+    <Property Name="purchase_trx_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="indent_no" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="project_no" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="indent_desc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="project_coordinator" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="file_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="file_namee" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="page_count" Type="Int32" />
+    <Property Name="uploadedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="uploadedOn" Type="DateTime" Precision="3" />
+    <Property Name="is_active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_trx_recruitment">
+    <Key>
+      <PropertyRef Name="recruit_trx_id" />
+    </Key>
+    <Property Name="recruit_trx_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmployeeName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Appoint_mode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="page_count" Type="Int32" Nullable="false" />
+    <Property Name="file_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="file_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="uploadedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="uploadedOn" Type="DateTime" Precision="3" />
+    <Property Name="is_active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbl_mst_filepath">
+    <Key>
+      <PropertyRef Name="sectionID" />
+      <PropertyRef Name="sectionName" />
+      <PropertyRef Name="file_path" />
+      <PropertyRef Name="RecordId" />
+    </Key>
+    <Property Name="sectionID" Type="Int32" Nullable="false" />
+    <Property Name="sectionName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="file_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="modifiedOn" Type="DateTime" Precision="0" />
+    <Property Name="modifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SectionId" Type="Int32" Nullable="false" />
+    <Property Name="SectionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SubSection" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FilePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="0" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="DMS_Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_mst_Mapping" EntityType="Self.tbl_mst_Mapping" />
+    <EntitySet Name="tbl_mst_Menu" EntityType="Self.tbl_mst_Menu" />
+    <EntitySet Name="tbl_mst_Roles" EntityType="Self.tbl_mst_Roles" />
+    <EntitySet Name="tbl_mst_section" EntityType="Self.tbl_mst_section" />
+    <EntitySet Name="tbl_mst_Users" EntityType="Self.tbl_mst_Users" />
+    <EntitySet Name="tbl_trx_accounts" EntityType="Self.tbl_trx_accounts" />
+    <EntitySet Name="tbl_trx_office" EntityType="Self.tbl_trx_office" />
+    <EntitySet Name="tbl_trx_purchase" EntityType="Self.tbl_trx_purchase" />
+    <EntitySet Name="tbl_trx_recruitment" EntityType="Self.tbl_trx_recruitment" />
+    <EntitySet Name="tbl_mst_filepath" EntityType="Self.tbl_mst_filepath" />
+    <FunctionImport Name="sp_recruit_summary" ReturnType="Collection(DMSModel.sp_recruit_summary_Result)" />
+  </EntityContainer>
+  <ComplexType Name="sp_recruit_summary_Result">
+    <Property Type="Int32" Name="Count" Nullable="true" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="16" />
+  </ComplexType>
+</Schema>

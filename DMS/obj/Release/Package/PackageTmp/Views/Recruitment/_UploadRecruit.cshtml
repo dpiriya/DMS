@@ -1,0 +1,130 @@
+﻿@Scripts.Render("~/bundles/sweet")
+@Styles.Render("~/bundles/sweetcss")
+
+@{
+    Layout = null;
+}
+@*<script src="~/Scripts/swal/sweetalert.js"></script>
+    <script src="~/Scripts/swal/sweetalert.min.js"></script>
+    <link href="~/css/sweetalert.css" rel="stylesheet" />*@
+<style type="text/css">
+    .swalcss {
+        font-size: 9px;
+        background-color: aliceblue;
+        width: auto;
+    }
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <div style="width: 100%;  text-align: center;">
+        <div style=" color:black;display: inline-block; margin-bottom:3%">
+            <h2> Recruitment - @Model </h2>
+        </div>
+        <br />
+        <div style=" color:black;display: inline-block; margin-bottom:3%">
+
+
+            <table cellspacing="50" cellpadding="15">
+                <tr>
+                    <td>
+                        @Html.Label("Select Files")
+                    </td>
+                    <td>  </td>
+                    <td>
+                        <input type="file" id="FileUpload1" name="postedFiles" multiple="multiple" />
+                    </td>
+                    <td>
+                        <input type="button" value="Upload" onclick="Upload_Appoint()" />
+                    </td>
+                    <td>
+                        <span style="color:green">@Html.Raw(ViewBag.Message)</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    
+    function Upload_Appoint() {
+        // Checking whether FormData is available in browser
+        if (window.FormData !== undefined) {
+
+            var fileUpload = $("#FileUpload1").get(0);
+            var files = fileUpload.files;
+
+            // Create FormData object
+            var fileData = new FormData();
+
+            // Looping over all files and add it to FormData object
+            for (var i = 0; i < files.length; i++) {
+
+                fileData.append(files[i].name, files[i]);
+            }
+            fileData.append("AppMode", '@Model');
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("UploadFiles", "Recruitment", new { area=""})',
+                data: fileData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    //console.log(data);
+                    if (data.success) {
+
+                        if (data.title === "File Upload Status") {
+
+                            var mydata = data.message;
+                            mydata = mydata.split(',').join('\n');
+
+                            swal({
+                                title: data.title,
+                                customClass: "swalcss",
+                                text: mydata
+                            });
+                        }
+                        else {
+                            swal(data.title, data.message, "success");
+                        }
+                    }
+                    else {
+                        if (data.title === "File already Exists") {
+                            swal(data.title, data.message, "warning");
+                        }
+                        else if (data.title === "File Type is not PDF") {
+                            swal(data.title, data.message, "warning");
+                        }
+                        else if (data.title === "Session Expired") {
+                            window.location.href = "/Home/Login";
+                        }
+
+                        else {
+                            swal(data.title, data.message, "error");
+                        }
+
+                    }
+                    //alert('@Model');
+                    //window.location.href = "/Recruitment/Upload_Appoint_Partial/'@Model'";
+                    document.getElementById("FileUpload1").value = "";
+                },
+                error: function (data) {
+                    alert("Unexpected Error Occured");
+                }
+            }
+            )
+        }
+    }
+
+
+</script>
+
+
+

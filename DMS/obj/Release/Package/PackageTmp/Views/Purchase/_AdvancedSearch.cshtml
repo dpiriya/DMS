@@ -1,0 +1,140 @@
+﻿@model Data_Layer.Models.DropdownList
+@Scripts.Render("~/bundles/sweet")
+@Styles.Render("~/bundles/sweetcss")
+
+@{
+    Layout = null;
+}
+<style type="text/css">
+    .swalcss {
+        font-size: 9px;
+        background-color: aliceblue;
+        width: auto;
+    }
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div style="width:100%;text-align:center" id="divpartial">
+        <div style=" color:black;display: inline-block; margin-bottom:3%">
+            <h2> Advanced Search</h2>
+        </div>
+        <br />
+        <table align="center" cellpadding="10" style="background-color: lavender;font-family:Calibri">
+
+            <tr>
+                <td>
+                    @Html.Label("Department")
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.DepartmentName, Model.Departments, "--Select Department--")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.Label("Coordinator")
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.PIName, Model.CoorList, "--Select Coordinator--")
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <p>
+                        <input type="button" class="SubmitViolet" value="Show Results" onclick="button()" />
+
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    function button() {
+        $('#table_id').dataTable({
+            "processing": true,
+            "serverSide": true,
+            "destroy": true,
+            "ajax": {
+                "url": '../Purchase/Adv_Load',
+                "data": { dept: $('#DepartmentName').val(), coor: $('#PIName').val()},
+                "type": 'post',
+                "dataType": 'json'
+            },
+            "columns": [
+                { 'data': 'purchase_trx_id', 'name': 'purchase_trx_id' },
+                { 'data': 'indent_no', 'name': 'indent_no' },
+                { 'data': 'project_no', 'name': 'project_no' },
+                { 'data': 'project_coordinator', 'name': 'project_coordinator' },
+                { 'data': 'file_namee', 'name': 'file_namee'},
+                { 'data': 'page_count', 'name': 'page_count'},
+                { 'data': 'uploadedBy', 'name': 'uploadedBy'},                
+                {
+                    'data': 'path', "render": function (data) {
+                        var link = '../Purchase/ViewDoc?iID=' + data;
+                        return "<a href=" + link + " target=_blank>View</a>"
+                    },
+                    "orderable": false
+                },
+                {
+                    'data': 'path', "render": function (data) {
+                        var link = '../Purchase/Download?iID=' + data;
+                        return "<a href=" + link + ">Download</a>"
+                    }, "orderable": false
+                }],
+            "language": {
+                "emptyTable": "No data available"
+            }
+        });
+        $('#myModal').hide();
+    }
+
+    //    $.ajax({
+    //        url: '../WSDatatable.asmx/CustomSearch_Purchase',
+    //        data: { dept: $('#DepartmentName').val(), coor: $('#PIName option:selected').text()},
+    //        method: 'POST',
+    //        dataType: 'json',
+    //        success: function (data) {
+    //            $('#table_id').dataTable({
+    //                data: data,
+    //                serverside: true,
+    //                destroy: true,
+    //                columns: [
+    //                    { 'data': 'purchase_trx_id' },
+    //                    { 'data': 'indent_no' },
+    //                    { 'data': 'project_no' },
+    //                    { 'data': 'project_coordinator' },
+    //                    { 'data': 'file_namee' },
+    //                    { 'data': 'page_count' },
+    //                    { 'data': 'uploadedBy' },
+    //                    { 'data': 'is_active' },
+    //                    {
+    //                        'data': 'path', "render": function (data) {
+    //                            var link = '../Purchase/ViewDoc?iID=' + data;
+    //                            return "<a href=" + link + " target=_blank>View</a>"
+    //                        },
+    //                        "orderable": false
+    //                    },
+    //                    {
+    //                        'data': 'path', "render": function (data) {
+    //                            var link = '../Purchase/Download?iID=' + data;
+    //                            return "<a href=" + link + ">Download</a>"
+    //                        }, "orderable": false
+    //                    }],
+    //                "order": [0, 'desc'],
+    //                "language": {
+    //                    "emptyTable": "No data available"
+    //                }
+    //            });
+    //            $('#myModal').hide();
+    //        }
+    //    });
+
+    //}
+</script>
+

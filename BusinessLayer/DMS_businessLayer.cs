@@ -43,11 +43,13 @@ namespace BusinessLayer
             }
         }
 
-        public string GetPath(int sroleid)
+        public string GetPath(string sroleid)
         {
             using (DMSEntities dms = new DMSEntities())
             {
-                string path = dms.Database.ExecuteSqlCommand(string.Format(@"EXEC sp_getpath @roleid='{0}'", sroleid)).ToString();
+
+                string path = (from m in dms.tbl_trx_dean where m.Agreement_No == sroleid select m.file_path+m.file_name).FirstOrDefault()+".pdf";
+                //dms.Database.ExecuteSqlCommand(string.Format(@"EXEC sp_getpath @roleid='{0}'", sroleid)).ToString();
                 return path;
             }
         }
@@ -647,6 +649,8 @@ namespace BusinessLayer
         }
 
         #endregion
+
+
 
 
     }

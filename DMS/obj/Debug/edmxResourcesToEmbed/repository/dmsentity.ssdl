@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_trx_accounts">
+    <Key>
+      <PropertyRef Name="accounts_trx_id" />
+    </Key>
+    <Property Name="accounts_trx_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="voucher_no" Type="nvarchar(max)" />
+    <Property Name="project_no" Type="nvarchar(max)" />
+    <Property Name="file_voucher" Type="char" MaxLength="1" />
+    <Property Name="file_path" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="file_Namee" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="page_count" Type="int" Nullable="false" />
+    <Property Name="uploadedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="uploadedOn" Type="datetime" Nullable="false" />
+    <Property Name="is_active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tbl_trx_office">
+    <Key>
+      <PropertyRef Name="office_trx_id" />
+    </Key>
+    <Property Name="office_trx_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="project_no" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="doc_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="file_path" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="file_Namee" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="page_count" Type="int" Nullable="false" />
+    <Property Name="uploadedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="uploadedOn" Type="datetime" />
+    <Property Name="isactive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_trx_purchase">
+    <Key>
+      <PropertyRef Name="purchase_trx_id" />
+    </Key>
+    <Property Name="purchase_trx_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="indent_no" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="project_no" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="indent_desc" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="project_coordinator" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="file_path" Type="nvarchar(max)" />
+    <Property Name="file_namee" Type="nvarchar(max)" />
+    <Property Name="page_count" Type="int" />
+    <Property Name="uploadedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="uploadedOn" Type="datetime" />
+    <Property Name="is_active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_trx_recruitment">
+    <Key>
+      <PropertyRef Name="recruit_trx_id" />
+    </Key>
+    <Property Name="recruit_trx_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeID" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="75" Nullable="false" />
+    <Property Name="Appoint_mode" Type="nvarchar" MaxLength="20" />
+    <Property Name="page_count" Type="int" Nullable="false" />
+    <Property Name="file_path" Type="nvarchar(max)" />
+    <Property Name="file_name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="uploadedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="uploadedOn" Type="datetime" />
+    <Property Name="is_active" Type="bit" />
+  </EntityType>
+  <EntityContainer Name="DMSModelStoreContainer">
+    <EntitySet Name="tbl_trx_accounts" EntityType="Self.tbl_trx_accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_trx_office" EntityType="Self.tbl_trx_office" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_trx_purchase" EntityType="Self.tbl_trx_purchase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_trx_recruitment" EntityType="Self.tbl_trx_recruitment" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
