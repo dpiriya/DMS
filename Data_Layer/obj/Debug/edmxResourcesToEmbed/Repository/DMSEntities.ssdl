@@ -122,7 +122,7 @@
     <Property Name="Signed_date" Type="date" />
     <Property Name="Expiry_date" Type="datetime" />
     <Property Name="Followup" Type="bit" Nullable="false" />
-    <Property Name="projectno" Type="nvarchar" MaxLength="50" />
+    <Property Name="FacultyID" Type="int" />
     <Property Name="page_count" Type="int" Nullable="false" />
     <Property Name="file_path" Type="nvarchar(max)" Nullable="false" />
     <Property Name="file_name" Type="nvarchar(max)" Nullable="false" />

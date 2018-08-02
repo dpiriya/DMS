@@ -47,7 +47,7 @@
 </html>
 <script type="text/javascript">
     function button() {
-        $('#table_id').dataTable({
+        $('#table_id').DataTable({
             "processing": true,
             "serverSide": true,
             "orderMulti": false,
@@ -59,35 +59,89 @@
                 "datatype": 'json'
             },
             "columns": [
-                { 'data': 'dean_trx_id', 'name': 'dean_trx_id' },
                 { 'data': 'Agreement_No', 'name': 'Agreement_No' },
                 { 'data': 'Year', 'name': 'Year' },
                 { 'data': 'Agreement_type', 'name': 'Agreement_type' },
                 { 'data': 'Partner', 'name': 'Partner' },
                 { 'data': 'Title', 'name': 'Title' },
                 { 'data': 'Expiry_date', 'name': 'Expiry_date' },
-                { 'data': 'projectno', 'name': 'projectno' },
-                { 'data': 'Followup', 'name': 'Followup' },
+                { 'data': 'Faculty', 'name': 'Faculty' },
                 //{ 'data': 'file_name', 'name': 'file_name' },
                 //{ 'data': 'page_count', 'name': 'page_count' },
-                { 'data': 'uploadedBy', 'name': 'uploadedBy' },
+                { 'data': 'DepartmentCode', 'name': 'DepartmentCode' },
                 {
-                    'data': 'path',
-                    "render": function (data) {
-                        var link = '../Dean/ViewDoc?iID=' + data;
-                        return "<a href=" + link + " target=_blank>View</a>"
+                    'data': null,
+                    'render': function (data) {
+                        return '<a href="#" class="glyphicon glyphicon-pencil edit-btn" id="' + data.dean_trx_id + '"></button>';
+                        //return '<a href="#" onclick="_Upload('+row[0]+')">Edit</a>'
+                        //return '<a href="edit?id='+row[0]+'">Edit</a>'
                     }, "orderable": false
                 },
                 {
-                    'data': 'path', "render": function (data) {
-                        var link = '../Dean/Download?iID=' + data;
-                        return "<a href=" + link + ">Download</a>"
+                    'data': 'path', 'render': function (data) {
+                        var link = '../Dean/ViewDoc?iID=' + data;
+                        return "<a href=" + link + "  class='glyphicon glyphicon-eye-open view_btn' target=_blank></a>";
+                        // return '<button class="btn btn-info btn-sm view_btn" id="' + link + '" onclick="window.open("'+link+'")">View</button>';
                     }, "orderable": false
-                }],
+                },
+                {
+                    'data': 'path', 'render': function (data) {
+                        var link = '../Dean/Download?iID=' + data;
+                        return "<a href=" + link + "  class='glyphicon glyphicon-download-alt view_btn' target=_blank></a>";
+                        //return '<button class="btn btn-info btn-sm download_btn" id="' + data.Agreement_No + '">Download</button>';
+                    }, "orderable": false
+                },
+                {
+                    'data': null, 'render': function (data) {
+                        return '<a href="#" class="glyphicon glyphicon-trash delete-btn" id="' + data.dean_trx_id + '"></button>';
+
+                    }, "orderable": false
+                }
+            ],
             "language": {
                 "emptyTable": "No data available"
             }
         });
         $('#myModal').hide();
     }
+        //$('#table_id tbody').on('click', '.edit-btn', function () {
+        //    var data_row = table.row($(this).closest('tr')).data();
+        //    $('#myModal1').modal('show');
+        //    $('#myModal1').on('shown.bs.modal', function () {
+        //        $('#Agreement_No').val(data_row.Agreement_No);
+        //        $('#Year').val(data_row.Year);
+        //        $('#Agreement_type').val(data_row.Agreement_type);
+        //        $('#Partner').val(data_row.Partner);
+        //        $('#Title').val(data_row.Title);
+        //        $('#Faculty').val(data_row.Faculty);                
+        //        $('#Expiry_Date').val(data_row.Expiry_Date);
+        //        $('#DepartmentCode').val(data_row.DepartmentCode)
+
+        //    });
+        //});
+        //$('#table_id tbody').on('click', '.delete-btn', function () {
+        //    $('<div title="Confirm Box"></div>').dialog({
+        //        open: function (event, ui) {
+        //            $(this).html("Do you really want to delete this record and respective file?");
+        //        },
+        //        close: function () {
+        //            $(this).remove();
+        //        },
+        //        resizable: false,
+        //        top: 250,
+        //        height: 200,
+        //        modal: true,
+        //        buttons: {
+        //            'Yes': function () {
+        //                $(this).dialog('close');
+        //                $.post('../Dean/Delete?iID=' + $('.delete-btn').attr("id"));
+        //            },
+        //            'No': function () {
+        //                $(this).dialog('close');
+        //            }
+        //        }
+        //    });
+        //    //alert($('.delete-btn').attr("id"));       
+        //});
+    
 </script>

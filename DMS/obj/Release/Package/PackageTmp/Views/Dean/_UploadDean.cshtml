@@ -66,15 +66,16 @@
                     <tr>
                         <td width="45%">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.projectno)
-                                @Html.TextBoxFor(m => m.projectno, new { @class = "form-control", @placeholder = "Enter Projectno (if any)" })
+                                @Html.LabelFor(m => m.Title)
+                                @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Enter Title" })
                             </div>
+                            
                         </td>
                         <td width="10%"></td>
                         <td width="45%">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Title)
-                                @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Enter Title" })
+                                @Html.LabelFor(m => m.FacultyID)
+                                @Html.TextBoxFor(m => m.FacultyID, new { @class = "form-control", @placeholder = "Enter Faculty ID" })
                             </div>
                         </td>
                     </tr>
@@ -146,7 +147,7 @@
     $('#datepickerid').datepicker({ dateFormat: 'dd/mm/yy' }).val();
     $('#datepickerid1').datepicker({ dateFormat: 'dd/mm/yy' }).val();
     function Upload_Dean() {
-        alert('HI');
+       
         //check whether form data is available
         if (window.FormData != undefined) {
             var fileUpload = $("#FileUpload1").get(0);

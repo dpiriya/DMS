@@ -1,13 +1,16 @@
 ﻿@using System.Data
 @model DataSet
+@Scripts.Render("~/bundles/sweet")
+@Styles.Render("~/bundles/sweetcss")
 @{
     Layout = null;
 }
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/datatable")
-@Styles.Render("~/bundles/datatablecss")
+<!DOCTYPE html>
 <html>
 <head>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/datatable")
+    @Styles.Render("~/bundles/datatablecss")
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,9 +18,11 @@
     <link href="~/Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/sidebar/sideBar.css" rel="stylesheet" />
     <link href="~/css/Index/mCustomScrollbar.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">*@
+    <link href="~/css/jquery-ui.css" rel="stylesheet" />
     <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/Assets/bootstrap/js/jquery-ui.min.js"></script>
+    @*<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
     <link href="~/Content/HelperStyle1.css" rel="stylesheet" />
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
@@ -120,21 +125,25 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Edit</h4>
                 </div>
-                <div class="modal-body">
-                    <form>
+
+                @using (Html.BeginForm("Update", "Dean", FormMethod.Post, new { @id = "form1" }))
+                {
+                    <div class="modal-body">
                         <table width="100%">
                             <tr>
                                 <td width="45%">
                                     <div class="form-group">
                                         <label for="Agreement">Name</label>
-                                        <input type="AgreementNo" class="form-control" id="AgreementNo">
+                                        <input type="text" class="form-control" id="Agreement_No" name="Agreement_No">
                                     </div>
                                 </td>
                                 <td width="10%"></td>
                                 <td width="45%">
                                     <div class="form-group">
+                                        @*@Html.LabelFor(m => m.Year)
+                                            @Html.TextBoxFor(m => m.Year, new { @id = "Year", @class = "form-control" })*@
                                         <label for="Year">Year</label>
-                                        <input type="Year" class="form-control" id="Year">
+                                        <input type="text" class="form-control" id="Year" name="Year">
                                     </div>
                                 </td>
                             </tr>
@@ -142,7 +151,7 @@
                                 <td width="45%">
                                     <div class="form-group">
                                         <label for="Partner">Partner</label>
-                                        <input type="Partner" class="form-control" id="Partner">
+                                        <input type="text" class="form-control" id="Partner" name="Partner">
                                     </div>
 
                                 </td>
@@ -150,42 +159,39 @@
                                 <td width="45%">
                                     <div class="form-group">
                                         <label for="Agreement_type">Type</label>
-                                        <input type="Agreement_type" class="form-control" id="Type">
+                                        <input type="text" class="form-control" id="Agreement_type" name="Agreement_type">
                                     </div>
-
-
                                 </td>
                             </tr>
                             <tr>
-                                <td width="45%">
-                                    <div class="form-group">
-                                        <label for="ProjectNo">Project No</label>
-                                        <input type="ProjectNo" class="form-control" id="ProjectNo">
-                                    </div>
-
-                                </td>
-                                <td width="10%"></td>
                                 <td width="45%">
                                     <div class="form-group">
                                         <label for="Title">Title</label>
-                                        <input type="Title" class="form-control" id="Title">
+                                        <input type="text" class="form-control" id="Title" name="Title">
                                     </div>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="45%">
-                                    <div class="form-group">
-                                        <label for="Faculty">Faculty</label>
-                                        <input type="Faculty" class="form-control" id="Faculty">
-                                    </div>
-
                                 </td>
                                 <td width="10%"></td>
                                 <td width="45%">
                                     <div class="form-group">
                                         <label for="DepartmentCode">Department Code</label>
-                                        <input type="DepartmentCode" class="form-control" id="DepartmentCode">
+                                        <input type="text" class="form-control" id="DepartmentCode" name="DepartmentCode">
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="FacultyID">FacultyID</label>
+                                        <input type="text" class="form-control" id="FacultyID" name="FacultyID">
+                                    </div>
+
+                                </td>
+                                <td width="10%"></td>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="Faculty">Faculty</label>
+                                        <input type="text" class="form-control" id="Faculty" name="Faculty">
                                     </div>
 
                                 </td>
@@ -194,7 +200,7 @@
                                 <td width="45%">
                                     <div class="form-group">
                                         <label for="Signed_Date">Signed Date</label>
-                                        <input type="Signed_Date" class="form-control" id="Signed_Date">
+                                        <input type="text" class="form-control" id="Signed_Date" name="Signed_date">
                                     </div>
 
                                 </td>
@@ -202,25 +208,28 @@
                                 <td width="45%">
                                     <div class="form-group">
                                         <label for="Expiry_Date">Expiry Date</label>
-                                        <input type="Expiry_Date" class="form-control" id="Expiry_Date">
+                                        <input type="text" class="form-control" id="Expiry_Date" name="Expiry_Date">
                                     </div>
                                 </td>
                             </tr>
+
                         </table>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" id="Edit">Edit</button>
-                    <button type="button" class="btn btn-default" id="View">View</button>
-                    <button type="button" class="btn btn-default" id="Download">Download</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Update</button>
+                        @*<button type="button" class="btn btn-default" id="View">View</button>
+                            <button type="button" class="btn btn-default" id="Download">Download</button>*@
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                }
             </div>
         </div>
     </div>
     <script type="text/javascript">
+
         $(document).ready(function () {
-            $('.form-control').attr('readonly', 'true');
+            $('#Agreement_No,#Year').attr('readonly', 'true');
             $("#sidebar").mCustomScrollbar({
                 theme: "minimal"
             });
@@ -236,33 +245,40 @@
                 $('.collapse.in').toggleClass('in');
                 $('a[aria-expanded=true]').attr('aria-expanded', 'false');
             });
-            $('#Edit').on('click', function () {
-                $('.form-control').removeAttr('readonly');
-                $('#Edit').text("Update");
-                $('#Edit').attr("id","Update");
-            });
-            
-            $('#View').on('click', function () {
-                window.open("/Dean/ViewDoc?iID=" + $('#AgreementNo').val(),'_blank');
-            });
-            $('#Download').on('click', function () {
-                window.open("/Dean/Download?iID=" + $('#AgreementNo').val());
-            });
+
+
+            //$('#View').on('click', function () {
+            //    window.open("/Dean/ViewDoc?iID=" + $('#AgreementNo').val(),'_blank');
+            //});
+            //$('#Download').on('click', function () {
+            //    window.open("/Dean/Download?iID=" + $('#AgreementNo').val());
+            //});
 
             $('#Signed_Date').datepicker({ dateFormat: 'dd/mm/yy' }).val();
             $('#Expiry_Date').datepicker({ dateFormat: 'dd/mm/yy' }).val();
+            if ('@TempData["msg"]' != "") {
+                if ('@TempData["msg"]' == "Updated Successfully") {
+                    swal("Success", '@TempData["msg"]', "success");
+                }
+                else  {
+                    swal("Failed", '@TempData["msg"]', "error");
+                }
+
+                //alert('@TempData["msg"]');
+            }
         });
-        $('#Update').on('click', function () {
-            var fileData = new FormData($('form').get(0));
-            window.open("/Dean/Update?deanModel=" + fileData);
-        });
+
+        //$('#Update').on('click', function () {
+        //    alert('hi');
+        //    $('#Update').attr("type", "submit");
+        //});
         $("#closbtn").click(function () {
             window.location.reload();
         });
         function _Upload(_AppMode) {
             $.ajax({
                 type: "GET",
-                url: '@Url.Action("_UploadDean", "Dean",new { area=""})',
+                url: '@Url.Action("_UploadDean", "Dean", new { area = "" })',
                 data: { AppMode: _AppMode },
                 success: function (data) {
                     {                                 //debugger;

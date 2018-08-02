@@ -74,9 +74,9 @@ namespace DMS.Controllers
                         //else
                         //{
                         if (AppMode == "Sponsored")
-                            path = @"\\10.18.0.29\dms\Office\Sponsored\";
+                            path = @"\\DMS_SAN\dms\Office\Sponsored\";
                         else if (AppMode == "Consultancy")
-                            path = @"\\10.18.0.29\dms\Office\Consultancy\";
+                            path = @"\\DMS_SAN\dms\Office\Consultancy\";
                         else
                             return Json(new { success = false, title = "Error in selecting the mode.. Redo the process!!" }, JsonRequestBehavior.AllowGet);
                         //}
@@ -278,7 +278,7 @@ namespace DMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Adv_Load(string mode, string dept, string coor)
+        public ActionResult Adv_Load(string mode, string dept, string coor,string yr)
         {
             var draw = Request.Form.GetValues("draw").FirstOrDefault();
             var start = Request.Form.GetValues("start").FirstOrDefault();
@@ -292,7 +292,7 @@ namespace DMS.Controllers
             int pageSize = length != null ? Convert.ToInt32(length) : 0;
             int skip = start != null ? Convert.ToInt32(start) : 0;
             int recordsTotal = 0;
-            var adv_search_office = dMS_BusinessLayer.Adv_search_office(search, sortColumn, sortColumnDir, mode, dept, coor);
+            var adv_search_office = dMS_BusinessLayer.Adv_search_office(search, sortColumn, sortColumnDir, mode, dept, coor,yr);
 
             recordsTotal = adv_search_office.Count();
             var data = adv_search_office.Skip(skip).Take(pageSize).ToList();

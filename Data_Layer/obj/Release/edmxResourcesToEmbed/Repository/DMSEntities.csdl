@@ -295,17 +295,17 @@
     <Property Name="Partner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Agreement_type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Faculty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Signed_date" Type="DateTime" Precision="0" />
     <Property Name="Expiry_date" Type="DateTime" Precision="3" />
     <Property Name="Followup" Type="Boolean" Nullable="false" />
-    <Property Name="projectno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FacultyID" Type="Int32" />
     <Property Name="page_count" Type="Int32" Nullable="false" />
     <Property Name="file_path" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="file_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="uploadedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="uploadedOn" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="is_active" Type="Boolean" />
-    <Property Name="Faculty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="DepartmentCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Signed_date" Type="DateTime" Precision="0" />
   </EntityType>
 </Schema>

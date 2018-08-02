@@ -127,7 +127,7 @@
           <Property Name="Signed_date" Type="date" />
           <Property Name="Expiry_date" Type="datetime" />
           <Property Name="Followup" Type="bit" Nullable="false" />
-          <Property Name="projectno" Type="nvarchar" MaxLength="50" />
+          <Property Name="FacultyID" Type="int" />
           <Property Name="page_count" Type="int" Nullable="false" />
           <Property Name="file_path" Type="nvarchar(max)" Nullable="false" />
           <Property Name="file_name" Type="nvarchar(max)" Nullable="false" />
@@ -560,18 +560,18 @@
           <Property Name="Partner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Agreement_type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Faculty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Signed_date" Type="DateTime" Precision="0" />
           <Property Name="Expiry_date" Type="DateTime" Precision="3" />
           <Property Name="Followup" Type="Boolean" Nullable="false" />
-          <Property Name="projectno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FacultyID" Type="Int32" />
           <Property Name="page_count" Type="Int32" Nullable="false" />
           <Property Name="file_path" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="file_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="uploadedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="uploadedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="is_active" Type="Boolean" />
-          <Property Name="Faculty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DepartmentCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Signed_date" Type="DateTime" Precision="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -779,18 +779,18 @@
           <EntitySetMapping Name="tbl_trx_dean">
             <EntityTypeMapping TypeName="DMSModel.tbl_trx_dean">
               <MappingFragment StoreEntitySet="tbl_trx_dean">
-                <ScalarProperty Name="Signed_date" ColumnName="Signed_date" />
-                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
-                <ScalarProperty Name="Faculty" ColumnName="Faculty" />
                 <ScalarProperty Name="is_active" ColumnName="is_active" />
                 <ScalarProperty Name="uploadedOn" ColumnName="uploadedOn" />
                 <ScalarProperty Name="uploadedBy" ColumnName="uploadedBy" />
                 <ScalarProperty Name="file_name" ColumnName="file_name" />
                 <ScalarProperty Name="file_path" ColumnName="file_path" />
                 <ScalarProperty Name="page_count" ColumnName="page_count" />
-                <ScalarProperty Name="projectno" ColumnName="projectno" />
+                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
                 <ScalarProperty Name="Followup" ColumnName="Followup" />
                 <ScalarProperty Name="Expiry_date" ColumnName="Expiry_date" />
+                <ScalarProperty Name="Signed_date" ColumnName="Signed_date" />
+                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+                <ScalarProperty Name="Faculty" ColumnName="Faculty" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Agreement_type" ColumnName="Agreement_type" />
                 <ScalarProperty Name="Partner" ColumnName="Partner" />

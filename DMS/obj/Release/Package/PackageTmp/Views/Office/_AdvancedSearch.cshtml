@@ -19,34 +19,41 @@
 </head>
 <body>
     <div style="width:100%;text-align:center" id="divpartial">
-        <div style=" color:black;display: inline-block; margin-bottom:3%">
+        <div style=" color:black;display: inline-block; margin-top:3%">
             <h2> Advanced Search</h2>
         </div>
         <br />
-        <table align="center" cellpadding="10" style="background-color: lavender;font-family:Calibri">
-
+        <table align="center" style="border-collapse:separate;border-spacing:0 20px;">
             <tr>
-                <td>
+                <td width="30%">
                     @Html.Label("Type")
                 </td>
-                <td>
-                    @Html.DropDownListFor(model => model.doc_type, Model.types, "--Select Type--")
+                <td width="70%">
+                    @Html.DropDownListFor(model => model.doc_type, Model.types, "--Select Type--",new { style = "width:100%" })
                 </td>
             </tr>
             <tr>
-                <td>
+                <td width="30%">
                     @Html.Label("Department")
                 </td>
-                <td>
+                <td width="70%">
                     @Html.DropDownListFor(model => model.DepartmentName, Model.Departments, "--Select Department--")
                 </td>
             </tr>
             <tr>
-                <td>
+                <td width="30%">
                     @Html.Label("Coordinator")
                 </td>
-                <td>
-                    @Html.DropDownListFor(model => model.PIName, Model.CoorList, "--Select Coordinator--")
+                <td width="70%">
+                    @Html.DropDownListFor(model => model.PIName, Model.CoorList, "--Select Coordinator--", new { style = "width:100%" })
+                </td>
+            </tr>
+            <tr>
+                <td width="30%">
+                    @Html.Label("Month/Year")
+                </td>
+                <td width="70%">
+                    @Html.TextBoxFor(m=>m.MYear,new {@class="form-control",@placeholder="01/2000"})
                 </td>
             </tr>
             <tr>
@@ -70,7 +77,7 @@
             "destroy": true,
             "ajax": {
                 "url": '../Office/Adv_Load',
-                "data": { mode: $('#doc_type').val(), dept: $('#DepartmentName').val(), coor:$('#PIName').val()},
+                "data": { mode: $('#doc_type').val(), dept: $('#DepartmentName').val(), coor:$('#PIName').val(),yr:$('#MYear').val()},
                 "type":'Post',
                 "dataType":'json'
             },

@@ -27,6 +27,7 @@ namespace DMS.Controllers
             catch (Exception ex)
             {
                 ViewBag.Message += ex;
+
                 return View();
             }
         }
@@ -90,7 +91,7 @@ namespace DMS.Controllers
                                                 numberOfPages = pdfReader.NumberOfPages;
                                                 filenamewoext = Path.GetFileNameWithoutExtension(fileName);
                                             }
-                                            iInsertFileUpload = dMS_BusinessLayer.FileUpload_dean(deanModel.Agreement_No, deanModel.Year, deanModel.Partner, deanModel.Agreement_type, deanModel.projectno, deanModel.Title,deanModel.Faculty,deanModel.DepartmentCode,deanModel.Signed_date, deanModel.Expiry_date, deanModel.Followup, filenamewoext, numberOfPages, path, Session["Username"].ToString());
+                                            iInsertFileUpload = dMS_BusinessLayer.FileUpload_dean(deanModel.Agreement_No, deanModel.Year, deanModel.Partner, deanModel.Agreement_type, deanModel.FacultyID, deanModel.Title,deanModel.Faculty,deanModel.DepartmentCode,deanModel.Signed_date, deanModel.Expiry_date, deanModel.Followup, filenamewoext, numberOfPages, path, Session["Username"].ToString());
                                             if (iInsertFileUpload == 1)
                                                 return Json(new { success = true, title = "File Upload Status", message = "File Name : " + fileName + " - " + numberOfPages + " pages" });
                                             else
@@ -134,9 +135,11 @@ namespace DMS.Controllers
             {
                 return View("_UploadDean",deanModel);
             }
-        }       
+        }
+        
+        [HttpPost]
         public ActionResult Update(Dean_trxModel deanModel)
-        {
+        {           
             try
             {
                 if(!string.IsNullOrEmpty(deanModel.Agreement_No))
@@ -144,17 +147,28 @@ namespace DMS.Controllers
                     int update = dMS_BusinessLayer.Update_Dean(deanModel);
                     if (update == 1)
                     {
-                        return Json(new { success = true, title = "Update Success", message = "Updated Successfully" });
+                        TempData["msg"] = "Updated Successfully";
+                        TempData["no"] = deanModel.Agreement_No;
+                        return RedirectToAction("Dean_Index");
+
+
+                        //return Json(new { success = true, title = "Update Success", message = "Updated Successfully" });
                     }
                     else
-                        return Json(new { success = false, title = "Update Failed",message="Update Failed"});
+                    {
+                        TempData["msg"] = "Update Failed";
+                        return RedirectToAction("Dean_Index");
+                    }
+                      
                 }
-                return Json(new { success = false, title = "Fail", message = "Failed Try Again" });
+                TempData["msg"] = "Failed..Try Again";
+                return RedirectToAction("Dean_Index");
             }
             catch(Exception ex)
             {
                 ViewBag.Message += ex;
-                return Json(new { success = false, title = "Fail", message = "Failed Try Again" });
+                TempData["msg"] = ex;
+                return RedirectToAction("Dean_Index");
             }
         }
         public ActionResult _Search()
@@ -180,13 +194,14 @@ namespace DMS.Controllers
         #endregion
 
         [HttpPost]
-        public ActionResult LoadData()
+        public ActionResult LoadData(string col)
         {
             var draw = Request.Form.GetValues("draw").FirstOrDefault();
             var start = Request.Form.GetValues("start").FirstOrDefault();
             var length = Request.Form.GetValues("length").FirstOrDefault();
             string search = Request.Form.GetValues("search[value]").FirstOrDefault();
             //Find Order Column
+            //var column = Request.Form.GetValues().FirstOrDefault();
             var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
             var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
             int pageSize = length != null ? Convert.ToInt32(length) : 0;
@@ -220,15 +235,51 @@ namespace DMS.Controllers
             return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
 
         }
+        public ActionResult Delete(Int64 iID)
+        {
+            try
+            {
+                if(iID!=0)
+                {
+                    string model = dMS_BusinessLayer.Find(iID);
+                    if (model != null)
+                    {
+                        string File = model + ".pdf";
+
+                        int deleted = dMS_BusinessLayer.Delete_Dean(iID);
+                        if (deleted == 1)
+                        {
+                            if (System.IO.File.Exists(File))
+                            {
+                                System.IO.File.Delete(File);
+                            }
+                            return Json(new { success = true, data = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
+                        }
+                        else
+                            return Json(new { success = false, data = "Select the row to delete" }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                        return Json(new { success = false, data = "Failed to delete the record" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                    return Json(new { success = false, data = "Select the row to delete" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message += ex;
+                return RedirectToAction("Dean_Index");
+            }
+        }
         #region viewndownload
         public ActionResult ViewDoc(string iID)
         {
             try
             {
-                string path = dMS_BusinessLayer.GetPath(iID);
-                if (System.IO.File.Exists(path))
+                string doc = iID + ".pdf";
+                //string path = dMS_BusinessLayer.GetPath(iID);
+                if (System.IO.File.Exists(doc))
                 {
-                    var filestream = new FileStream(path, FileMode.Open, FileAccess.Read);
+                    var filestream = new FileStream(doc, FileMode.Open, FileAccess.Read);
                     return new FileStreamResult(filestream, "application/pdf");
                 }
                 else
@@ -250,10 +301,10 @@ namespace DMS.Controllers
                 if (iID != null)
                 {
                     string document = iID + ".pdf";
-                    string path = dMS_BusinessLayer.GetPath(iID);
+                    //string path = dMS_BusinessLayer.GetPath(iID);
                     //string path = @"\\10.18.0.29\dms\DeanOffice\Agreement\";
                     //path += document;
-                    return File(path, "application/pdf", document);
+                    return File(document, "application/pdf", document);
                 }
                 else
                     return Json("The respective file is not available", JsonRequestBehavior.AllowGet);

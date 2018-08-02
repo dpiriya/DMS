@@ -13,7 +13,7 @@ namespace Data_Layer.Models
     {
         public long dean_trx_id { get; set; }
         [Required]    
-        [RegularExpression(@"^[0-9]{2}\-[0-9]{4}",ErrorMessage ="Eg:01-2015")]
+        [RegularExpression(@"^[0-9]{2,}_[0-9]{4}",ErrorMessage ="Eg:01_2015")]
         [Display(Name = "Agreement No")]
         public string Agreement_No { get; set; }
         [Required]
@@ -25,6 +25,7 @@ namespace Data_Layer.Models
         [Display(Name ="Agreement Type")]
         public string Agreement_type { get; set; }
         public string Title { get; set; }
+        [Display(Name ="Faculty Coordinator")]
         public string Faculty { get; set; }
         public string DepartmentCode { get; set; }
         [Display(Name ="Signed Date")]
@@ -32,8 +33,9 @@ namespace Data_Layer.Models
         [Display(Name ="Expiry Date")]
         public string Expiry_date { get; set; }        
         public bool Followup { get; set; }
-        [Display(Name ="Project No")]
-        public string projectno { get; set; }
+        [Display(Name ="FacultyID")]
+        [RegularExpression(@"[0-9]{4}",ErrorMessage ="Enter Valid Faculty ID")]
+        public Nullable<int> FacultyID { get; set; }
         public int page_count { get; set; }
         public string file_path { get; set; }
         public string file_name { get; set; }

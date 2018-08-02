@@ -201,18 +201,18 @@
     <EntitySetMapping Name="tbl_trx_dean">
       <EntityTypeMapping TypeName="DMSModel.tbl_trx_dean">
         <MappingFragment StoreEntitySet="tbl_trx_dean">
-          <ScalarProperty Name="Signed_date" ColumnName="Signed_date" />
-          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
-          <ScalarProperty Name="Faculty" ColumnName="Faculty" />
           <ScalarProperty Name="is_active" ColumnName="is_active" />
           <ScalarProperty Name="uploadedOn" ColumnName="uploadedOn" />
           <ScalarProperty Name="uploadedBy" ColumnName="uploadedBy" />
           <ScalarProperty Name="file_name" ColumnName="file_name" />
           <ScalarProperty Name="file_path" ColumnName="file_path" />
           <ScalarProperty Name="page_count" ColumnName="page_count" />
-          <ScalarProperty Name="projectno" ColumnName="projectno" />
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
           <ScalarProperty Name="Followup" ColumnName="Followup" />
           <ScalarProperty Name="Expiry_date" ColumnName="Expiry_date" />
+          <ScalarProperty Name="Signed_date" ColumnName="Signed_date" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+          <ScalarProperty Name="Faculty" ColumnName="Faculty" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Agreement_type" ColumnName="Agreement_type" />
           <ScalarProperty Name="Partner" ColumnName="Partner" />

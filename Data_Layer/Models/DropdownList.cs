@@ -45,6 +45,8 @@ namespace Data_Layer.Models
 
         public IEnumerable<SelectListItem> AType { get; set; }
 
+        public string MYear { get; set; }
+
         public List<SelectListItem> AtypeList()
         {
             using (DMSEntities dms = new DMSEntities())
