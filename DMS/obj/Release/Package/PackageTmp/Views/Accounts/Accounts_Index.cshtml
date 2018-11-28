@@ -10,11 +10,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>DMS - Accounts</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/datatable")
+    @Styles.Render("~/bundles/datatablecss")
+
     <!-- Our Custom CSS -->
     <link href="~/Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/sidebar/sideBar.css" rel="stylesheet" />
     <link href="~/css/index/mCustomScrollbar.min.css" rel="stylesheet" /> @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">*@
-
+    @Scripts.Render("~/bundles/export")
+    @Styles.Render("~/bundles/exportcss")
 
 </head>
 <body>
@@ -86,7 +91,7 @@
                 <div align="right" style="color:blue">
                     <a href="#" onclick="_AdvancedSearch()">Advanced Search>></a>
                 </div>
-
+                
             </div>
             <div>
                 @Html.Partial("_Search")
@@ -101,7 +106,7 @@
 
     <div id='myModal' style="text-align:right; background-color:transparent; color:cornflowerblue" class="modal fade"
          data-keyboard="false" data-backdrop="static">
-        <div class="modal-dialog" style="width:45%; height:auto; padding:10px;top:35%; color:white ">
+        <div class="modal-dialog" id="_Asearch" style="width:45%; height:auto; padding:10px;top:35%; color:white ">
             <div class="modal-content"
                  style="overflow: auto;padding: 2%; padding-left:5%">
 
@@ -109,7 +114,7 @@
                     <i class="glyphicon glyphicon-remove"></i>
                     <span>Close</span>
                 </button>
-
+                <div style="height:auto"> </div>
                 <div id='myModalContent'
                      style="width:auto; height:auto; padding:10px; padding-top:0px">
                 </div>
@@ -138,7 +143,7 @@
 
                     // Appointment -- ADHOC
 
-        function _Upload(_AppMode) {
+        function _Upload(_AppMode) {           
             $.ajax({
                 type: "GET",
                 url: '@Url.Action("_UploadAccounts", "Accounts",new { area=""})',

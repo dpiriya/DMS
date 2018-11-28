@@ -81,9 +81,9 @@ namespace DMS.Controllers
                         //else
                         //{
                         if (AppMode == "Adhoc" || AppMode == "Selection" || AppMode == "Part")
-                            path = @"\\10.18.0.29\dms\Recruitment\Appointment\";
+                            path = @"\\Dms_san\dms\Recruitment\Appointment\";
                         else if (AppMode == "Outsource")
-                            path = @"\\10.18.0.29\dms\Recruitment\Outsource\";
+                            path = @"\\DMS_SAN\dms\Recruitment\Outsource\";
                         else
                             return Json(new { success = false, title = "Error in selecting the mode.. Redo the process!!" });
 
@@ -107,9 +107,24 @@ namespace DMS.Controllers
                                         string tblName;
                                         tblName = dMS_BusinessLayer.Verify_Recruit(postedFile.FileName.Substring(0, postedFile.FileName.LastIndexOf('.')));
                                         if (tblName == null)
-                                            return Json(new { success = false, title = "Invalid Fileno!!", message = "File Name :" + postedFile.FileName });
-                                        else if (tblName != AppMode)
-                                            return Json(new { success = false, title = "Kindly upload this file under " + tblName + " mode" });
+                                        {
+                                            if (iTotalFileCount == 1)
+                                                return Json(new { success = false, title = "Invalid Fileno!!", message = "File Name :" + postedFile.FileName });
+                                            else
+                                            {
+                                                strArray.Add(postedFile.FileName + "-Invalid FileNo");
+                                                iFileUploaded++;
+                                            }
+                                        }
+                                        else if (tblName != AppMode) {
+                                            if (iTotalFileCount == 1)
+                                                return Json(new { success = false, title = "Kindly upload this file under " + tblName + " mode" });
+                                            else
+                                            {
+                                                strArray.Add(postedFile.FileName + "-Not Uploaded..Kindly upload this file under " + tblName + " mode");
+                                                iFileUploaded++;
+                                            }
+                                        }
                                         else
                                         {
                                             string fileName = Path.GetFileName(postedFile.FileName);
@@ -288,8 +303,6 @@ namespace DMS.Controllers
             //Find Order Column
             var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
             var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
-
-
             int pageSize = length != null ? Convert.ToInt32(length) : 0;
             int skip = start != null ? Convert.ToInt32(start) : 0;
             int recordsTotal = 0;
@@ -310,9 +323,16 @@ namespace DMS.Controllers
                 //}
 
                 recordsTotal = search_Recruit.Count();
-                var data = search_Recruit.Skip(skip).Take(pageSize).ToList();
-                return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
-            
+            var data = search_Recruit.ToList();
+            if (pageSize!=-1)
+            {
+                data = search_Recruit.Skip(skip).Take(pageSize).ToList();
+            }
+                
+                JsonResult json= Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            json.MaxJsonLength = Int32.MaxValue;
+            return json;
+
             // dc.Configuration.LazyLoadingEnabled = false; // if your table is relational, contain foreign key
             //var v = (from a in dc.Customers select a);
 
@@ -340,9 +360,15 @@ namespace DMS.Controllers
             var adv_search_recruit = dMS_BusinessLayer.Adv_search_recruit(search, sortColumn, sortColumnDir, mode, dept, coor);
 
                 recordsTotal = adv_search_recruit.Count();
-                var data = adv_search_recruit.Skip(skip).Take(pageSize).ToList();
-                return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
-            
+            var data = adv_search_recruit.ToList();
+            if (pageSize!=-1)
+            {
+                 data = adv_search_recruit.Skip(skip).Take(pageSize).ToList();
+            }
+                
+                JsonResult json= Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            json.MaxJsonLength = Int32.MaxValue;
+            return json;
         }
 
         //#region Exception Handling

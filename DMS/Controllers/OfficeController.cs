@@ -97,9 +97,25 @@ namespace DMS.Controllers
                                         string tblName;
                                         tblName = dMS_BusinessLayer.Verify_Office(postedFile.FileName.Substring(0, postedFile.FileName.LastIndexOf('.')));
                                         if (tblName == null)
-                                            return Json(new { success = false, title = "Invalid Fileno!!", message = "File Name :" + postedFile.FileName }, JsonRequestBehavior.AllowGet);
+                                        {
+                                            if (iTotalFileCount == 1)
+                                                return Json(new { success = false, title = "Invalid Fileno!!", message = "File Name :" + postedFile.FileName }, JsonRequestBehavior.AllowGet);
+                                            else
+                                            {
+                                                strArray.Add(postedFile.FileName + "-Invalid FileNo");
+                                                iFileUploaded++;
+                                            }
+                                        }
                                         else if (tblName != AppMode)
-                                            return Json(new { success = false, title = "Kindly upload this file under " + tblName + " mode" }, JsonRequestBehavior.AllowGet);
+                                        {
+                                            if (iTotalFileCount == 1)
+                                                return Json(new { success = false, title = "Kindly upload this file under " + tblName + " mode" }, JsonRequestBehavior.AllowGet);
+                                            else
+                                            {
+                                                strArray.Add(postedFile.FileName + "-Not Uploaded..Kindly upload this file under " + tblName + " mode");
+                                                iFileUploaded++;
+                                            }
+                                        }
                                         else
                                         {
                                             string fileName = Path.GetFileName(postedFile.FileName);
@@ -272,9 +288,15 @@ namespace DMS.Controllers
             int skip = start != null ? Convert.ToInt32(start) : 0;
             int recordsTotal = 0;
             var search_office = dMS_BusinessLayer.Search_office(search, sortColumn, sortColumnDir);
-            recordsTotal = search_office.Count();
-            var data = search_office.Skip(skip).Take(pageSize).ToList();
-            return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            recordsTotal = search_office.Count();            
+            var data = search_office.ToList();
+            if (pageSize != -1)
+            {
+                data = search_office.Skip(skip).Take(pageSize).ToList();
+            }
+             JsonResult json= Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            json.MaxJsonLength = Int32.MaxValue;
+            return json;
         }
 
         [HttpPost]
@@ -295,8 +317,14 @@ namespace DMS.Controllers
             var adv_search_office = dMS_BusinessLayer.Adv_search_office(search, sortColumn, sortColumnDir, mode, dept, coor,yr);
 
             recordsTotal = adv_search_office.Count();
-            var data = adv_search_office.Skip(skip).Take(pageSize).ToList();
-            return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            var data = adv_search_office.ToList();
+            if (pageSize != -1)
+            {
+                data = adv_search_office.Skip(skip).Take(pageSize).ToList();
+            }
+            JsonResult json = Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            json.MaxJsonLength = Int32.MaxValue;
+            return json;
 
         }
     }

@@ -42,6 +42,14 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    @Html.Label("Year")
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.Year, new { @class = "form-control", @placeholder = "2000" })
+                </td>
+            </tr>
+            <tr>
                 <td colspan="2" align="center">
                     <p>
                         <input type="button" class="SubmitViolet" value="Show Results" onclick="button()" />
@@ -60,9 +68,12 @@
             "processing": true,
             "serverSide": true,
             "destroy": true,
+            'scrollY': '50vh',
+            'scrollCollapse': true,
+            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             "ajax": {
                 "url": '../Purchase/Adv_Load',
-                "data": { dept: $('#DepartmentName').val(), coor: $('#PIName').val()},
+                "data": { dept: $('#DepartmentName').val(), coor: $('#PIName').val(),year:$('#Year').val()},
                 "type": 'post',
                 "dataType": 'json'
             },
@@ -71,9 +82,9 @@
                 { 'data': 'indent_no', 'name': 'indent_no' },
                 { 'data': 'project_no', 'name': 'project_no' },
                 { 'data': 'project_coordinator', 'name': 'project_coordinator' },
-                { 'data': 'file_namee', 'name': 'file_namee'},
-                { 'data': 'page_count', 'name': 'page_count'},
-                { 'data': 'uploadedBy', 'name': 'uploadedBy'},                
+                //{ 'data': 'file_namee', 'name': 'file_namee'},
+                //{ 'data': 'page_count', 'name': 'page_count'},
+                //{ 'data': 'uploadedBy', 'name': 'uploadedBy'},                
                 {
                     'data': 'path', "render": function (data) {
                         var link = '../Purchase/ViewDoc?iID=' + data;
@@ -87,6 +98,8 @@
                         return "<a href=" + link + ">Download</a>"
                     }, "orderable": false
                 }],
+            'dom': 'lBfrtip',
+            'buttons': ["excelHtml5", "pdfHtml5"],   
             "language": {
                 "emptyTable": "No data available"
             }

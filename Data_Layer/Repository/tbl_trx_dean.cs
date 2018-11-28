@@ -25,7 +25,7 @@ namespace Data_Layer.Repository
         public Nullable<System.DateTime> Signed_date { get; set; }
         public Nullable<System.DateTime> Expiry_date { get; set; }
         public bool Followup { get; set; }
-        public Nullable<int> FacultyID { get; set; }
+        public string FacultyID { get; set; }
         public int page_count { get; set; }
         public string file_path { get; set; }
         public string file_name { get; set; }

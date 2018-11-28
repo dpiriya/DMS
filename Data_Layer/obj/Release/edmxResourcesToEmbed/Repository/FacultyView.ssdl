@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FacultyView.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'IITMAcademics.dbo.VW_AppDev_FacultyDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VW_AppDev_FacultyDetails">
+    <Key>
+      <PropertyRef Name="EMPLOYEEID" />
+      <PropertyRef Name="EMPLOYEEDESIGNATIONNAME" />
+      <PropertyRef Name="DepartmentCode" />
+      <PropertyRef Name="DateOfJoining" />
+      <PropertyRef Name="EMAIL" />
+    </Key>
+    <Property Name="EMPLOYEEID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DISPLAYNAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="EMPLOYEEDESIGNATIONNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DepartmentCode" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="DEPARTMENTNAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="DateOfJoining" Type="datetime" Nullable="false" />
+    <Property Name="RetirementDate" Type="datetime" />
+    <Property Name="EmployeeStatus" Type="nvarchar" MaxLength="25" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityContainer Name="FacultyViewStoreContainer">
+    <EntitySet Name="VW_AppDev_FacultyDetails" EntityType="Self.VW_AppDev_FacultyDetails" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VW_AppDev_FacultyDetails].[EMPLOYEEID] AS [EMPLOYEEID], 
+    [VW_AppDev_FacultyDetails].[DISPLAYNAME] AS [DISPLAYNAME], 
+    [VW_AppDev_FacultyDetails].[EMPLOYEEDESIGNATIONNAME] AS [EMPLOYEEDESIGNATIONNAME], 
+    [VW_AppDev_FacultyDetails].[DepartmentCode] AS [DepartmentCode], 
+    [VW_AppDev_FacultyDetails].[DEPARTMENTNAME] AS [DEPARTMENTNAME], 
+    [VW_AppDev_FacultyDetails].[DateOfJoining] AS [DateOfJoining], 
+    [VW_AppDev_FacultyDetails].[RetirementDate] AS [RetirementDate], 
+    [VW_AppDev_FacultyDetails].[EmployeeStatus] AS [EmployeeStatus], 
+    [VW_AppDev_FacultyDetails].[EMAIL] AS [EMAIL], 
+    [VW_AppDev_FacultyDetails].[Phone] AS [Phone]
+    FROM [dbo].[VW_AppDev_FacultyDetails] AS [VW_AppDev_FacultyDetails]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

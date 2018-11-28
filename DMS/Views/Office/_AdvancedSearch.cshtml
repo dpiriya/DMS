@@ -50,10 +50,10 @@
             </tr>
             <tr>
                 <td width="30%">
-                    @Html.Label("Month/Year")
+                    @Html.Label("Year")
                 </td>
                 <td width="70%">
-                    @Html.TextBoxFor(m=>m.MYear,new {@class="form-control",@placeholder="01/2000"})
+                    @Html.TextBoxFor(m=>m.Year,new {@class="form-control",@placeholder="2000"})
                 </td>
             </tr>
             <tr>
@@ -75,18 +75,21 @@
             "processing": true,
             "serverSide": true,
             "destroy": true,
+            'scrollY': '50vh',
+            'scrollCollapse': true,
+            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             "ajax": {
                 "url": '../Office/Adv_Load',
-                "data": { mode: $('#doc_type').val(), dept: $('#DepartmentName').val(), coor:$('#PIName').val(),yr:$('#MYear').val()},
+                "data": { mode: $('#doc_type').val(), dept: $('#DepartmentName').val(), coor:$('#PIName').val(),yr:$('#Year').val()},
                 "type":'Post',
                 "dataType":'json'
             },
             "columns": [{ 'data': 'office_trx_id','name':'office_trx_id' },
                         { 'data': 'project_no','name':'project_no' },
                         { 'data': 'doc_type','name':'doc_type' },
-                        { 'data': 'file_Namee','name':'file_Namee' },
-                        { 'data': 'page_count' ,'name':'page_count'},
-                        { 'data': 'uploadedBy', 'name':'uplaodedBy' },                        
+                        //{ 'data': 'file_Namee','name':'file_Namee' },
+                        //{ 'data': 'page_count' ,'name':'page_count'},
+                        //{ 'data': 'uploadedBy', 'name':'uplaodedBy' },                        
                         {
                             'data': 'path', "render": function (data) {
                                 var link = '../Office/ViewDoc?iID=' + data;
@@ -101,7 +104,9 @@
                                 
                          }, "orderable": false
                         }],
-                    "order": [0, 'desc'],
+            "order": [0, 'desc'],
+            'dom': 'lBfrtip',
+            'buttons': ["excelHtml5", "pdfHtml5"],
                     "language": {
                         "emptyTable": "No data available"
                     }            

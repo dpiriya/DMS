@@ -127,7 +127,24 @@
           <Property Name="Signed_date" Type="date" />
           <Property Name="Expiry_date" Type="datetime" />
           <Property Name="Followup" Type="bit" Nullable="false" />
-          <Property Name="FacultyID" Type="int" />
+          <Property Name="FacultyID" Type="nvarchar" MaxLength="20" />
+          <Property Name="page_count" Type="int" Nullable="false" />
+          <Property Name="file_path" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="file_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="uploadedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="uploadedOn" Type="datetime" Nullable="false" />
+          <Property Name="is_active" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_trx_FileDean">
+          <Key>
+            <PropertyRef Name="deanFile_trx_id" />
+          </Key>
+          <Property Name="deanFile_trx_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SubCategory" Type="nvarchar" MaxLength="100" />
+          <Property Name="Source" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReceivedDt" Type="date" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
           <Property Name="page_count" Type="int" Nullable="false" />
           <Property Name="file_path" Type="nvarchar(max)" Nullable="false" />
           <Property Name="file_name" Type="nvarchar(max)" Nullable="false" />
@@ -245,6 +262,7 @@
           <EntitySet Name="tbl_mst_Users" EntityType="Self.tbl_mst_Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_trx_accounts" EntityType="Self.tbl_trx_accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_trx_dean" EntityType="Self.tbl_trx_dean" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_trx_FileDean" EntityType="Self.tbl_trx_FileDean" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_trx_office" EntityType="Self.tbl_trx_office" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_trx_purchase" EntityType="Self.tbl_trx_purchase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_trx_recruitment" EntityType="Self.tbl_trx_recruitment" Schema="dbo" store:Type="Tables" />
@@ -494,6 +512,7 @@
           </FunctionImport>
           <EntitySet Name="tbl_trx_recruitment" EntityType="DMSModel.tbl_trx_recruitment" />
           <EntitySet Name="tbl_trx_dean" EntityType="DMSModel.tbl_trx_dean" />
+          <EntitySet Name="tbl_trx_FileDean" EntityType="DMSModel.tbl_trx_FileDean" />
         </EntityContainer>
         <ComplexType Name="sp_appointment_summary_Result">
           <Property Type="Int32" Name="Count" Nullable="true" />
@@ -565,7 +584,24 @@
           <Property Name="Signed_date" Type="DateTime" Precision="0" />
           <Property Name="Expiry_date" Type="DateTime" Precision="3" />
           <Property Name="Followup" Type="Boolean" Nullable="false" />
-          <Property Name="FacultyID" Type="Int32" />
+          <Property Name="FacultyID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="page_count" Type="Int32" Nullable="false" />
+          <Property Name="file_path" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="file_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="uploadedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uploadedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="is_active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_trx_FileDean">
+          <Key>
+            <PropertyRef Name="deanFile_trx_id" />
+          </Key>
+          <Property Name="deanFile_trx_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReceivedDt" Type="DateTime" Precision="0" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="page_count" Type="Int32" Nullable="false" />
           <Property Name="file_path" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="file_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -797,6 +833,24 @@
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="Agreement_No" ColumnName="Agreement_No" />
                 <ScalarProperty Name="dean_trx_id" ColumnName="dean_trx_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_trx_FileDean">
+            <EntityTypeMapping TypeName="DMSModel.tbl_trx_FileDean">
+              <MappingFragment StoreEntitySet="tbl_trx_FileDean">
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="uploadedOn" ColumnName="uploadedOn" />
+                <ScalarProperty Name="uploadedBy" ColumnName="uploadedBy" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="file_path" ColumnName="file_path" />
+                <ScalarProperty Name="page_count" ColumnName="page_count" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="ReceivedDt" ColumnName="ReceivedDt" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="deanFile_trx_id" ColumnName="deanFile_trx_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

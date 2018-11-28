@@ -1,0 +1,267 @@
+﻿@model Data_Layer.Models.DeanFile_trxModel
+@Scripts.Render("~/bundles/sweet")
+@Styles.Render("~/bundles/sweetcss")
+<script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+<link href="~/css/datepicker.css" rel="stylesheet" />
+@{
+    Layout = null;
+}
+<style type="text/css">
+    .swalcss {
+        font-size: 9px;
+        background-color: aliceblue;
+        width: auto;
+    }
+
+    .ui-autocomplete-input {
+        border: none;
+        font-size: 14px;
+        /*width: 300px;
+        height: 24px;*/
+        margin-bottom: 5px;
+        padding-top: 2px;
+        border: 1px solid #DDD !important;
+        padding-top: 0px !important;
+        z-index: 1511;
+        position: relative;
+    }
+
+    .ui-menu .ui-menu-item a {
+        font-size: 12px;
+    }
+
+    .ui-autocomplete {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1510 !important;
+        float: left;
+        display: none;
+        min-width: 160px;
+        /*width: 160px;*/
+        padding: 4px 0;
+        margin: 2px 0 0 0;
+        list-style: none;
+        background-color: #ffffff;
+        border-color: #ccc;
+        border-color: rgba(0, 0, 0, 0.2);
+        border-style: solid;
+        border-width: 1px;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding;
+        background-clip: padding-box;
+        *border-right-width: 2px;
+        *border-bottom-width: 2px;
+    }
+
+    .ui-menu-item > a.ui-corner-all {
+        display: block;
+        padding: 3px 15px;
+        clear: both;
+        font-weight: normal;
+        line-height: 18px;
+        color: #555555;
+        white-space: nowrap;
+        text-decoration: none;
+    }
+
+    .ui-state-hover, .ui-state-active {
+        color: #ffffff;
+        text-decoration: none;
+        background-color: #0088cc;
+        border-radius: 0px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        background-image: none;
+    }
+
+    /*#modalIns {
+        width: 500px;
+    }*/
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" http-equiv="X-UA-Compatible" />
+    <title>Fileupload</title>
+
+</head>
+<body>
+    <div style="width: 100%;  text-align: left;">
+        <div style=" color:black;display: inline-block; margin-bottom:3%;width:100%;text-align:center">
+            <h2>Dean - Files </h2>
+        </div>
+        <br />
+        <div style=" color:black;display: inline-block; margin-bottom:3%;width:100%">
+            <form>
+                <table width="100%">
+                    <tr>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Category)
+                                @Html.TextBoxFor(m => m.Category, new { @class = "form-control", @placeholder = "Enter Category" })
+                                @Html.ValidationMessageFor(m => m.Category, "", new { @style = "color:red" })
+                            </div>
+                        </td>
+                        <td width="10%"></td>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.SubCategory)
+                                @Html.TextBoxFor(m => m.SubCategory, new { @class = "form-control", @placeholder = "Enter Sub Category" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Source)
+                                @Html.TextBoxFor(m => m.Source, new { @class = "form-control", @placeholder = "Eg: Email / Hardcopy / Fax " })
+                            </div>
+                        </td>
+                        <td width="10%"></td>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ReceivedDt)
+                                @Html.TextBoxFor(m => m.ReceivedDt, new { @id = "datepickerid", @class = "form-control", @placeholder = "dd/MM/yyyy" })
+                                @Html.ValidationMessageFor(m => m.ReceivedDt, "", new { @style="color:red"})
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Remarks)
+                                @Html.TextBoxFor(m => m.Remarks, new { @class = "form-control", @placeholder = "Enter Remarks" })
+                            </div>
+                        </td>
+                        <td width="10%"></td>
+                        <td width="45%">
+                            <div class="form-group">
+                                @Html.Label("Select Files")
+                                <input type="file" id="FileUpload1" name="postedFiles" />
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="Upload" onclick="Upload_DeanFiles()" class="btn btn-success" />
+                        </td>
+                        <td>
+                            <span style="color:green">@Html.Raw(ViewBag.Message)</span>
+                        </td>
+                    </tr>
+                    </table>
+</form>
+            </div>
+        </div>
+    </body>
+</html>
+<script type="text/javascript">
+    $('#Category').autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '../Dean/GetCategory',
+                type: 'post',
+                dataType: 'json',
+                delay: 500,
+                data: { Prefix: request.term },
+                success: function (data) {
+                    console.log(data);
+                    response($.map(data, function (item) {
+                        console.log(item);
+                        return { label: item, value: item };
+                    }));
+                }
+            })
+        },
+        messages: {
+            noResults: "",
+            results: function (count) {
+                return count + (count > 1 ? 'results' : 'result') + 'found';
+            }
+        }
+    });
+    $('#SubCategory').autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '../Dean/GetSubCategory',
+                type: 'post',
+                dataType: 'json',
+                delay: 500,
+                data: { Prefix: request.term },
+                success: function (data) {
+                    console.log(data);
+                    response($.map(data, function (item) {
+                        console.log(item);
+                        return { label: item, value: item };
+                    }));
+                }
+            })
+        },
+        messages: {
+            noResults: "",
+            results: function (count) {
+                return count + (count > 1 ? 'results' : 'result') + 'found';
+            }
+        }
+    });
+    $('#datepickerid').datepicker({ dateFormat: 'dd/mm/yy' }).val();
+    function Upload_DeanFiles() {
+
+        //check whether form data is available
+        if (window.FormData != undefined) {
+            var fileUpload = $("#FileUpload1").get(0);
+            var files = fileUpload.files;
+
+            //create formdata object
+            var fileData = new FormData($('form').get(0));
+            //fileData.append(files[0].name, files[0]);
+           
+            $.ajax({
+                type: "post",
+                url: '@Url.Action("UploadDeanFiles", "Dean",new { area=""})',
+                data: fileData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    if (data.success) {
+                        if (data.title == "File Upload Status") {
+                            var mydata = data.message;
+                            mydata = mydata.split(',').join('\n');
+                            swal({
+                                title: data.title,
+                                customClass: "swalcss",
+                                text: mydata
+                            });
+                        }
+                        else
+                            swal(data.title, data.message, "Success");
+                    }
+                    else {
+                        if (data.title === "File already exists")
+                            swal(data.title, data.message, "Warning");
+                        else if (data.title === "File type is not PDF")
+                            swal(data.title, data.message, "Warning");
+                        else if (data.title === "Session Expired")
+                            window.location.href = "/Home/Login";
+                        else
+                            swal(data.title, data.message, "error");
+                    }
+                },
+                error: function (data) {
+                    alert("Unexpected Error Occured");
+                }
+            })
+        }
+    }
+</script>
+
+

@@ -230,19 +230,22 @@ body.stop-scrolling {
   z-index: 1040;
 }
 .sweet-alert {
-  background-color: #ffffff;
-  width: 478px;
-  padding: 17px;
-  border-radius: 5px;
-  text-align: center;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  margin-left: -256px;
-  margin-top: -200px;
-  overflow: hidden;
-  display: none;
-  z-index: 2000;
+    background-color: #ffffff;
+    width: 478px;
+    padding: 17px;
+    border-radius: 5px;
+    text-align: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -256px;
+    margin-top: -200px;
+    /*overflow: hidden;*/
+    height: 800px;
+    width: 500px;
+    overflow-y: auto !important;
+    display: none;
+    z-index: 2000;
 }
 @media all and (max-width: 767px) {
   .sweet-alert {

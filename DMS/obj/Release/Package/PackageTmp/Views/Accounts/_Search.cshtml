@@ -1,7 +1,4 @@
-﻿@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/datatable")
-@Styles.Render("~/bundles/datatablecss")
-<div>
+﻿<div>
     <table id="table_id" class="table table-striped table-bordered">
         <thead style="color: black">
             <tr style="text-align:center">
@@ -17,18 +14,18 @@
                 <th style="text-align:center; background-color:white; width:auto">
                     File/Voucher
                 </th>
+                @*<th style="text-align:center; background-color:white; width:auto">
+                        File Name
+                    </th>*@
                 <th style="text-align:center; background-color:white; width:auto">
-                    File Name
+                    Type
                 </th>
-                <th style="text-align:center; background-color:white; width:auto">
-                    Sponsored
-                </th>
-                <th style="text-align:center; background-color:white; width:auto">
-                    Page Count
-                </th>
-                <th style="text-align:center; background-color:white; width:auto">
-                    Uploaded By
-                </th>
+                @*<th style="text-align:center; background-color:white; width:auto">
+                        Page Count
+                    </th>
+                    <th style="text-align:center; background-color:white; width:auto">
+                        Uploaded By
+                    </th>*@
                 <th>
                 </th>
                 <th></th>
@@ -84,6 +81,7 @@
             "processing": true,
             "serverSide": true,
             "orderMulti": false,
+            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             "ajax": {
                 "url": '../Accounts/LoadData',
                 "type": 'POST',
@@ -94,10 +92,10 @@
                 { 'data': 'voucher_no', 'name': 'voucher_no' },
                 { 'data': 'project_no', 'name': 'project_no' },
                 { 'data': 'file_voucher', 'name': 'file_voucher' },
-                { 'data': 'file_Namee', 'name': 'file_Namee' },
+                //{ 'data': 'file_Namee', 'name': 'file_Namee' },
                 { 'data': 'is_spon', 'name': 'is_spon' },
-                { 'data': 'page_count', 'name': 'page_count' },
-                { 'data': 'uploadedBy', 'name': 'uploadedBy' },
+                //{ 'data': 'page_count', 'name': 'page_count' },
+                //{ 'data': 'uploadedBy', 'name': 'uploadedBy' },
                 {
                     'data': 'path',
                     "render": function (data) {
@@ -111,7 +109,8 @@
                         return "<a href=" + link + ">Download</a>"
                     }, "orderable": false
                 }],
-
+            'dom': 'lBfrtip',
+            'buttons': ["excelHtml5", "pdfHtml5"],
             "language": {
                 "emptyTable": "No data available"
             }

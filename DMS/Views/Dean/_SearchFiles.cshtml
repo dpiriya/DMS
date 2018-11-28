@@ -1,0 +1,173 @@
+﻿<div>
+    @ViewBag.Message
+    <div align="right">
+        <select id="select">
+            <option></option>
+            <option>Category</option>
+            <option>Sub Category</option>
+            <option>Source</option>
+            <option>Received Date</option>
+            <option>Remarks</option>
+            <option>ID</option>
+        </select>
+    </div>
+    <style>
+        .rotate90 {
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+            /*width: 20px !important;*/
+            vertical-align: middle;
+            white-space: nowrap !important;
+        }
+
+        .table > thead > tr > th {
+            vertical-align: middle;
+        }
+    </style>
+    <table id="table_id" class="table table-striped table-bordered">
+        <thead style="color: black">
+            <tr style="text-align:center">
+                <th style="text-align:center; background-color:white; width:auto">
+                    ID
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Category
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Sub Category
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Source
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Received Date
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Remarks
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
+                    Page count
+                </th>
+                <th class="rotate90" style="width: 12px;">Edit</th>
+                <th class="rotate90" style="width: 12px;">View</th>
+                <th class="rotate90" style="width: 12px;">Dwnld</th>
+                <th class="rotate90" style="width: 12px;">Delete</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/javascript">
+    var table = $('#table_id').DataTable({
+        "processing": true, // for show progress bar
+        "serverSide": true, // for process server side
+        //"filter": false, // this is for disable filter (search box)
+        "orderMulti": false, // for disable multiple column at once
+        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        "ajax": {
+            "url": "../Dean/LoadData",
+            "data": function (d) { d.col = document.querySelector('#select').selectedIndex, d.arg = "Files"; },
+            "type": "POST",
+            "datatype": "json"
+        },
+        //"rowCallback": function (row, data) {
+        //    if ($.inArray(data.dean_trx_id, selected) !== -1) {
+        //        $(row).addClass('selected');
+        //    }
+        //},
+        "columns": [
+            { 'data': 'deanFile_trx_id', 'name': 'deanFile_trx_id' },
+            { 'data': 'Category', 'name': 'Category' },
+            { 'data': 'SubCategory', 'name': 'SubCategory' },
+            { 'data': 'Source', 'name': 'Source' },
+            { 'data': 'ReceivedDt', 'name': 'ReceivedDt' },
+            { 'data': 'Remarks', 'name': 'Remarks' },
+            { 'data': 'page_count', 'name': 'page_count' },
+            {
+                'data': null,
+                'render': function (data) {
+                    return '<a href="#" class="glyphicon glyphicon-pencil edit-btn" id="' + data.deanFile_trx_id + '"></button>';
+                    //return '<a href="#" onclick="_Upload('+row[0]+')">Edit</a>'
+                    //return '<a href="edit?id='+row[0]+'">Edit</a>'
+                }, "orderable": false
+            },
+            {
+                'data': 'path', 'render': function (data) {
+                    var link = '../Dean/ViewDoc?iID=' + data;
+                    return "<a href=" + link + "  class='glyphicon glyphicon-eye-open view_btn' target=_blank></a>";
+                    // return '<button class="btn btn-info btn-sm view_btn" id="' + link + '" onclick="window.open("'+link+'")">View</button>';
+                }, "orderable": false
+            },
+            {
+                'data': 'path', 'render': function (data) {
+                    var link = '../Dean/Download?iID=' + data;
+                    return "<a href=" + link + "  class='glyphicon glyphicon-download-alt download_btn' target=_blank></a>";
+                    //return '<button class="btn btn-info btn-sm download_btn" id="' + data.Agreement_No + '">Download</button>';
+                }, "orderable": false
+            },
+            {
+                'data': 'deanFile_trx_id', 'render': function (data) {
+                    return '<a href="#" class="glyphicon glyphicon-trash delete-btn" id="' + data.deanFile_trx_id + '"></button>';
+
+                }, "orderable": false
+            }
+        ],
+        'dom': 'lBfrtip',
+        'buttons': ["excelHtml5", "pdfHtml5"],
+        //"columnDefs": [{ "width": "12px", "targets": [8,9,10,11] }],
+        "language": {
+            "emptyTable": "No data available"
+        }
+    });
+    $('#table_id tbody').on('click', '.edit-btn', function () {        
+        var data_row = table.row($(this).closest('tr')).data();
+        $('#MyModal1').modal('show');
+        $('#MyModal1').on('shown.bs.modal', function () {
+            $('#Category').val(data_row.Category);
+            $('#SubCategory').val(data_row.SubCategory);
+            $('#Source').val(data_row.Source);
+            $('#ReceivedDt').val(data_row.ReceivedDt);
+            $('#Remarks').val(data_row.Remarks);
+            $('#deanFile_trx_id').val(data_row.deanFile_trx_id);
+        });
+    });
+    $('#table_id tbody').on('click', '.delete-btn', function () {
+        var data_row = table.row($(this).closest('tr')).data();
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: " No, cancel it!",
+            closeOnConfirm: false,
+            closeOnCancel: false,            
+        },
+            function (isconfirm) {
+                if (isconfirm) {
+                    $.ajax({
+                        url: '@Url.Action("Delete","Dean",new { area = "" })',
+                        data: { iID:data_row.deanFile_trx_id ,ssrc:"Files"},
+                        success: function (data) {
+                            if (data.success) {
+                                swal(data.title, data.message, "success");
+                            }
+                            else {
+                                swal(data.title, data.message, "error");
+                            }
+                        }
+                    })
+                }
+                else {
+                    swal("Cancelled", "Your file is safe :) ", "error");
+                }
+            });
+        
+    });
+
+    $('#select').change(function () {
+        var i = $('#select').val();//document.querySelector('#select').val;
+        table.draw();
+    });
+</script>

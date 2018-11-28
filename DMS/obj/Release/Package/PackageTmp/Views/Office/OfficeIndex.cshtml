@@ -10,11 +10,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>DMS - Office</title>
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/datatable")
+    @Styles.Render("~/bundles/datatablecss")
     <!-- Our Custom CSS -->
     <link href="~/Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/sidebar/sideBar.css" rel="stylesheet" />
     <link href="~/css/Index/mCustomScrollbar.min.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/export")
+    @Styles.Render("~/bundles/exportcss")
 </head>
 <body>
     <div class="wrapper">

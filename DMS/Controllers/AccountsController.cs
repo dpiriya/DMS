@@ -70,26 +70,27 @@ namespace DMS.Controllers
                         //else
                         //{
                         if (AppMode == "file")
-                            path = @"\\10.18.0.29\dms\Accounts\File\";
+                            path = @"\\DMS_SAN\dms\Accounts\File\";
                         else if (AppMode == "voucher")
-                            path = @"\\10.18.0.29\dms\Accounts\Voucher\";
+                            path = @"\\DMS_SAN\dms\Accounts\Voucher\";
                         else
                             return Json(new { success = false, title = "Error in selecting the mode.. Redo the process!!" });
                         //}
                         if (!Directory.Exists(path))
                         {
-                            return Json(new { success = false, title = "Path Error " });
+                            return Json(new { success = false, title = "Path Error " }, JsonRequestBehavior.AllowGet);
                         }
 
                         HttpFileCollectionBase files = Request.Files;
                         for (int i = 0; i < iTotalFileCount; i++)
                         {
                             HttpPostedFileBase postedFile = files[i];
+                            string[] fnArray;
+                            string projno = null;
+                            //string sThirdChar = postedFile.FileName[2].ToString();
+                            //bool Is_Spon = Regex.IsMatch(sThirdChar, @"^[a-zA-Z]+$");
 
-                            string sThirdChar = postedFile.FileName[2].ToString();
-                            bool Is_Spon = Regex.IsMatch(sThirdChar, @"^[a-zA-Z]+$");
-
-
+                            bool Is_Spon;
                             string filenamewoext = Path.GetFileNameWithoutExtension(postedFile.FileName);
                             string sVoucher = null;
 
@@ -97,34 +98,73 @@ namespace DMS.Controllers
                             {
                                 //check if project no is valid
                                 DataSet ds = new DataSet();
-
+                                
 
 
 
                                 if (AppMode == "V" || AppMode == "voucher")
                                 {
-                                    int Index = filenamewoext.IndexOf('_');
-
-                                    if (Index == -1)
+                                    fnArray = filenamewoext.Split('_');
+                                    int fnLength = fnArray.Length;
+                                    if(fnLength!=4)
                                     {
                                         if (iTotalFileCount == 1)
-                                            return Json(new { success = false, title = "Invalid Project & Voucher No", message = "Kindly add Voucher-no to the file name!!" });
+                                            return Json(new { success = false, title = "Invalid Project & Voucher No", message = "Filename is not in the correct format" }, JsonRequestBehavior.AllowGet);
                                         else
                                         {
-                                            strArray.Add(postedFile.FileName + " - Not Uploaded (No Voucher-no) ");
+                                            strArray.Add(postedFile.FileName + " - Not Uploaded (Invalid File Format) ");
                                             continue;
                                         }
                                     }
                                     else
                                     {
-                                        sVoucher = filenamewoext.Substring(Index + 1);
+                                        string sThirdChar = fnArray[1].Substring(2, 1);
+                                        Is_Spon = Regex.IsMatch(sThirdChar, @"^[a-zA-Z]+$");
+                                        sVoucher = fnArray[0];
+                                        projno = fnArray[1];
                                     }
-                                    filenamewoext = filenamewoext.Substring(0, Index);
+                                    //int Index = filenamewoext.IndexOf('_');
+
+                                    //if (Index == -1)
+                                    //{                                        
+                                    //    if (iTotalFileCount == 1)
+                                    //        return Json(new { success = false, title = "Invalid Project & Voucher No", message = "Kindly add Voucher-no to the file name!!" }, JsonRequestBehavior.AllowGet);
+                                    //    else
+                                    //    {
+                                    //        strArray.Add(postedFile.FileName + " - Not Uploaded (No Voucher-no) ");
+                                    //        continue;
+                                    //    }
+                                    //}
+                                    //else
+                                    //{
+                                    //    try
+                                    //    {
+                                    //         fnArray= filenamewoext.Split('_');
+                                    //        sVoucher = fnArray[0];
+                                    //        projno = fnArray[1];
+                                    //        //filenamewoext = fnArray[0] + '_' + fnArray[2] + fnArray[3];
+                                    //    }
+                                    //    catch(Exception ex)
+                                    //    {
+                                    //        if (iTotalFileCount == 1)
+                                    //            return Json(new { success = false, title = "Invalid Project & Voucher No", message = "File Name is not in the correct format" }, JsonRequestBehavior.AllowGet);
+                                    //        else
+                                    //        {
+                                    //            strArray.Add(postedFile.FileName +ex);
+                                    //            continue;
+                                    //        }
+                                    //    }
+
+                                    //   // sVoucher = filenamewoext.Substring(Index + 1);
+                                    //}
+                                    //filenamewoext = filenamewoext.Substring(0, Index);
                                 }
                                 else
                                 {
                                     int Index = filenamewoext.IndexOf('_');
-
+                                    string sThirdChar = postedFile.FileName[2].ToString();
+                                    Is_Spon = Regex.IsMatch(sThirdChar, @"^[a-zA-Z]+$");
+                                    projno = filenamewoext;
                                     if (Index != -1)
                                     {
                                         if (iTotalFileCount == 1)
@@ -138,10 +178,11 @@ namespace DMS.Controllers
                                 }
 
 
-                                if (AppMode == "V" || AppMode == "voucher")
-                                    ds.Tables.Add(dMS_BusinessLayer.AccProjectName_verification(postedFile.FileName.Substring(0, postedFile.FileName.IndexOf('_')), Is_Spon));
-                                else
-                                    ds.Tables.Add(dMS_BusinessLayer.AccProjectName_verification(filenamewoext, Is_Spon));
+                                //if (AppMode == "V" || AppMode == "voucher")
+                                //    //ds.Tables.Add(dMS_BusinessLayer.AccProjectName_verification(postedFile.FileName.Substring(0, postedFile.FileName.IndexOf('_')), Is_Spon));
+                                //    ds.Tables.Add(dMS_BusinessLayer.AccProjectName_verification(projno, Is_Spon));
+                                //else
+                                    ds.Tables.Add(dMS_BusinessLayer.AccProjectName_verification(projno, Is_Spon));
 
                                 if (AppMode == "file" || AppMode == "F")
                                     AppMode = "F";
@@ -182,19 +223,22 @@ namespace DMS.Controllers
                                     using (DMSEntities dms = new DMSEntities())
                                     {
                                         string fileName = Path.GetFileName(postedFile.FileName);
-
+                                        int numberOfPages;
                                         postedFile.SaveAs(path + fileName);
-                                        PdfReader pdfReader = new PdfReader(path + fileName);
-                                        int numberOfPages = pdfReader.NumberOfPages;
+                                        using (PdfReader pdfReader = new PdfReader(path + fileName))
+                                        {
+                                            numberOfPages = pdfReader.NumberOfPages;
+                                        }
 
                                         try
                                         {
 
-                                            int iInsertFileUpload = dMS_BusinessLayer.FileUpload_Accounts(filenamewoext, sVoucher, AppMode, numberOfPages, path, fileName, Session["Username"].ToString(), Is_Spon);
+                                            // int iInsertFileUpload = dMS_BusinessLayer.FileUpload_Accounts(filenamewoext, sVoucher, AppMode, numberOfPages, path, fileName, Session["Username"].ToString(), Is_Spon);
+                                            int iInsertFileUpload = dMS_BusinessLayer.FileUpload_Accounts(projno, sVoucher, AppMode, numberOfPages, path, fileName, Session["Username"].ToString(), Is_Spon);
                                             if (iInsertFileUpload == 1)
                                             {
                                                 if (iTotalFileCount == 1)
-                                                    return Json(new { success = true, title = "File Uploaded !!", message = "File Name : " + postedFile.FileName + " - " + numberOfPages + " pages" });
+                                                    return Json(new { success = true, title = "File Uploaded !!", message = "File Name : " + postedFile.FileName + " - " + numberOfPages + " pages" }, JsonRequestBehavior.AllowGet);
                                                 else
                                                 {
                                                     strArray.Add(postedFile.FileName + " - Uploaded Successfully ");
@@ -204,8 +248,12 @@ namespace DMS.Controllers
                                             }
                                             else
                                             {
+                                                if (System.IO.File.Exists(path + postedFile.FileName))
+                                                {
+                                                    System.IO.File.Delete(path + postedFile.FileName);
+                                                }
                                                 if (iTotalFileCount == 1)
-                                                    return Json(new { success = false, title = "Invalid Project No", message = "There's no project under this name !!" });
+                                                    return Json(new { success = false, title = "Invalid Project No", message = "There's no project under this name !!" }, JsonRequestBehavior.AllowGet);
                                                 else
                                                 {
                                                     strArray.Add(postedFile.FileName + " - Not Uploaded (Invalid Project No) ");
@@ -230,7 +278,7 @@ namespace DMS.Controllers
                                 else
                                 {
                                     if (iTotalFileCount == 1)
-                                        return Json(new { success = false, title = "File already Exists", message = "File Name : " + postedFile.FileName });
+                                        return Json(new { success = false, title = "File already Exists", message = "File Name : " + postedFile.FileName }, JsonRequestBehavior.AllowGet);
                                     else
                                     {
                                         strArray.Add(postedFile.FileName + " - Already Exists ");
@@ -243,7 +291,7 @@ namespace DMS.Controllers
                             else
                             {
                                 if (iTotalFileCount == 1)
-                                    return Json(new { success = false, title = "File Type is not PDF", message = "File Name : " + postedFile.FileName });
+                                    return Json(new { success = false, title = "File Type is not PDF", message = "File Name : " + postedFile.FileName }, JsonRequestBehavior.AllowGet);
                                 else
                                 {
                                     strArray.Add(postedFile.FileName + " - Non PDF File ");
@@ -272,12 +320,12 @@ namespace DMS.Controllers
                 }
                 else
                 {
-                    return Json(new { success = false, title = "No File Selected", message = "Kindly select files to Upload" });
+                    return Json(new { success = false, title = "No File Selected", message = "Kindly select files to Upload" },JsonRequestBehavior.AllowGet);
                 }
             }
             else
             {
-                return Json(new { success = false, title = "Session Expired", message = "Page will be redirected to Login screen" });
+                return Json(new { success = false, title = "Session Expired", message = "Page will be redirected to Login screen" }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -324,6 +372,10 @@ namespace DMS.Controllers
                 return View();
             }
         }
+        public ActionResult _Add(string iID)
+        {
+            return PartialView();
+        }
         #endregion
         #region Advanced Search
         [Route(Name = "ASearch")]
@@ -355,9 +407,14 @@ namespace DMS.Controllers
             int recordsTotal = 0;
             var search_accounts = dMS_BusinessLayer.Search_accounts(search, sortColumn, sortColumnDir);
             recordsTotal = search_accounts.Count();
-            var data = search_accounts.Skip(skip).Take(pageSize).ToList();
-            return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
-
+            var data = search_accounts.ToList();
+            if(pageSize!=-1)
+            {
+                data = search_accounts.Skip(skip).Take(pageSize).ToList();
+            }
+            JsonResult json= Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            json.MaxJsonLength = Int32.MaxValue;
+            return json;
             // dc.Configuration.LazyLoadingEnabled = false; // if your table is relational, contain foreign key
             //var v = (from a in dc.Customers select a);
 
@@ -382,10 +439,15 @@ namespace DMS.Controllers
             var adv_search_accounts = dMS_BusinessLayer.Adv_search_accounts(search, sortColumn, sortColumnDir, mode, coor, dept);
 
                 recordsTotal = adv_search_accounts.Count();
-                var data = adv_search_accounts.Skip(skip).Take(pageSize).ToList();
-                return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+                var data = adv_search_accounts.ToList();
+            if(pageSize!=-1)
+            {
+                data = adv_search_accounts.Skip(skip).Take(pageSize).ToList();
+            }
+            JsonResult json= Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            json.MaxJsonLength = Int32.MaxValue;
+            return json;
 
-            
         }
     }
 }

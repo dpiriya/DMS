@@ -1,0 +1,268 @@
+﻿@using System.Data
+@model DataTable
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @Scripts.Render("~/bundles/sweet")
+    @Styles.Render("~/bundles/sweetcss")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/datatable")
+    @Styles.Render("~/bundles/datatablecss")
+    @Scripts.Render("~/bundles/export")
+    @Styles.Render("~/bundles/exportcss")
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DeanFiles_Index</title>
+    <link href="~/Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/sidebar/sideBar.css" rel="stylesheet" />
+    <link href="~/css/Index/mCustomScrollbar.min.css" rel="stylesheet" />
+    <link href="~/css/jquery-ui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="~/Assets/bootstrap/js/jquery-ui.min.js"></script>
+    <link href="~/Content/HelperStyle1.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/script/index/jquery.mCustomScrollbar.concat.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div id="dismiss">
+                <i class="glyphicon glyphicon-arrow-left"></i>
+            </div>
+            <div class="sidebar-header">
+                <h3>Categories</h3>
+            </div>
+            <ul class="list-unstyled components">
+                <p>Choose section</p>
+                <li>
+                    @Html.ActionLink("Agreement", "Dean_Index", "Dean")
+                    @*<a href="#" id="Agreement" onclick="_Upload(this.id)">Agreement</a>*@
+                </li>
+                <li>
+                    @Html.ActionLink("Files", "DeanFiles_Index", "Dean")
+                    @*<a href="#" id="Files" onclick="_UploadFiles(this.id)">Files</a>*@
+                </li>
+            </ul>
+        </nav>
+        <div id="content" style="padding-top:2%;background:url('../../DMS/images/circles-light.png');">
+            <nav class="navbar navbar-default" style="padding: 0px 0px;">
+                <div class="container-fluid">
+                    <table width="100%">
+                        <tr>
+                            <td width="20%" align="left">
+                                <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                                    <i class="glyphicon glyphicon-align-left"></i>
+                                    <span>Menu</span>
+                                </button>
+                                <button type="button" id="Files" class="btn btn-info" onclick="_UploadFiles(this.id)">
+                                    <i class="glyphicon glyphicon-upload"></i>
+                                    <span>Upload Files</span>
+                                </button>
+                            </td>
+                            <td width="50%" align="center">
+                                <h2>Dean's Office</h2>
+                            </td>
+                            <td width="15%" align="right">
+                                <a href="@Url.Action("Welcomepage","Home")">
+                                    <div class="glyphicon glyphicon-home" style="margin-left:80%; color:royalblue">Home</div>
+                                </a>
+                            </td>
+                            <td width="15%" align="left">
+                                <a href="@Url.Action("LogOut","Home")">
+                                    <div class="glyphicon glyphicon-off" style="margin-left:40%;color:orangered">SignOut</div>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </nav>
+            <div style="padding-left:10%">
+                @for (var i = 0; i < Model.Rows.Count; i++)
+                {
+
+                    var item = Model.Rows[i];
+
+                    if (i < 5)
+                    {
+                        <table cellpadding="5" cellspacing="10" width="20%" align="left" style="background-color:whitesmoke;">
+                            <tr style="background-color:#feb4061a;">
+                                <th>Category</th>
+                                <th>Count</th>
+                            </tr>
+                            <tr>
+                                <td>@Model.Rows[i][1]</td>
+                                <td>@Model.Rows[i][0]</td>
+                            </tr>
+
+
+                        </table>
+                    }
+                    else
+                    {
+                        <table cellpadding="5" cellspacing="10" width="20%" align="left" style="background-color:whitesmoke">
+
+                            <tr>
+                                <td>@Model.Rows[i][1]</td>
+                                <td>@Model.Rows[i][0]</td>
+                            </tr>
+
+
+                        </table>
+                    }
+                }
+            </div>
+            <div>
+                @ViewBag.Message
+                @Html.Partial("_SearchFiles")
+            </div>
+        </div>
+    </div>
+    <div class="overlay"></div>
+    @*<script src="~/Assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/script/index/jquery.mCustomScrollbar.concat.min.js"></script>*@
+    <div id='myModal' style="text-align:right; background-color:transparent; color:cornflowerblue" class="modal fade"
+         data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" style="width:60%; height:auto; padding:10px;top:5%; color:white ">
+            <div class="modal-content" style="overflow: auto;padding: 2%; padding-left:5%">
+                <button type="button" id="closbtn" class="btn btn-info navbar-btn" style="background-color:palevioletred">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    <span>Close</span>
+                </button>
+                <div style="height:auto"> </div>
+                <div id='myModalContent'
+                     style="width:auto; height:auto; padding:10px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="MyModal1" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width:1000px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Edit</h4>
+                </div>
+                @using (Html.BeginForm("UpdateFiles", "Dean", FormMethod.Post, new { @id = "form1" }))
+                {
+                    <div class="modal-body">
+                        <table width="100%">
+                            <tr>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="Category">Category</label>
+                                        <input type="text" class="form-control" id="Category" name="Category" />
+                                    </div>
+                                <td width="10%"></td>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="SubCategory">Sub Category</label>
+                                        <input type="text" class="form-control" id="SubCategory" name="SubCategory">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="source">Source</label>
+                                        <input type="text" class="form-control" id="Source" name="Source" />
+                                    </div>
+                                <td width="10%"></td>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="ReceivedDt">Received Date</label>
+                                        <input type="text" class="form-control" id="ReceivedDt" name="ReceivedDt">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="45%">
+                                    <div class="form-group">
+                                        <label for="Remarks">Remarks</label>
+                                        <input type="text" class="form-control" id="Remarks" name="Remarks" />
+                                    </div>
+                                </td>
+                                @Html.Hidden("deanFile_trx_id", new { @id= "deanFile_trx_id" })
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default">Update</button>
+                        @*<button type="button" class="btn btn-default" id="View">View</button>
+                            <button type="button" class="btn btn-default" id="Download">Download</button>*@
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                
+                }
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#dismiss, .overlay').on('click', function () {
+            $('#sidebar').removeClass('active');
+            $('.overlay').fadeOut();
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').addClass('active');
+            $('.overlay').fadeIn();
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+        if ('@TempData["msg"]' != "") {
+                if ('@TempData["msg"]' == "Updated Successfully") {
+                    swal("Success", '@TempData["msg"]', "success");
+                }
+                else  {
+                    swal("Failed", '@TempData["msg"]', "error");
+                }
+
+                //alert('@TempData["msg"]');
+            }
+    });
+    function _UploadFiles(_AppMode) {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("_UploadFiles", "Dean", new { area = "" })',
+                data: { AppMode: _AppMode },
+                success: function (data) {
+                    {                                 //debugger;
+                        $('#myModalContent').html(data);
+                        //   $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+                        $('#myModal').modal({ backdrop: 'static', keyboard: false })
+
+                        $.fn.modal.prototype.constructor.Constructor.DEFAULTS.backdrop = 'static';
+                        $.fn.modal.prototype.constructor.Constructor.DEFAULTS.keyboard = false;
+                    }
+                },
+                failure: function (data) {
+                    alert("Failure");
+                },
+                error: function (data) {
+                    alert("Unexpected Error occured");
+                }
+            });
+    }
+    $("#closbtn").click(function () {
+        window.location.reload();
+    });
+    </script>
+</body>
+</html>
+

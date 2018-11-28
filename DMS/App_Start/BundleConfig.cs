@@ -16,13 +16,24 @@ namespace DMS
             bundles.Add(new ScriptBundle("~/bundles/sweet").Include(
                 "~/Scripts/swal/sweetalert.js",
                 "~/Scripts/swal/sweetalert.min.js"));
-
+            bundles.Add(new ScriptBundle("~/bundles/export").Include(
+                  "~/Assets/export/js/datatables.min.js",
+                  "~/Assets/export/js/dataTables.buttons.min.js",
+                "~/Assets/export/js/buttons.flash.min.js",
+                "~/Assets/export/js/buttons.html5.min.js",
+                "~/Assets/export/js/buttons.print.min.js",
+                "~/Assets/export/js/pdfmake.min.js",
+                "~/Assets/export/js/vfs_fonts.js"));
             bundles.Add(new StyleBundle("~/bundles/datatablecss").Include(
                 "~/Assets/Datatables/jquery.dataTables.min.css"));
 
             bundles.Add(new StyleBundle("~/bundles/sweetcss").Include(
                 "~/css/sweetalert.css"));
-            BundleTable.EnableOptimizations = true;
+            bundles.Add(new StyleBundle("~/bundles/exportcss").Include(
+                "~/Assets/export/css/buttons.dataTables.min.css",
+                "~/Assets/export/css/datatables.min.css"));
+
+           BundleTable.EnableOptimizations = true;
 
         }
     }

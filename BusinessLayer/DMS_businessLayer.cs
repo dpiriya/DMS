@@ -33,8 +33,10 @@ namespace BusinessLayer
                     cmd.CommandText = "sp_accounts_summary";
                 else if (section == "Purchase")
                     cmd.CommandText = "sp_purchase_summary";
-                else if(section=="Dean")
+                else if (section == "Dean")
                     cmd.CommandText = "sp_all_summary";
+                else if (section == "DeanFiles")
+                    cmd.CommandText = "sp_deanFiles_Summary";
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Connection = con;
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -49,7 +51,7 @@ namespace BusinessLayer
             using (DMSEntities dms = new DMSEntities())
             {
 
-                string path = (from m in dms.tbl_trx_dean where m.Agreement_No == sroleid select m.file_path+m.file_name).FirstOrDefault()+".pdf";
+                string path = (from m in dms.tbl_trx_dean where m.Agreement_No == sroleid select m.file_path + m.file_name).FirstOrDefault() + ".pdf";
                 //dms.Database.ExecuteSqlCommand(string.Format(@"EXEC sp_getpath @roleid='{0}'", sroleid)).ToString();
                 return path;
             }
@@ -149,10 +151,10 @@ namespace BusinessLayer
             using (DMSEntities dms = new DMSEntities())
             {
 
-                var lists = dms.tbl_trx_purchase.Select(m => new Purchase_trxModel() { purchase_trx_id = m.purchase_trx_id, indent_no = m.indent_no, project_no = m.project_no, project_coordinator = m.project_coordinator, file_namee = m.file_namee, page_count = m.page_count, uploadedBy = m.uploadedBy, path = m.file_path + m.file_namee }).ToList();
+                var lists = dms.tbl_trx_purchase.Select(m => new Purchase_trxModel() { purchase_trx_id = m.purchase_trx_id, indent_no = m.indent_no, project_no = m.project_no, project_coordinator = m.project_coordinator/*, file_namee = m.file_namee, page_count = m.page_count, uploadedBy = m.uploadedBy*/, path = m.file_path + m.file_namee }).ToList();
                 if (ssearch != "")
                 {
-                    lists = lists.Where(m => m.indent_no.ToUpper().Contains(ssearch.ToUpper()) || (m.project_no != null && m.project_no.ToUpper().Contains(ssearch.ToUpper())) || (m.file_namee != null && m.file_namee.ToUpper().Contains(ssearch.ToUpper())) || (m.project_coordinator != null && m.project_coordinator.ToUpper().Contains(ssearch.ToUpper())) || m.uploadedBy.ToUpper().Contains(ssearch.ToUpper())).ToList();
+                    lists = lists.Where(m => m.indent_no.ToUpper().Contains(ssearch.ToUpper()) || (m.project_no != null && m.project_no.ToUpper().Contains(ssearch.ToUpper())) || (m.project_coordinator != null && m.project_coordinator.ToUpper().Contains(ssearch.ToUpper()))).ToList();
                 }
                 //var lists = dms.tbl_trx_recruitment.Select(m => new Recruit_trxModel() { recruit_trx_id = m.recruit_trx_id, EmployeeID = m.EmployeeID, EmployeeName = m.EmployeeName, Appoint_mode = m.Appoint_mode, page_count = m.page_count, file_name = m.file_name, uploadedBy = m.uploadedBy, is_active = m.is_active, path = m.file_path + m.file_name }).ToList();
                 //sort
@@ -183,7 +185,7 @@ namespace BusinessLayer
                 return lists;
             }
         }
-        public IEnumerable<Dean_trxModel> Search_dean(string ssearch, string ssort, string ssortdir)
+        public IEnumerable<Dean_trxModel> Search_dean(string ssearch, string ssort, string ssortdir, int icol)
         {
             using (DMSEntities dms = new DMSEntities())
             {
@@ -194,17 +196,18 @@ namespace BusinessLayer
                 {
                     tbldean.Add(new Dean_trxModel()
                     {
-                        //dean_trx_id = list.dean_trx_id,
+                        dean_trx_id = list.dean_trx_id,
                         Agreement_No = list.Agreement_No,
                         Year = list.Year,
                         Agreement_type = list.Agreement_type,
                         Partner = list.Partner,
                         Title = list.Title,
                         Expiry_date = list.Expiry_date == null ? "" : Convert.ToDateTime(list.Expiry_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                        Signed_date=list.Signed_date==null?"":Convert.ToDateTime(list.Signed_date).ToString("dd/MM/yyyy",CultureInfo.InvariantCulture),
                         //Followup = list.Followup,
-                        //FacultyID = list.FacultyID,
-                        Faculty=list.Faculty,
-                        DepartmentCode=list.DepartmentCode,
+                        FacultyID = list.FacultyID,
+                        Faculty = list.Faculty,
+                        DepartmentCode = list.DepartmentCode,
                         //file_name = list.file_name,
                         //page_count = list.page_count,
                         //uploadedBy = list.uploadedBy,
@@ -213,7 +216,76 @@ namespace BusinessLayer
                 }
                 if (!string.IsNullOrEmpty(ssearch))
                 {
-                   tbldean = tbldean.Where(m => m.Agreement_No.ToUpper().Contains(ssearch.ToUpper()) || m.Agreement_type.ToUpper().Contains(ssearch.ToUpper()) || ((!String.IsNullOrEmpty(m.Title)) && m.Title.ToUpper().Contains(ssearch.ToUpper())) || (!String.IsNullOrEmpty(m.Faculty) && m.Faculty.ToUpper().Contains(ssearch.ToUpper()))).ToList();
+                    if (icol != 0)
+                    {
+                        switch (icol)
+                        {
+                            case 1:
+                                tbldean = tbldean.Where(m => m.Agreement_No.ToUpper().Contains(ssearch.ToUpper())).ToList();
+                                break;
+                            case 2:
+                                tbldean = tbldean.Where(m => m.Year.ToString().Contains(ssearch)).ToList();
+                                break;
+                            case 3:
+                                tbldean = tbldean.Where(m => m.Agreement_type.ToUpper().Contains(ssearch.ToUpper())).ToList();
+                                break;
+                            case 4:
+                                tbldean = tbldean.Where(m => m.Partner.ToUpper().Contains(ssearch.ToUpper())).ToList();
+                                break;
+                            case 5:
+                                tbldean = tbldean.Where(m => m.Title != null && m.Title.ToUpper().Contains(ssearch.ToUpper())).ToList();
+                                break;
+                            case 6:
+                                tbldean = tbldean.Where(m => m.Signed_date != null && m.Signed_date.Contains(ssearch.ToUpper())).ToList();
+                                break;
+                            case 7:
+                                tbldean = tbldean.Where(m => m.Expiry_date != null && m.Expiry_date.Contains(ssearch.ToUpper())).ToList();
+                                break;
+                            case 8:
+                                tbldean = tbldean.Where(m => m.Faculty != null && m.Faculty.ToUpper().Contains(ssearch.ToUpper())).ToList();
+                                break;
+                            case 9:
+                                tbldean = tbldean.Where(m => m.DepartmentCode != null && m.DepartmentCode.ToUpper().Contains(ssearch.ToUpper())).ToList();
+                                break;
+                            case 10:
+                                tbldean = tbldean.Where(m => m.FacultyID != null && m.FacultyID.ToUpper().Contains(ssearch.ToUpper())).ToList();
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        tbldean = tbldean.Where(m => m.Agreement_No.ToUpper().Contains(ssearch.ToUpper()) || m.Partner.ToUpper().Contains(ssearch.ToUpper()) || m.Agreement_type.ToUpper().Contains(ssearch.ToUpper()) || ((!String.IsNullOrEmpty(m.Title)) && m.Title.ToUpper().Contains(ssearch.ToUpper())) || (!String.IsNullOrEmpty(m.Faculty) && m.Faculty.ToUpper().Contains(ssearch.ToUpper()))).ToList();
+                    }
+                }
+               
+                    if (!(String.IsNullOrEmpty(ssort) && string.IsNullOrEmpty(ssortdir)))
+                    {
+                        tbldean = tbldean.OrderBy(ssort + " " + ssortdir).ToList();
+                    }
+                
+                return tbldean;
+            }
+        }
+        public IEnumerable<DeanFile_trxModel> Search_deanFiles(string ssearch, string ssort, string ssortdir, int icol)
+        {
+            using (DMSEntities dms = new DMSEntities())
+            {
+                List<DeanFile_trxModel> tbldean = new List<DeanFile_trxModel>();
+                //                var lists = dms.tbl_trx_dean.Select(m => new Dean_trxModel() { dean_trx_id = m.dean_trx_id, MOU_No = m.MOU_No, Year = m.Year, Agreement_type = m.Agreement_type, Partner = m.Partner, Title = m.Title, Expiry_date = m.Expiry_date, Followup = m.Followup, projectno = m.projectno, file_name = m.file_name, page_count = m.page_count, uploadedBy = m.uploadedBy, path = m.file_path + m.file_name }).ToList();
+                var lists = dms.tbl_trx_FileDean.ToList();
+                foreach (var list in lists)
+                {
+                    tbldean.Add(new DeanFile_trxModel()
+                    {
+                        deanFile_trx_id = list.deanFile_trx_id,
+                        Category = list.Category,
+                        SubCategory = list.SubCategory,
+                        Source = list.Source,
+                        ReceivedDt = list.ReceivedDt==null?"":Convert.ToDateTime(list.ReceivedDt).ToString("dd/MM/yyyy",CultureInfo.InvariantCulture),
+                        Remarks = list.Remarks,                                               
+                        page_count = list.page_count,                        
+                        path = list.file_path + list.file_name
+                    });
                 }
                 if (!(String.IsNullOrEmpty(ssort) && string.IsNullOrEmpty(ssortdir)))
                 {
@@ -231,7 +303,7 @@ namespace BusinessLayer
             {
                 string coor1 = coor.Substring(coor.LastIndexOf('-') + 1);
                 SqlCommand cmd = new SqlCommand("sp_search_accounts", con);
-                cmd.Parameters.Add("@type", SqlDbType.NVarChar, 10).Value = type;
+                cmd.Parameters.Add("@type", SqlDbType.NVarChar, 20).Value = type;
                 cmd.Parameters.Add("@dept", SqlDbType.NVarChar, 10).Value = dept;
                 cmd.Parameters.Add("@coor", SqlDbType.NVarChar, 50).Value = coor1;
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -240,7 +312,7 @@ namespace BusinessLayer
                 while (dr.Read())
                 {
                     Accounts_trxModel list = new Accounts_trxModel();
-                    list.accounts_trx_id = Convert.ToInt32(dr["accounts_trx_id"]);
+                    list.accounts_trx_id = Convert.ToInt64(dr["accounts_trx_id"]);
                     list.voucher_no = dr["voucher_no"].ToString();
                     list.project_no = dr["project_no"].ToString();
                     list.file_voucher = dr["file_voucher"].ToString();
@@ -264,16 +336,17 @@ namespace BusinessLayer
                 return lists;
             }
         }
-        public IEnumerable<Purchase_trxModel> Adv_search_purchase(string ssearch, string ssort, string ssortdir, string coor, string dept)
+        public IEnumerable<Purchase_trxModel> Adv_search_purchase(string ssearch, string ssort, string ssortdir, string dept, string coor, string year)
         {
             string cs = ConfigurationManager.ConnectionStrings["DMS"].ConnectionString;
             List<Purchase_trxModel> lists = new List<Purchase_trxModel>();
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string coor1 = coor.Substring(coor.LastIndexOf('-') + 1);
+                //string coor1 = coor.Substring(coor.LastIndexOf('-') + 1);
                 SqlCommand cmd = new SqlCommand("sp_search_purchase", con);
                 cmd.Parameters.Add("@dept", SqlDbType.NVarChar, 10).Value = dept;
-                cmd.Parameters.Add("@coor", SqlDbType.NVarChar, 50).Value = coor1;
+                cmd.Parameters.Add("@coor", SqlDbType.NVarChar, 50).Value = coor;
+                cmd.Parameters.Add("@yr", SqlDbType.NVarChar, 10).Value = year;
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -306,7 +379,7 @@ namespace BusinessLayer
                 return lists;
             }
         }
-        public IEnumerable<Office_trxModel> Adv_search_office(string ssearch, string ssort, string ssortdir, string mode, string dept, string coor,string yr)
+        public IEnumerable<Office_trxModel> Adv_search_office(string ssearch, string ssort, string ssortdir, string mode, string dept, string coor, string yr)
         {
             string cs = ConfigurationManager.ConnectionStrings["DMS"].ConnectionString;
             List<Office_trxModel> lists = new List<Office_trxModel>();
@@ -328,7 +401,7 @@ namespace BusinessLayer
                     list.project_no = dr["project_no"].ToString();
                     list.doc_type = dr["doc_type"].ToString();
                     list.file_Namee = dr["file_Namee"].ToString();
-                    list.page_count =(dr["page_count"]!=null)? Convert.ToInt32(dr["page_count"]):0;
+                    list.page_count = (dr["page_count"] != null) ? Convert.ToInt32(dr["page_count"]) : 0;
                     list.uploadedBy = dr["uploadedBy"].ToString();
                     list.path = dr["path"].ToString();
                     lists.Add(list);
@@ -389,7 +462,7 @@ namespace BusinessLayer
             return lists;
         }
 
-        public IEnumerable<Dean_trxModel> Adv_search_dean(string ssearch,string ssort,string ssortdir,string stype,Int16 syear)
+        public IEnumerable<Dean_trxModel> Adv_search_dean(string ssearch, string ssort, string ssortdir, string stype, Int16 syear)
         {
             string cs = ConfigurationManager.ConnectionStrings["DMS"].ConnectionString;
             List<Dean_trxModel> lists = new List<Dean_trxModel>();
@@ -401,27 +474,29 @@ namespace BusinessLayer
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
-                while(dr.Read())
+                while (dr.Read())
                 {
                     Dean_trxModel list = new Dean_trxModel();
+                    list.dean_trx_id = Convert.ToInt64(dr["dean_trx_id"]);
                     list.Agreement_No = dr["Agreement_No"].ToString();
                     list.Year = Convert.ToInt16(dr["Year"]);
                     list.Agreement_type = dr["Agreement_type"].ToString();
                     list.Partner = dr["Partner"].ToString();
                     list.Title = dr["Title"].ToString();
                     list.Expiry_date = list.Expiry_date == null ? "" : Convert.ToDateTime(list.Expiry_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    list.Signed_date = list.Signed_date == null ? "" : Convert.ToDateTime(list.Signed_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
                     list.Faculty = dr["Faculty"].ToString();
                     list.DepartmentCode = dr["DepartmentCode"].ToString();
-                    //list.FacultyID = (dr["FacultyID"].ToString()!="")? Convert.ToInt32(dr["FacultyID"]):0;
+                    list.FacultyID = dr["FacultyID"].ToString();
                     //list.file_name = dr["file_name"].ToString();
                     //list.page_count = (dr["page_count"]!=null)? Convert.ToInt32(dr["page_count"]):0;
                     //list.uploadedBy = dr["uploadedBy"].ToString();                      
                     list.path = dr["path"].ToString();
                     lists.Add(list);
                 }
-                if(string.IsNullOrEmpty(ssearch))
+                if (string.IsNullOrEmpty(ssearch))
                 {
-                    lists=lists.Where(m => m.Agreement_No.ToUpper().Contains(ssearch.ToUpper()) || m.Agreement_type.ToUpper().Contains(ssearch.ToUpper()) || ((!String.IsNullOrEmpty(m.Title)) && m.Title.ToUpper().Contains(ssearch.ToUpper())) || (!String.IsNullOrEmpty(m.Faculty) && m.Faculty.ToUpper().Contains(ssearch.ToUpper()))).ToList();
+                    lists = lists.Where(m => m.Agreement_No.ToUpper().Contains(ssearch.ToUpper()) || m.Agreement_type.ToUpper().Contains(ssearch.ToUpper()) || ((!String.IsNullOrEmpty(m.Title)) && m.Title.ToUpper().Contains(ssearch.ToUpper())) || (!String.IsNullOrEmpty(m.Faculty) && m.Faculty.ToUpper().Contains(ssearch.ToUpper()))).ToList();
                 }
                 if (!(String.IsNullOrEmpty(ssort) && string.IsNullOrEmpty(ssortdir)))
                 {
@@ -515,7 +590,7 @@ namespace BusinessLayer
                 return 0;
             }
         }
-        public int FileUpload_dean(string smou_no, short iyr, string spartner, string stype, int? ifacultyID, string stitle,string sfaculty,string sdept,string dtsign, string dtexpiry, bool bfollow, string sFileno, int iPgcount, string sPath, string sUsername)
+        public int FileUpload_dean(string smou_no, short iyr, string spartner, string stype, string ifacultyID, string stitle, string sfaculty, string sdept, string dtsign, string dtexpiry, bool bfollow, string sFileno, int iPgcount, string sPath, string sUsername)
         {
             try
             {
@@ -529,22 +604,51 @@ namespace BusinessLayer
                         Faculty = sfaculty,
                         DepartmentCode = sdept,
                         Signed_date = dtsign != null ? (DateTime.ParseExact(dtsign, "dd/MM/yyyy", CultureInfo.InvariantCulture)) : (DateTime?)null,
-                        Expiry_date = dtexpiry!=null? (DateTime.ParseExact(dtexpiry,"dd/MM/yyyy",CultureInfo.InvariantCulture)):(DateTime?) null,
+                        Expiry_date = dtexpiry != null ? (DateTime.ParseExact(dtexpiry, "dd/MM/yyyy", CultureInfo.InvariantCulture)) : (DateTime?)null,
                         file_name = smou_no,
                         file_path = sPath,
                         Followup = bfollow,
                         page_count = iPgcount,
-                        Partner = spartner,                        
+                        Partner = spartner,
                         FacultyID = ifacultyID,
                         Title = stitle,
                         uploadedBy = sUsername,
-                        uploadedOn=DateTime.Now
+                        uploadedOn = DateTime.Now
                     };
                     dms.tbl_trx_dean.Add(Mdean);
                     dms.SaveChanges();
                     return 1;
                 }
-                
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+        public int FileUpload_deanFiles(string scat,  string ssubcat, string ssource, string Dtreceived, string srem,string sFileno, int iPgcount, string sPath, string sUsername)
+        {
+            try
+            {
+                using (DMSEntities dms = new DMSEntities())
+                {
+                    tbl_trx_FileDean Mdean = new tbl_trx_FileDean()
+                    {
+                        Category=scat,
+                        SubCategory=ssubcat,
+                        Source=ssource,
+                        ReceivedDt= Dtreceived !=null ? (DateTime.ParseExact(Dtreceived,"dd/MM/yyyy",CultureInfo.InvariantCulture)):(DateTime?)null,
+                        Remarks=srem,
+                        file_name=sFileno,
+                        file_path=sPath,
+                        page_count = iPgcount,                        
+                        uploadedBy = sUsername,
+                        uploadedOn = DateTime.Now
+                    };
+                    dms.tbl_trx_FileDean.Add(Mdean);
+                    dms.SaveChanges();
+                    return 1;
+                }
+
             }
             catch (Exception ex)
             {
@@ -645,7 +749,7 @@ namespace BusinessLayer
                     result.Faculty = model.Faculty;
                     result.FacultyID = model.FacultyID;
                     result.Signed_date = model.Signed_date != null ? (DateTime.ParseExact(model.Signed_date, "dd/MM/yyyy", CultureInfo.InvariantCulture)) : (DateTime?)null;
-                    result.Title = model.Title;                   
+                    result.Title = model.Title;
                     dms.SaveChanges();
                     return 1;
                 }
@@ -655,20 +759,51 @@ namespace BusinessLayer
                 return 0;
             }
         }
-
-        #endregion
-        #region Delete dean entry
-        public int Delete_Dean(Int64 id)
+        public int Update_Dean(DeanFile_trxModel model)
         {
             try
             {
                 using (DMSEntities dms = new DMSEntities())
                 {
-                    var result = new tbl_trx_dean { dean_trx_id =id };
-                    dms.Entry(result).State = EntityState.Deleted;
+                    var result = (from m in dms.tbl_trx_FileDean where m.deanFile_trx_id == model.deanFile_trx_id select m).FirstOrDefault();
+                    result.Category = model.Category;
+                    result.SubCategory = model.SubCategory;
+                    result.Source = model.Source;
+                    result.ReceivedDt = model.ReceivedDt != null ? (DateTime.ParseExact(model.ReceivedDt, "dd/MM/yyyy", CultureInfo.InvariantCulture)) : (DateTime?)null; 
+                    result.Remarks = model.Remarks;                    
                     dms.SaveChanges();
                     return 1;
-                }                
+                }
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+        #endregion
+        #region Delete dean entry
+        public int Delete_Dean(Int64 id,string ssrc)
+        {
+            try
+            {
+                using (DMSEntities dms = new DMSEntities())
+                {
+                    if (ssrc == "Agreement")
+                    {
+                        var result = new tbl_trx_dean { dean_trx_id = id };
+                        dms.Entry(result).State = EntityState.Deleted;
+                        dms.SaveChanges();
+                        return 1;
+                    }
+                    else if(ssrc=="Files")
+                    {
+                        var result = new tbl_trx_FileDean { deanFile_trx_id = id };
+                        dms.Entry(result).State = EntityState.Deleted;
+                        dms.SaveChanges();
+                        return 1;
+                    }
+                    return 0;
+                }
             }
             catch
             {
@@ -679,26 +814,64 @@ namespace BusinessLayer
         #endregion
 
         #region find record to delete
-        public string Find(Int64 id)
+        public string Find(Int64 id,string ssrc)
         {
             try
             {
                 using (DMSEntities dms = new DMSEntities())
                 {
-
-                    var result = dms.tbl_trx_dean.Where(m => m.dean_trx_id ==id).Select(m=>m.file_path+m.file_name).FirstOrDefault();
-                    return result;
-                }                
+                    if (ssrc == "Agreement")
+                    {
+                        var result = dms.tbl_trx_dean.Where(m => m.dean_trx_id == id).Select(m => m.file_path + m.file_name).FirstOrDefault();
+                        return result;
+                    }
+                    else if(ssrc=="Files")
+                    {
+                        var result = dms.tbl_trx_FileDean.Where(m => m.deanFile_trx_id == id).Select(m => m.file_path + m.file_name).FirstOrDefault();
+                        return result;
+                    }
+                }
+                return null;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return null ;
+                return null;
             }
 
         }
         #endregion
-
-
+        public List<string> AutoSuggestion(string prefix)
+        {
+            using (DMSEntities dms = new DMSEntities())
+            {
+                List<string> alist = dms.tbl_trx_dean.Where(m => m.Agreement_type.Contains(prefix)).Select(m=>m.Agreement_type ).Distinct().ToList();
+                return alist;
+            }
+        }
+        public List<string> getcat(string prefix)
+        {
+            using (DMSEntities dms = new DMSEntities())
+            {
+                List<string> alist = dms.tbl_trx_FileDean.Where(m => m.Category.Contains(prefix)).Select(m => m.Category).Distinct().ToList();
+                return alist;
+            }
+        }
+        public List<string> getsubcat(string prefix)
+        {
+            using (DMSEntities dms = new DMSEntities())
+            {
+                List<string> alist = dms.tbl_trx_FileDean.Where(m => m.SubCategory.Contains(prefix)).Select(m => m.SubCategory).Distinct().ToList();
+                return alist;
+            }
+        }
+        public Faculty FindFaculty(string fac)
+        {
+            using (FacultyViewEntities fv = new FacultyViewEntities())
+            {
+                var result = fv.VW_AppDev_FacultyDetails.Where(m =>  m.EMPLOYEEID.Contains(fac)).Select(m => new Faculty {DISPLAYNAME= m.DISPLAYNAME,DepartmentCode= m.DepartmentCode }).FirstOrDefault();
+                return result;
+            }
+        }
 
     }
 }

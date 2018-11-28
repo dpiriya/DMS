@@ -29,7 +29,7 @@
                 <td>
                     
                         @Html.LabelFor(m => m.Year)
-                        @Html.TextBoxFor(m => m.Year, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Year, new { @class = "form-control", @placeholder = "2000" })
                     
                 </td>
             </tr>
@@ -47,11 +47,14 @@
 </html>
 <script type="text/javascript">
     function button() {
-        $('#table_id').DataTable({
+        $('#table_id').dataTable({
             "processing": true,
             "serverSide": true,
             "orderMulti": false,
-            "destroy": true,
+            "destroy": true, 
+            'scrollY': '50vh',
+            'scrollCollapse': true,
+            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             "ajax": {
                 "url": "../Dean/Adv_Load",
                 "data": { type: $('#Agreement_type').val(), year: $('#Year').val() },
@@ -59,12 +62,15 @@
                 "datatype": 'json'
             },
             "columns": [
+                { 'data': 'dean_trx_id', 'name': 'dean_trx_id' },
                 { 'data': 'Agreement_No', 'name': 'Agreement_No' },
                 { 'data': 'Year', 'name': 'Year' },
                 { 'data': 'Agreement_type', 'name': 'Agreement_type' },
                 { 'data': 'Partner', 'name': 'Partner' },
                 { 'data': 'Title', 'name': 'Title' },
+                { 'data': 'Signed_date', 'name': 'Signed_date' },
                 { 'data': 'Expiry_date', 'name': 'Expiry_date' },
+                
                 { 'data': 'Faculty', 'name': 'Faculty' },
                 //{ 'data': 'file_name', 'name': 'file_name' },
                 //{ 'data': 'page_count', 'name': 'page_count' },
@@ -87,7 +93,7 @@
                 {
                     'data': 'path', 'render': function (data) {
                         var link = '../Dean/Download?iID=' + data;
-                        return "<a href=" + link + "  class='glyphicon glyphicon-download-alt view_btn' target=_blank></a>";
+                        return "<a href=" + link + "  class='glyphicon glyphicon-download-alt download_btn'></a>";
                         //return '<button class="btn btn-info btn-sm download_btn" id="' + data.Agreement_No + '">Download</button>';
                     }, "orderable": false
                 },
@@ -98,6 +104,8 @@
                     }, "orderable": false
                 }
             ],
+            'dom': 'lBfrtip',
+            'buttons': ["excelHtml5", "pdfHtml5"],   
             "language": {
                 "emptyTable": "No data available"
             }

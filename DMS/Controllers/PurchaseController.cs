@@ -69,7 +69,7 @@ namespace DMS.Controllers
                         //}
                         //else
                         //{
-                        path = @"\\10.18.0.29\dms\Purchase\";
+                        path = @"\\DMS_SAN\dms\Purchase\";
                         //}
                         if (!Directory.Exists(path))
                         {
@@ -90,7 +90,15 @@ namespace DMS.Controllers
                                         string tblName;
                                         tblName = dMS_BusinessLayer.Verify_Purchase(postedFile.FileName.Substring(0, postedFile.FileName.LastIndexOf('.')));
                                         if (tblName == null)
-                                            return Json(new { success = false, title = "Invalid Fileno!!", message = "File Name :" + postedFile.FileName });
+                                        {                                           
+                                            if (iTotalFileCount == 1)
+                                                return Json(new { success = false, title = "Invalid Fileno!!", message = "File Name :" + postedFile.FileName });
+                                            else
+                                            {
+                                                strArray.Add(postedFile.FileName + "-Invalid FileNo");
+                                                iFileUploaded++;
+                                            }
+                                        }                                            
                                         else
                                         {
                                             string fileName = Path.GetFileName(postedFile.FileName);
@@ -243,7 +251,7 @@ namespace DMS.Controllers
         [HttpPost]
         public ActionResult LoadData()
         {
-            var draw = Request.Form.GetValues("draw").FirstOrDefault();
+            var draw = Request.Form.GetValues("draw").FirstOrDefault();            
             var start = Request.Form.GetValues("start").FirstOrDefault();
             var length = Request.Form.GetValues("length").FirstOrDefault();
             string search = Request.Form.GetValues("search[value]").FirstOrDefault();
@@ -255,12 +263,18 @@ namespace DMS.Controllers
             int recordsTotal = 0;
             var search_purchase = dMS_BusinessLayer.Search_purchase(search, sortColumn, sortColumnDir);
             recordsTotal = search_purchase.Count();
-            var data = search_purchase.Skip(skip).Take(pageSize).ToList();
-            return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            var data= search_purchase.ToList(); 
+            if (pageSize != -1)
+            {
+                 data = search_purchase.Skip(skip).Take(pageSize).ToList();
+            }  
+            JsonResult json= Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            json.MaxJsonLength = Int32.MaxValue;
+            return json;
 
         }
         [HttpPost]
-        public ActionResult Adv_Load(string dept, string coor)
+        public ActionResult Adv_Load(string dept, string coor,string year)
         {
             var draw = Request.Form.GetValues("draw").FirstOrDefault();
             var start = Request.Form.GetValues("start").FirstOrDefault();
@@ -274,11 +288,18 @@ namespace DMS.Controllers
             int pageSize = length != null ? Convert.ToInt32(length) : 0;
             int skip = start != null ? Convert.ToInt32(start) : 0;
             int recordsTotal = 0;
-            var adv_search_purchase = dMS_BusinessLayer.Adv_search_purchase(search, sortColumn, sortColumnDir, dept, coor);
+            var adv_search_purchase = dMS_BusinessLayer.Adv_search_purchase(search, sortColumn, sortColumnDir, dept, coor,year);
 
                 recordsTotal = adv_search_purchase.Count();
-                var data = adv_search_purchase.Skip(skip).Take(pageSize).ToList();
-                return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+                var data = adv_search_purchase.ToList();
+           
+            if (pageSize != -1)
+            {
+                data = adv_search_purchase.Skip(skip).Take(pageSize).ToList();
+            }
+            JsonResult json=Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            json.MaxJsonLength = Int32.MaxValue;
+            return json;
             
 
         }

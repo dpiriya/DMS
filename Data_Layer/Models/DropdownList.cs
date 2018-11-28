@@ -31,6 +31,7 @@ namespace Data_Layer.Models
         [Display(Name = "Department Name")]
         public string DepartmentName { get; set; }
         public IEnumerable<SelectListItem> Departments { get; set; }
+        
 
         public string doc_type { get; set; }
 
@@ -45,7 +46,7 @@ namespace Data_Layer.Models
 
         public IEnumerable<SelectListItem> AType { get; set; }
 
-        public string MYear { get; set; }
+        public string Year { get; set; }
 
         public List<SelectListItem> AtypeList()
         {
@@ -100,7 +101,7 @@ namespace Data_Layer.Models
                 //var apl = recruit.AppointmentProjects.Select(a => new SelectListItem() { Text = a.PICode + "-" + a.PIName, Value = a.PICode }).ToList();
                 //return apl;
                 var apl = recruit.AppointmentProjects.GroupBy(em => new { em.PICode, em.PIName }).OrderBy(g => g.Key).Select(g => g.Key).ToList();
-                return apl.Select(a => new SelectListItem() { Text = a.PICode + "-" + a.PIName, Value = a.PICode }).ToList();
+                return apl.Select(a => new SelectListItem() { Text = a.PICode + "-" + a.PIName, Value = a.PIName }).ToList();
                 //original
                 //List<string> apl = recruit.AppointmentProjects.GroupBy(em => em.PICode).OrderBy(g=>g.Key).Select(g => g.Key).ToList();
                 //List<SelectListItem> cl = new List<SelectListItem>();
@@ -110,7 +111,7 @@ namespace Data_Layer.Models
                 //    cl.Add(recruit.Coordinator(piCode).Select(em => new SelectListItem { Text = em.CoorCode + " - " + em.CoorName, Value = em.CoorCode }).FirstOrDefault());
                 //});
 
-                return null; 
+               
             }
         }
         public List<SelectListItem> Dropdown()

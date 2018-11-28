@@ -70,7 +70,7 @@
             //"filter": false, // this is for disable filter (search box)
             "orderMulti": false, // for disable multiple column at once
             "destroy": true,
-            
+            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             "ajax": {
                 "url": "../Recruitment/Adv_Load",
                 "data": { mode: $('#Mode').val(), dept: $('#DepartmentName').val(), coor: $('#PIName').val() },
@@ -83,9 +83,9 @@
                 { 'data': 'EmployeeID', 'name': 'EmployeeID' },
                 { 'data': 'EmployeeName', 'name': 'EmployeeName' },
                 { 'data': 'Appoint_mode', 'name': 'Appoint_mode' },
-                { 'data': 'file_name', 'name': 'file_name' },
-                { 'data': 'page_count', 'name': 'page_count' },
-                { 'data': 'uploadedBy', 'name': 'uploadedBy' },
+                //{ 'data': 'file_name', 'name': 'file_name' },
+                //{ 'data': 'page_count', 'name': 'page_count' },
+                //{ 'data': 'uploadedBy', 'name': 'uploadedBy' },
                 {
                     'data': 'path',
                     "render": function (data) {
@@ -99,7 +99,8 @@
                         return "<a href=" + link + ">Download</a>"
                     }, "orderable": false
                 }],
-
+            'dom': 'lBfrtip',
+            'buttons': ["excelHtml5", "pdfHtml5"],
             "language": {
                 "emptyTable": "No data available"
             }

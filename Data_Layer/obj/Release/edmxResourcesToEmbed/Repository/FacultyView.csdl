@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FacultyView" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="VW_AppDev_FacultyDetails">
+    <Key>
+      <PropertyRef Name="EMPLOYEEID" />
+      <PropertyRef Name="EMPLOYEEDESIGNATIONNAME" />
+      <PropertyRef Name="DateOfJoining" />
+      <PropertyRef Name="EMAIL" />
+      <PropertyRef Name="DepartmentCode" />
+    </Key>
+    <Property Name="EMPLOYEEID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DISPLAYNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EMPLOYEEDESIGNATIONNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DEPARTMENTNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfJoining" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RetirementDate" Type="DateTime" Precision="3" />
+    <Property Name="EmployeeStatus" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="FacultyViewEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="VW_AppDev_FacultyDetails" EntityType="Self.VW_AppDev_FacultyDetails" />
+  </EntityContainer>
+</Schema>

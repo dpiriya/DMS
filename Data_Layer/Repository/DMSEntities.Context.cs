@@ -39,6 +39,7 @@ namespace Data_Layer.Repository
         public virtual DbSet<tbl_trx_purchase> tbl_trx_purchase { get; set; }
         public virtual DbSet<tbl_trx_recruitment> tbl_trx_recruitment { get; set; }
         public virtual DbSet<tbl_trx_dean> tbl_trx_dean { get; set; }
+        public virtual DbSet<tbl_trx_FileDean> tbl_trx_FileDean { get; set; }
     
         public virtual ObjectResult<sp_appointment_summary_Result> sp_appointment_summary()
         {

@@ -1,105 +1,134 @@
-*{
-	margin:0;
-	padding:0;
-
+* {
+    margin: 0;
+    padding: 0;
 }
+
 body {
     /*background:#CCCAA1;*/
     background: url(../img/bg.png);
     font-family: 'Source Sans Pro', sans-serif;
 }
-ul li{
-	list-style:none;
+
+ul li {
+    list-style: none;
 }
-h1{
-	padding:15px 0 25px 0;
-	text-align:center;
-	font-family: 'Roboto Condensed', sans-serif;
-	font-size:2.2em;
-} 
-#wrapper{
-	width: 728px;
-	margin: 60px auto;
-	background: #fff;
-	padding: 10px;
-	height: 280px;
-	border:12px solid #DDE0CA;
+
+h1 {
+    padding: 15px 0 25px 0;
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 2.2em;
 }
-.nav{
-	overflow:hidden;
-	margin:0 auto;
-	width:750px;
+
+#wrapper {
+    width: 728px;
+    margin: 60px auto;
+    background: #fff;
+    padding: 10px;
+    height: 280px;
+    border: 12px solid #DDE0CA;
 }
-.nav li{
-	width:145px;
-	height:180px;
-	display:inline-block;
-	float:left;
-	cursor:pointer;
-	transition:all 0.4s;
-	-webkit-transition:all 0.4s;
-	-moz-transition:all 0.4s;
+
+.nav {
+    overflow: hidden;
+    margin: 0 auto;
+    width: 900px;
 }
-.nav li:hover{
-	opacity:1;
-	height:190px;
+
+    .nav li {
+        width: 145px;
+        align-items: center;
+        height: 200px;
+        display: inline-block;
+        float: left;
+        cursor: pointer;
+        transition: all 0.4s;
+        -webkit-transition: all 0.4s;
+        -moz-transition: all 0.4s;
+    }
+
+        .nav li:hover {
+            opacity: 1;
+            height: 190px;
+        }
+
+        .nav li.hm:hover {
+            border-bottom: 4px solid rgba(11, 132, 138, 1);
+        }
+
+        .nav li.fb:hover {
+            border-bottom: 4px solid rgba(241, 83, 70, 1);
+        }
+
+        .nav li.gp:hover {
+            border-bottom: 4px solid rgba(32, 16, 49, 1);
+        }
+
+        .nav li.tw:hover {
+            border-bottom: 4px solid rgba(228, 148, 7, 1);
+        }
+
+        .nav li.cl:hover {
+            border-bottom: 4px solid rgba(67, 138, 15, 1);
+        }
+
+        .nav li.pi:hover {
+            border-bottom: 4px solid rgb(92, 6, 88);
+        }
+
+img.icon {
+    background: rgba(255, 255, 255, 0.4);
+    padding: 14px;
+    border-radius: 100%;
+    margin: 30px auto;
+    display: block;
+    transition: all 0.8s;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    box-shadow: 0 0 0 30px rgba(255,255,255,0.1);
+    -webkit-box-shadow: 0 0 0 10px rgba(255,255,255,0.1);
 }
-.nav li.hm:hover{
-	border-bottom:4px solid rgba(11, 132, 138, 1);
+
+.nav li:hover img.icon {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 10px rgba(255,255,255,0.8);
+    -webkit-box-shadow: 0 0 0 0 rgba(255,255,255,0.8);
 }
-.nav li.fb:hover{
-	border-bottom:4px solid rgba(241, 83, 70, 1);
+
+.nav li span {
+    text-align: center;
+    display: block;
+    padding-top: 10px;
+    color: rgba(255, 255, 255, 1);
+    font-size: 0.9em;
+    transition: padding-top 0.4s;
+    -webkit-transition: padding-top 0.4s;
 }
-.nav li.gp:hover{
-	border-bottom:4px solid rgba(32, 16, 49, 1);
+
+.nav li:hover span {
+    padding-top: 20px;
 }
-.nav li.tw:hover{
-	border-bottom:4px solid rgba(228, 148, 7, 1);
+
+.hm {
+    background: rgba(29, 162, 168, 0.8);
 }
-.nav li.cl:hover{
-	border-bottom:4px solid rgba(67, 138, 15, 1);
+
+.fb {
+    background: rgba(255, 89, 76, 0.8);
 }
-img.icon{
-	background:rgba(255, 255, 255, 0.4);
-	padding:14px;
-	border-radius:100%;
-	margin:30px auto;
-	display:block;
-	transition:all 0.8s;
-	-webkit-transition:all 0.8s;
-	-moz-transition:all 0.8s;
-	box-shadow: 0 0 0 30px rgba(255,255,255,0.1);
-	-webkit-box-shadow: 0 0 0 10px rgba(255,255,255,0.1);
+
+.gp {
+    background: rgba(47, 31, 64, 0.8);
 }
-.nav li:hover img.icon{
-	background:rgba(255, 255, 255, 0.9);
-	box-shadow: 0 0 0 10px rgba(255,255,255,0.8);
-	-webkit-box-shadow: 0 0 0 0 rgba(255,255,255,0.8);
+
+.tw {
+    background: rgba(254, 162, 14, 0.8);
 }
-.nav li span{
-	text-align:center;
-	display:block;
-	padding-top:10px;
-	color:rgba(255, 255, 255, 1);
-	font-size:0.9em;
-	transition:padding-top 0.4s;
-	-webkit-transition:padding-top 0.4s;
+
+.cl {
+    background: rgba(93, 181, 29, 0.8);
 }
-.nav li:hover span{
-	padding-top:20px;
-}
-.hm{
-	background:rgba(29, 162, 168, 0.8);
-}
-.fb{
-	background:rgba(255, 89, 76, 0.8);
-}
-.gp{
-	background:rgba(47, 31, 64, 0.8);
-}
-.tw{
-	background:rgba(254, 162, 14, 0.8);
-}
-.cl{
-	background:rgba(93, 181, 29, 0.8);
+
+.pi {
+    background: rgb(176, 105, 170);
 }

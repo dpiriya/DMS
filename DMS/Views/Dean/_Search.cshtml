@@ -8,15 +8,33 @@
             <option>Type</option>
             <option>Partner</option>
             <option>Title</option>
+            <option>Signed Date</option>
             <option>Expiry Date</option>
             <option>Coordinator</option>
             <option>Dept</option>
+            <option>ID</option>
         </select>
     </div>
+    <style>
+        .rotate90 {
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+            /*width: 20px !important;*/
+            vertical-align: middle;
+            white-space: nowrap !important;
+        }
+
+        .table > thead > tr > th {
+            vertical-align: middle;
+        }
+    </style>
     <table id="table_id" class="table table-striped table-bordered">
         <thead style="color: black">
             <tr style="text-align:center">
-
+                <th style="text-align:center; background-color:white; width:auto">
+                    ID
+                </th>
                 <th style="text-align:center; background-color:white; width:auto">
                     Agreement No
                 </th>
@@ -33,18 +51,23 @@
                     Title
                 </th>
                 <th style="text-align:center; background-color:white; width:auto">
+                    Signed Date
+                </th>
+                <th style="text-align:center; background-color:white; width:auto">
                     Expiry Date
                 </th>
+
                 <th style="text-align:center; background-color:white; width:auto">
                     Coordinator
                 </th>
                 <th style="text-align:center; background-color:white; width:auto">
                     DeptCode
                 </th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th style="text-align:center; background-color:white; width:auto">ID</th>
+                <th class="rotate90" style="width: 12px;">Edit</th>
+                <th class="rotate90" style="width: 12px;">View</th>
+                <th class="rotate90" style="width: 12px;">Dwnld</th>
+                <th class="rotate90" style="width: 12px;">Delete</th>
         </thead>
     </table>
 </div>
@@ -57,10 +80,11 @@
         "serverSide": true, // for process server side
         //"filter": false, // this is for disable filter (search box)
         "orderMulti": false, // for disable multiple column at once
+        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         "ajax": {
             "url": "../Dean/LoadData",
-            "type": "POST",  
-            "data": { col: $('#select').val() },//document.querySelector('#select').selectedIndex },
+            "data": function (d) { d.col = document.querySelector('#select').selectedIndex, d.arg= "Agreement"; } ,
+            "type": "POST",
             "datatype": "json"
         },
         //"rowCallback": function (row, data) {
@@ -69,11 +93,13 @@
         //    }
         //},
         "columns": [
+            { 'data': 'dean_trx_id', 'name': 'dean_trx_id' },
             { 'data': 'Agreement_No', 'name': 'Agreement_No' },
             { 'data': 'Year', 'name': 'Year' },
             { 'data': 'Agreement_type', 'name': 'Agreement_type' },
             { 'data': 'Partner', 'name': 'Partner' },
             { 'data': 'Title', 'name': 'Title' },
+            { 'data': 'Signed_date', 'name': 'Signed_date' },
             {
                 'data': 'Expiry_date', 'name': 'Expiry_date',
                 //"type": "date ",
@@ -87,8 +113,10 @@
                 //    return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
                 //}
             },
+
             { 'data': 'Faculty', 'name': 'Faculty' },
-            { 'data': 'DepartmentCode', 'name': 'DepartmentCode' },            
+            { 'data': 'DepartmentCode', 'name': 'DepartmentCode' },
+            { 'data': 'FacultyID', 'name': 'FacultyID' },
             {
                 'data': null,
                 'render': function (data) {
@@ -101,67 +129,107 @@
                 'data': 'path', 'render': function (data) {
                     var link = '../Dean/ViewDoc?iID=' + data;
                     return "<a href=" + link + "  class='glyphicon glyphicon-eye-open view_btn' target=_blank></a>";
-                   // return '<button class="btn btn-info btn-sm view_btn" id="' + link + '" onclick="window.open("'+link+'")">View</button>';
+                    // return '<button class="btn btn-info btn-sm view_btn" id="' + link + '" onclick="window.open("'+link+'")">View</button>';
                 }, "orderable": false
             },
             {
                 'data': 'path', 'render': function (data) {
                     var link = '../Dean/Download?iID=' + data;
-                    return "<a href=" + link + "  class='glyphicon glyphicon-download-alt view_btn' target=_blank></a>";
+                    return "<a href=" + link + "  class='glyphicon glyphicon-download-alt download_btn' target=_blank></a>";
                     //return '<button class="btn btn-info btn-sm download_btn" id="' + data.Agreement_No + '">Download</button>';
                 }, "orderable": false
             },
             {
-                'data': null, 'render': function (data) {
+                'data': 'dean_trx_id', 'render': function (data) {
                     return '<a href="#" class="glyphicon glyphicon-trash delete-btn" id="' + data.dean_trx_id + '"></button>';
 
                 }, "orderable": false
             }
         ],
+        'dom': 'lBfrtip',
+        'buttons': ["excelHtml5", "pdfHtml5"],
+        //"columnDefs": [{ "width": "12px", "targets": [8,9,10,11] }],
         "language": {
             "emptyTable": "No data available"
         }
     });
     $('#table_id tbody').on('click', '.edit-btn', function () {
         var data_row = table.row($(this).closest('tr')).data();
-        $('#myModal1').modal('show');       
-        $('#myModal1').on('shown.bs.modal', function () {            
+        $('#myModal1').modal('show');
+        $('#myModal1').on('shown.bs.modal', function () {
             $('#Agreement_No').val(data_row.Agreement_No);
             $('#Year').val(data_row.Year);
             $('#Agreement_type').val(data_row.Agreement_type);
             $('#Partner').val(data_row.Partner);
             $('#Title').val(data_row.Title);
             $('#Faculty').val(data_row.Faculty);
-            $('#Signed_Date').val(data_row.SignedDate);
-            $('#Expiry_Date').val(data_row.Expiry_Date);
-            $('#FacultyID').val(data_row.FacultyID);    
+            $('#Signed_Date').val(data_row.Signed_date);
+            $('#Expiry_Date').val(data_row.Expiry_date);
+            $('#FacultyID').val(data_row.FacultyID);
             $('#DepartmentCode').val(data_row.DepartmentCode)
-            
+
         });
     });
     $('#table_id tbody').on('click', '.delete-btn', function () {
-        $('<div title="Confirm Box"></div>').dialog({
-            open: function (event, ui) {
-                $(this).html("Do you really want to delete this record and respective file?");
-            },
-            close: function () {
-                $(this).remove();
-            },
-            resizable: false,          
-            top:250,
-            height: 200,
-            modal: true,
-            buttons: {
-                'Yes': function () {
-                    $(this).dialog('close');
-                    $.post('../Dean/Delete?iID=' + $('.delete-btn').attr("id"));
-                },
-                'No': function () {
-                    $(this).dialog('close');
+        var data_row = table.row($(this).closest('tr')).data();
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: " No, cancel it!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function (isconfirm) {
+                if (isconfirm) {
+                    $.ajax({
+                        url: '@Url.Action("Delete","Dean",new { area = "" })',
+                        data: { iID: data_row.dean_trx_id ,ssrc:"Agreement"},
+                        success: function (data) {
+                            if (data.success) {
+                                swal( data.title, data.message, "success",
+                                    function () { location.reload(); });
+
+                            }
+                            else {
+                                swal(data.title, data.message, "error");
+                            }
+                        }
+                    })
                 }
-            }
-        });
-        //alert($('.delete-btn').attr("id"));       
+                else {
+                    swal("Cancelled", "Your file is safe: ) ", "error");
+                }
+            });
+        //$('<div title="Confirm Box"></div>').dialog({
+        //    open: function (event, ui) {
+        //        $(this).html("Do you really want to delete this record and respective file?");
+        //    },
+        //    close: function () {
+        //        $(this).remove();
+        //    },
+        //    resizable: false,
+        //    top: 250,
+        //    height: 200,
+        //    modal: true,
+        //    buttons: {
+        //        'Yes': function () {
+        //            $(this).dialog('close');
+        //            // var data_row = $(this).closest('tr').get(0);
+        //            $.post('../Dean/Delete?iID=' + data_row.dean_trx_id);
+        //            //$.post('../Dean/Delete?iID=' + $('.delete-btn').attr("id"));
+
+        //        },
+        //        'No': function () {
+        //            $(this).dialog('close');
+        //        }
+        //    }
+        //});
+
+        //alert($('.delete-btn').attr("id"));
     });
     //$('#table_id tbody').on('click', '.download_btn', function () {
     //    var link = '../Dean/Download?iID=' +data ;
@@ -172,8 +240,10 @@
     //    table.column(colIndex).search(this.value).draw();
     //});
     $('#select').change(function () {
-        var i = document.querySelector('#select').selectedIndex;
-        table.column(i).search('').draw();
-    });  
+        var i = $('#select').val();//document.querySelector('#select').val;
+        table.draw();
+    });
+
 
 </script>
+

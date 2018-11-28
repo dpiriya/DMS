@@ -222,5 +222,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbl_trx_FileDean">
+      <EntityTypeMapping TypeName="DMSModel.tbl_trx_FileDean">
+        <MappingFragment StoreEntitySet="tbl_trx_FileDean">
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="uploadedOn" ColumnName="uploadedOn" />
+          <ScalarProperty Name="uploadedBy" ColumnName="uploadedBy" />
+          <ScalarProperty Name="file_name" ColumnName="file_name" />
+          <ScalarProperty Name="file_path" ColumnName="file_path" />
+          <ScalarProperty Name="page_count" ColumnName="page_count" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="ReceivedDt" ColumnName="ReceivedDt" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="deanFile_trx_id" ColumnName="deanFile_trx_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

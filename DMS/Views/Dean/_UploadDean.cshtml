@@ -4,6 +4,7 @@
 <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+<link href="~/css/datepicker.css" rel="stylesheet" />
 @{
     Layout = null;
 }
@@ -13,6 +14,77 @@
         background-color: aliceblue;
         width: auto;
     }
+    .ui-autocomplete-input {
+        border: none;
+        font-size: 14px;
+        /*width: 300px;
+        height: 24px;*/
+        margin-bottom: 5px;
+        padding-top: 2px;
+        border: 1px solid #DDD !important;
+        padding-top: 0px !important;
+        z-index: 1511;
+        position: relative;
+    }
+
+    .ui-menu .ui-menu-item a {
+        font-size: 12px;
+    }
+
+    .ui-autocomplete {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1510 !important;
+        float: left;
+        display: none;
+        min-width: 160px;
+        /*width: 160px;*/
+        padding: 4px 0;
+        margin: 2px 0 0 0;
+        list-style: none;
+        background-color: #ffffff;
+        border-color: #ccc;
+        border-color: rgba(0, 0, 0, 0.2);
+        border-style: solid;
+        border-width: 1px;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding;
+        background-clip: padding-box;
+        *border-right-width: 2px;
+        *border-bottom-width: 2px;
+    }
+
+    .ui-menu-item > a.ui-corner-all {
+        display: block;
+        padding: 3px 15px;
+        clear: both;
+        font-weight: normal;
+        line-height: 18px;
+        color: #555555;
+        white-space: nowrap;
+        text-decoration: none;
+    }
+
+    .ui-state-hover, .ui-state-active {
+        color: #ffffff;
+        text-decoration: none;
+        background-color: #0088cc;
+        border-radius: 0px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        background-image: none;
+    }
+
+    /*#modalIns {
+        width: 500px;
+    }*/
 </style>
 <html>
 <head>
@@ -21,8 +93,8 @@
 
 </head>
 <body>
-    <div style="width: 100%;  text-align: center;">
-        <div style=" color:black;display: inline-block; margin-bottom:3%">
+    <div style="width: 100%;  text-align: left;">
+        <div style=" color:black;display: inline-block; margin-bottom:3%;width:100%;text-align:center">
             <h2>Dean - @Model.Appmode </h2>
         </div>
         <br />
@@ -34,7 +106,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Agreement_No)
                                 @Html.TextBoxFor(m => m.Agreement_No, new { @class = "form-control", @placeholder = "Enter Agreement No" })
-                                @Html.ValidationMessageFor(m => m.Agreement_No,"", new { @style = "color:red" })
+                                @Html.ValidationMessageFor(m => m.Agreement_No, "", new { @style = "color:red" })
                             </div>
                         </td>
                         <td width="10%"></td>
@@ -42,7 +114,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Year)
                                 @Html.TextBoxFor(m => m.Year, new { @class = "form-control", @placeholder = "Enter Year" })
-                                @Html.ValidationMessageFor(m => m.Year,"", new { @style = "color:red" })
+                                @Html.ValidationMessageFor(m => m.Year, "", new { @style = "color:red" })
                             </div>
                         </td>
                     </tr>
@@ -51,15 +123,15 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Partner)
                                 @Html.TextBoxFor(m => m.Partner, new { @class = "form-control", @placeholder = "Enter Partner Name" })
-                                @Html.ValidationMessageFor(m => m.Partner,"",new { @style="color:red" })
+                                @Html.ValidationMessageFor(m => m.Partner, "", new { @style = "color:red" })
                             </div>
                         </td>
                         <td width="10%"> </td>
                         <td width="45%">
-                            <div class="form-group">
+                            <div class="form-group ui-front">
                                 @Html.LabelFor(m => m.Agreement_type)
-                                @Html.DropDownListFor(m => m.Agreement_type, Model.AgreementtypeList, "--Select Agreement Type--", new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m=>m.Agreement_type,"",new { @style="color:red"})
+                                @Html.TextBoxFor(m => m.Agreement_type, new { @id = "a_type", @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Agreement_type, "", new { @style = "color:red" })
                             </div>
                         </td>
                     </tr>
@@ -69,13 +141,13 @@
                                 @Html.LabelFor(m => m.Title)
                                 @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Enter Title" })
                             </div>
-                            
+
                         </td>
                         <td width="10%"></td>
                         <td width="45%">
                             <div class="form-group">
                                 @Html.LabelFor(m => m.FacultyID)
-                                @Html.TextBoxFor(m => m.FacultyID, new { @class = "form-control", @placeholder = "Enter Faculty ID" })
+                                @Html.TextBoxFor(m => m.FacultyID, new { @id = "facultyID", @class = "form-control", @placeholder = "Enter Faculty ID" })
                             </div>
                         </td>
                     </tr>
@@ -109,7 +181,7 @@
                                 @Html.TextBoxFor(m => m.Expiry_date, new { @id = "datepickerid1", @class = "form-control", @placeholder = "dd/MM/yyyy" })
                                 @*<input type="text" id="datepickerid" class="form-control" placeholder="dd/MM/yyyy" />*@
                             </div>
-                        </td>                        
+                        </td>
                     </tr>
                     <tr>
                         <td width="45%">
@@ -129,7 +201,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="button" value="Upload" onclick="Upload_Dean()" />
+                            <input type="button" value="Upload" onclick="Upload_Dean()"  class="btn btn-success"  />
                         </td>
                         <td>
                             <span style="color:green">@Html.Raw(ViewBag.Message)</span>
@@ -145,9 +217,65 @@
 </html>
 <script type="text/javascript">
     $('#datepickerid').datepicker({ dateFormat: 'dd/mm/yy' }).val();
-    $('#datepickerid1').datepicker({ dateFormat: 'dd/mm/yy' }).val();
+    $('#datepickerid1').datepicker({ dateFormat: 'dd/mm/yy' }).val();    
+        $('#a_type').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '../Dean/GetType',
+                    type: 'post',
+                    dataType: 'json',
+                    delay: 500,
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        console.log(data);
+                        response($.map(data, function (item) {
+                            console.log(item);
+                            return { label: item, value: item };
+                        }));
+                    }
+                })
+            },
+            messages: {
+                noResults: "",
+                results: function (count) {
+                    return count + (count > 1 ? 'results' : 'result') + 'found';
+                }
+            }
+        });
+
+        $('#facultyID').blur(function () {
+            var fcode = this.value;
+            if (fcode != '') {
+                $.ajax({
+                    url: '../Dean/GetFName',
+                    type: 'post',
+                    dataType: 'json',
+                    data: { FName: fcode },
+                    success: function (data) {
+                        if (data.result == "success") {
+                            $("#Faculty").val(data.fcode);
+                            $('#DepartmentCode').val(data.dept);
+                        }
+                        else {
+                            alert('Faculty ID is wrong');
+                            $("#facultyID").val("");
+                            $('#DepartmentCode').val("");
+                        }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        if (xhr.status == 404) {
+                            alert(thrownError)
+                        }
+                    }
+                });
+                
+            }
+            else {
+                alert('Please enter Faculty ID');
+            }
+        });
     function Upload_Dean() {
-       
+
         //check whether form data is available
         if (window.FormData != undefined) {
             var fileUpload = $("#FileUpload1").get(0);
@@ -183,11 +311,11 @@
                        else if (data.title === "File type is not PDF")
                            swal(data.title, data.message, "Warning");
                        else if (data.title === "Session Expired")
-                           window.location.href = "/Home/Login";                                     
+                           window.location.href = "/Home/Login";
                        else
                            swal(data.title, data.message, "error");
                    }
-               }             
+               }
            })
         }
     }

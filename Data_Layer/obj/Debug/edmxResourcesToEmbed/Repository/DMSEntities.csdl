@@ -229,6 +229,7 @@
     </FunctionImport>
     <EntitySet Name="tbl_trx_recruitment" EntityType="DMSModel.tbl_trx_recruitment" />
     <EntitySet Name="tbl_trx_dean" EntityType="DMSModel.tbl_trx_dean" />
+    <EntitySet Name="tbl_trx_FileDean" EntityType="DMSModel.tbl_trx_FileDean" />
   </EntityContainer>
   <ComplexType Name="sp_appointment_summary_Result">
     <Property Type="Int32" Name="Count" Nullable="true" />
@@ -300,7 +301,24 @@
     <Property Name="Signed_date" Type="DateTime" Precision="0" />
     <Property Name="Expiry_date" Type="DateTime" Precision="3" />
     <Property Name="Followup" Type="Boolean" Nullable="false" />
-    <Property Name="FacultyID" Type="Int32" />
+    <Property Name="FacultyID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="page_count" Type="Int32" Nullable="false" />
+    <Property Name="file_path" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="file_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="uploadedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="uploadedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="is_active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbl_trx_FileDean">
+    <Key>
+      <PropertyRef Name="deanFile_trx_id" />
+    </Key>
+    <Property Name="deanFile_trx_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SubCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ReceivedDt" Type="DateTime" Precision="0" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="page_count" Type="Int32" Nullable="false" />
     <Property Name="file_path" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="file_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />

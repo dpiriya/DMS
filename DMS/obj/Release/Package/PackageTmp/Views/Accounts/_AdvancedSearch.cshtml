@@ -1,6 +1,5 @@
 ﻿@model Data_Layer.Models.DropdownList
-@Scripts.Render("~/bundles/sweet")
-@Styles.Render("~/bundles/sweetcss")
+
 
 @{
     Layout = null;
@@ -65,9 +64,12 @@
     function button() {
         $('#table_id').dataTable({
             "processing": true,
-            "serverSide": true,
+            "serverSide": true,            
+            "orderMulti": false,            
             "destroy": true,
-
+            'scrollY': '50vh',
+            'scrollCollapse': true,
+            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             "ajax": {
                 "url": '../Accounts/Adv_Load',
                 "data": { mode: $('#spon_con').val(), dept: $('#DepartmentName').val(), coor: $('#PIName').val() },
@@ -81,10 +83,10 @@
                 { 'data': 'voucher_no', 'name': 'voucher_no' },
                 { 'data': 'project_no', 'name': 'project_no' },
                 { 'data': 'file_voucher', 'name': 'file_voucher' },
-                { 'data': 'file_Namee', 'name': 'file_Namee' },
+                //{ 'data': 'file_Namee', 'name': 'file_Namee' },
                 { 'data': 'is_spon', 'name': 'is_spon' },
-                { 'data': 'page_count', 'name': 'page_count' },
-                { 'data': 'uploadedBy', 'name': 'uploadedBy' },
+                //{ 'data': 'page_count', 'name': 'page_count' },
+                //{ 'data': 'uploadedBy', 'name': 'uploadedBy' },
                 {
                     'data': 'path', "render": function (data) {
                         var link = "../Accounts/ViewDoc?iID=" + data;
@@ -98,6 +100,9 @@
                         return "<a href=" + link + ">Download</a>"
                     }, "orderable": false
                 }],
+            "order": [0, 'desc'],
+            'dom': 'lBfrtip',
+            'buttons': ["excelHtml5", "pdfHtml5"],
             "language": {
                 "emptyTable": "No data available"
             }

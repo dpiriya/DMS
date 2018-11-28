@@ -72,8 +72,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Accounts_trxModel.cs" />
+    <Compile Include="Models\DeanFile_trxModel.cs" />
     <Compile Include="Models\Dean_trxModel.cs" />
     <Compile Include="Models\DropdownList.cs" />
+    <Compile Include="Models\Faculty.cs" />
     <Compile Include="Models\FileSearchModel.cs" />
     <Compile Include="Models\Home\UserModel.cs" />
     <Compile Include="Models\ListItemModel.cs" />
@@ -104,6 +106,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DMSEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\FacultyView.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacultyView.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\FacultyView.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacultyView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\FacultyView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacultyView.edmx</DependentUpon>
     </Compile>
     <Compile Include="Repository\NEWADH.cs">
       <DependentUpon>RecruitEntities.tt</DependentUpon>
@@ -174,6 +191,9 @@
     <Compile Include="Repository\tbl_trx_dean.cs">
       <DependentUpon>DMSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository\tbl_trx_FileDean.cs">
+      <DependentUpon>DMSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repository\tbl_trx_office.cs">
       <DependentUpon>DMSEntities.tt</DependentUpon>
     </Compile>
@@ -182,6 +202,9 @@
     </Compile>
     <Compile Include="Repository\tbl_trx_recruitment.cs">
       <DependentUpon>DMSEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\VW_AppDev_FacultyDetails.cs">
+      <DependentUpon>FacultyView.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +223,13 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RecruitEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <EntityDeploy Include="Repository\FacultyView.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FacultyView.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Repository\FacultyView.edmx.diagram">
+      <DependentUpon>FacultyView.edmx</DependentUpon>
+    </None>
     <None Include="Repository\RecruitEntities.edmx.diagram">
       <DependentUpon>RecruitEntities.edmx</DependentUpon>
     </None>
@@ -217,6 +247,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DMSEntities.edmx</DependentUpon>
       <LastGenOutput>DMSEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="Repository\FacultyView.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FacultyView.edmx</DependentUpon>
+      <LastGenOutput>FacultyView.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Repository\FacultyView.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FacultyView.edmx</DependentUpon>
+      <LastGenOutput>FacultyView.cs</LastGenOutput>
     </Content>
     <Content Include="Repository\RecruitEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -373,10 +373,20 @@
     <Content Include="Assets\DataPicker\ui-ui-lightness.datepick.css" />
     <Content Include="Assets\DataPicker\ui-vader.datepick.css" />
     <Content Include="Assets\DataPicker\ui.datepick.css" />
+    <Content Include="Assets\datatables.min.js" />
     <Content Include="Assets\Datatables\dataTables.editor.min.js" />
     <Content Include="Assets\Datatables\jquery.dataTables.js" />
     <Content Include="Assets\Datatables\jquery.dataTables.min.css" />
     <Content Include="Assets\Datatables\jquery.dataTables.min.js" />
+    <Content Include="Assets\export\css\buttons.dataTables.min.css" />
+    <Content Include="Assets\export\css\datatables.min.css" />
+    <Content Include="Assets\export\js\buttons.flash.min.js" />
+    <Content Include="Assets\export\js\buttons.html5.min.js" />
+    <Content Include="Assets\export\js\buttons.print.min.js" />
+    <Content Include="Assets\export\js\dataTables.buttons.min.js" />
+    <Content Include="Assets\export\js\datatables.min.js" />
+    <Content Include="Assets\export\js\pdfmake.min.js" />
+    <Content Include="Assets\export\js\vfs_fonts.js" />
     <Content Include="Assets\font-awesome\css\font-awesome.css" />
     <Content Include="Assets\font-awesome\css\font-awesome.min.css" />
     <Content Include="Assets\font-awesome\fonts\fontawesome-webfont.svg" />
@@ -1753,6 +1763,7 @@
     <Content Include="css\Fonts\Font_Roboto_Condensed.css" />
     <Content Include="css\Index\bootstrap.min.css" />
     <Content Include="css\Index\mCustomScrollbar.min.css" />
+    <Content Include="css\jquery datatable\datatables.min.css" />
     <Content Include="css\jquery datatable\jquery-ui.css" />
     <Content Include="css\jquery-ui.css" />
     <Content Include="css\jquery-ui.min.css" />
@@ -1784,6 +1795,7 @@
     <Content Include="images\icons\WelcomePage\bg.png" />
     <Content Include="images\icons\WelcomePage\Dean.png" />
     <Content Include="images\icons\WelcomePage\office.png" />
+    <Content Include="images\icons\WelcomePage\patent.png" />
     <Content Include="images\icons\WelcomePage\purchase.png" />
     <Content Include="images\icons\WelcomePage\recruitment.png" />
     <Content Include="images\icons\WelcomePage\ruppeeSymbol.png" />
@@ -2376,6 +2388,10 @@
     <Content Include="Views\Dean\_Search.cshtml" />
     <Content Include="Views\Dean\_UploadDean.cshtml" />
     <Content Include="Views\Dean\_AdvancedSearch.cshtml" />
+    <Content Include="Views\Dean\_UploadFiles.cshtml" />
+    <Content Include="Views\Dean\DeanFiles_Index.cshtml" />
+    <Content Include="Views\Dean\_SearchFiles.cshtml" />
+    <Content Include="Views\Accounts\_Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
