@@ -10,6 +10,7 @@ using BusinessLayer;
 using System.IO;
 using iTextSharp.text.pdf;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace DMS.Controllers
 {
@@ -231,7 +232,7 @@ namespace DMS.Controllers
 
                                         if (dt != null)
                                         {
-                                            string fileName = deanFileModel.Category + "_" + deanFileModel.SubCategory + "_" + dt + ".pdf";
+                                            string fileName =Regex.Replace(deanFileModel.Category,@"\s","") + "_" +Regex.Replace(deanFileModel.SubCategory,@"\s","") + "_" + dt + ".pdf";
                                             file.SaveAs(path + fileName);
                                             int numberOfPages; string filenamewoext; int iInsertFileUpload;
                                             using (PdfReader pdfReader = new PdfReader(path + fileName))

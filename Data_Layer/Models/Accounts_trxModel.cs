@@ -17,7 +17,7 @@ namespace Data_Layer.Models
         public int page_count { get; set; }
         public Nullable<bool> is_spon { get; set; }
         public string uploadedBy { get; set; }       
-       
+       public System.DateTime uploadedOn { get; set; }
 
         public string path { get; set; }
     }

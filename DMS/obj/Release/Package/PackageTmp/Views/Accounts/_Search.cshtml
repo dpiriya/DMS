@@ -1,120 +1,201 @@
-﻿<div>
-    <table id="table_id" class="table table-striped table-bordered">
-        <thead style="color: black">
-            <tr style="text-align:center">
-                <th style="text-align:center; background-color:white; width:auto">
-                    Trans_ID
-                </th>
-                <th style="text-align:center; background-color:white; width:auto">
-                    Voucher No
-                </th>
-                <th style="text-align:center; background-color:white; width:auto">
-                    Project No
-                </th>
-                <th style="text-align:center; background-color:white; width:auto">
-                    File/Voucher
-                </th>
-                @*<th style="text-align:center; background-color:white; width:auto">
-                        File Name
-                    </th>*@
-                <th style="text-align:center; background-color:white; width:auto">
-                    Type
-                </th>
-                @*<th style="text-align:center; background-color:white; width:auto">
-                        Page Count
+﻿    <div align="right">
+        <select id="select">
+            <option></option>
+            <option>ID</option>
+            <option>Voucher No</option>
+            <option>Project No</option>
+            <option>F/V</option>            
+            <option>Type</option>
+            <option>Uploaded On</option>
+            <option>Uploaded By</option>            
+        </select>
+    </div>
+    <style>
+        #tooltip {
+            position: absolute;
+            z-index: 1001;
+            display: none;
+            border: 2px solid #ebebeb;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #fff;
+        }
+    </style>
+    <div>
+        <table id="table_id" class="table table-striped table-bordered">
+            <thead style="color: black">
+                <tr style="text-align:center">
+                    <th style="text-align:center; background-color:white; width:auto">
+                        Trans_ID
+                    </th>
+                    <th style="text-align:center; background-color:white; width:auto">
+                        Voucher No
+                    </th>
+                    <th style="text-align:center; background-color:white; width:auto">
+                        Project No
+                    </th>
+                    <th style="text-align:center; background-color:white; width:auto">
+                        File/Voucher
+                    </th>
+                    @*<th style="text-align:center; background-color:white; width:auto">
+                            File Name
+                        </th>*@
+                    <th style="text-align:center; background-color:white; width:auto">
+                        Type
+                    </th>
+                    <th style="text-align:center; background-color:white; width:auto">
+                        Uploaded On
                     </th>
                     <th style="text-align:center; background-color:white; width:auto">
                         Uploaded By
-                    </th>*@
-                <th>
-                </th>
-                <th></th>
-        </thead>
-    </table>
-</div>
+                    </th>
+                    <th>
+                        View
+                    </th>
+                    <th>Dwld</th>
+                    <th>Add</th>
+            </thead>
+        </table>
+    </div>
 
-@*<script type="text/javascript">
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+
+                $('#table_id').dataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": '../WSDatatable.asmx/GetData_Accounts',
+                    "sServerMethod": "post",
+                    "aoColumns": [
+                        { 'data': 'accounts_trx_id' },
+                        { 'data': 'voucher_no' },
+                        { 'data': 'project_no' },
+                        { 'data': 'file_voucher' },
+                        { 'data': 'file_Namee' },
+                        { 'data': 'page_count' },
+                        { 'data': 'uploadedBy' },
+                        { 'data': 'is_active' },
+                        {
+                            'data': 'path', "render": function (data) {
+                                var link = "../Accounts/ViewDoc?iID=" + data;
+                                return "<a href=" + link + " target=_blank>View</a>"
+                            },
+                            "orderable": false
+                        },
+                        {
+                            'data': 'path', "render": function (data) {
+                                var link = "../Accounts/Download?iID=" + data;
+                                return "<a href=" + link + ">Download</a>"
+                            },
+                            "orderable": false
+                        }],
+                    "order": [0, "desc"],
+                    "language": {
+                        "emptyTable": "No data available"
+                    }
+                });
+            });
+
+
+        </script>*@
+
+
+    <script type="text/javascript">
         $(document).ready(function () {
-
-            $('#table_id').dataTable({
+            var table = $('#table_id').DataTable({
                 "processing": true,
                 "serverSide": true,
-                "ajax": '../WSDatatable.asmx/GetData_Accounts',
-                "sServerMethod": "post",
-                "aoColumns": [
-                    { 'data': 'accounts_trx_id' },
-                    { 'data': 'voucher_no' },
-                    { 'data': 'project_no' },
-                    { 'data': 'file_voucher' },
-                    { 'data': 'file_Namee' },
-                    { 'data': 'page_count' },
-                    { 'data': 'uploadedBy' },
-                    { 'data': 'is_active' },
+                "orderMulti": false,                
+                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                "ajax": {
+                    "url": '../Accounts/LoadData',
+                    "data": function (d) { d.col = document.querySelector('#select').selectedIndex; },
+                    "type": 'POST',
+                    "datatype": 'json'
+                },
+                "columns": [
+                    { 'data': 'accounts_trx_id', 'name': 'accounts_trx_id' },
+                    { 'data': 'voucher_no', 'name': 'voucher_no' },
+                    { 'data': 'project_no', 'name': 'project_no' },
+                    { 'data': 'file_voucher', 'name': 'file_voucher' },
+                    //{ 'data': 'file_Namee', 'name': 'file_Namee' },
                     {
-                        'data': 'path', "render": function (data) {
-                            var link = "../Accounts/ViewDoc?iID=" + data;
-                            return "<a href=" + link + " target=_blank>View</a>"
-                        },
-                        "orderable": false
+                        'data': 'is_spon', 'name': 'is_spon',
+                        "render": function (value) {
+                            if (value === true) return "Sponsor";
+                            else return "Consultancy";
+
+                        }
+                    },
+                    {
+                        'data': 'uploadedOn', 'name': 'uploadedOn',
+                        "type": "date ",
+                        "render": function (value) {
+                            if (value === null) return "";
+
+                            var pattern = /Date\(([^)]+)\)/;
+                            var results = pattern.exec(value);
+                            var dt = new Date(parseFloat(results[1]));
+
+                            return (dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear());
+                        }
+                    },
+                    { 'data': 'uploadedBy', 'name': 'uploadedBy' },
+                    {
+                        'data': 'path',
+                        "render": function (data) {
+                            var link = '../Accounts/ViewDoc?iID=' + data;
+                            return "<a href=" + link + " class='glyphicon glyphicon-eye-open view_btn' target=_blank></a>"
+                        }, "orderable": false
                     },
                     {
                         'data': 'path', "render": function (data) {
-                            var link = "../Accounts/Download?iID=" + data;
-                            return "<a href=" + link + ">Download</a>"
-                        },
-                        "orderable": false
+                            var link = '../Accounts/Download?iID=' + data;
+                            return "<a href=" + link + "  class='glyphicon glyphicon-download-alt download_btn'></a>"
+                        }, "orderable": false
+                    },
+                    {
+                        'data': 'accounts_trx_id', "render": function (data) {
+                            return '<a href="#" class="glyphicon glyphicon-open-file add" id="' + data + '"></a>';
+                            //var link = '../Accounts/_Add?iID=' + data;
+                            //return "<a href=" + link + ">Add</a>"
+                        }, "orderable": false
                     }],
-                "order": [0, "desc"],
+                'dom': 'lBfrtip',
+                'buttons': ["excelHtml5", "pdfHtml5"],
                 "language": {
                     "emptyTable": "No data available"
                 }
             });
-        });
+            $('#table_id tbody').on('click', '.add', function () {
+                var data_row = table.row($(this).closest('tr')).data();
+                {                                 //debugger;
+                    $.ajax({
+                        type: "post",
+                        url: '@Url.Action("_Add","Accounts")',
+                        data: { iID: data_row.accounts_trx_id },
+                        success: function (data) {
+                            $('#myModalContent').html(data);
+                            //   $('#myModal').modal(options);
+                            $('#myModal').modal('show');
+                            $('#myModal').modal({ backdrop: 'static', keyboard: false })
+                            $.fn.modal.prototype.constructor.Constructor.DEFAULTS.backdrop = 'static';
+                            $.fn.modal.prototype.constructor.Constructor.DEFAULTS.keyboard = false;
+                        },
+                        error: function (data) {
+                            //swal("Select a Hall for booking", "", "error");
+                            alert("Something Went Wrong");
+                        }
+                    });
 
+                }
 
-    </script>*@
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#table_id').dataTable({
-            "processing": true,
-            "serverSide": true,
-            "orderMulti": false,
-            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            "ajax": {
-                "url": '../Accounts/LoadData',
-                "type": 'POST',
-                "datatype": 'json'
-            },
-            "columns": [
-                { 'data': 'accounts_trx_id', 'name': 'accounts_trx_id' },
-                { 'data': 'voucher_no', 'name': 'voucher_no' },
-                { 'data': 'project_no', 'name': 'project_no' },
-                { 'data': 'file_voucher', 'name': 'file_voucher' },
-                //{ 'data': 'file_Namee', 'name': 'file_Namee' },
-                { 'data': 'is_spon', 'name': 'is_spon' },
-                //{ 'data': 'page_count', 'name': 'page_count' },
-                //{ 'data': 'uploadedBy', 'name': 'uploadedBy' },
-                {
-                    'data': 'path',
-                    "render": function (data) {
-                        var link = '../Accounts/ViewDoc?iID=' + data;
-                        return "<a href=" + link + " target=_blank>View</a>"
-                    }, "orderable": false
-                },
-                {
-                    'data': 'path', "render": function (data) {
-                        var link = '../Accounts/Download?iID=' + data;
-                        return "<a href=" + link + ">Download</a>"
-                    }, "orderable": false
-                }],
-            'dom': 'lBfrtip',
-            'buttons': ["excelHtml5", "pdfHtml5"],
-            "language": {
-                "emptyTable": "No data available"
-            }
-        });
+            });
+        }); 
+        //$('#table_id tbody tr th-nth:child(7)').on('mousemove', 'td', function (e) {
+        //        $("#tooltip").text("View").animate({ left: e.pageX, top: e.pageY }, 1)
+        //    if (!$("#tooltip").is(':visible')) $("#tooltip").show()
+        //})
 
         //$.ajax({
         //    processing: true,
@@ -159,5 +240,9 @@
         //        });
         //    }
         //});
-    });
-</script>
+        //});
+        $('#select').change(function () {
+            var i = $('#select').val();//document.querySelector('#select').val;
+            table.draw();
+        });
+    </script>

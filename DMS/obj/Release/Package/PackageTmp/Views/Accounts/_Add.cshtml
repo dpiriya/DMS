@@ -1,0 +1,75 @@
+﻿@model long
+@{
+    Layout = null;
+}
+@Scripts.Render("~/bundles/sweet")
+@Styles.Render("~/bundles/sweetcss")
+
+<style type="text/css">
+    .swalcss {
+        font-size: 9px;
+        background-color: aliceblue;
+        width: auto;
+    }
+</style>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div style="width:100%;text-align:center">
+        <div style="color:black;display:inline-block;margin-bottom:3%">
+            <h2>Accounts - Add Pages</h2>
+        </div><br />
+        <div style="color:black;display:inline-block;margin-bottom:2%">
+            <table cellspacing="50" cellpadding="15">
+                <tr>
+                    <td>
+                        @Html.Label("Select File")
+                    </td>
+                    <td></td>
+                    <td>
+                        <input type="file" id="FileUpload1" name="postedFiles" />
+                    </td>
+               
+                    <td>
+                        <input type="button" class="btn-success" value="Add page" onclick="AddPages()" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function AddPages() {
+        if (window.FormData != undefined) {
+            var fileUpload = $("#FileUpload1").get(0);
+            //var files = fileUpload.files;
+            var fileData = new FormData();
+            fileData.append(fileUpload.files[0].name, fileUpload.files[0]);
+            fileData.append("iID", '@Model');
+            $.ajax({
+                type: "post",
+                url: '@Url.Action("AddPagesAcc","Accounts")',
+                data: fileData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    if (data.success) {
+                        swal(data.title, data.message, "success");
+                    }
+                    else if (data.title === "Session Expired") {
+                        window.location.href = "/Home/Login";
+                    }
+                    else {
+                        swal(data.title, data.message, "error");
+                    }   
+                    document.getElementById("FileUpload1").value = "";
+                }
+            });
+        }
+    }
+</script>

@@ -166,14 +166,52 @@ namespace BusinessLayer
             }
         }
 
-        public IEnumerable<Accounts_trxModel> Search_accounts(string ssearch, string ssort, string ssortdir)
+        public IEnumerable<Accounts_trxModel> Search_accounts(string ssearch, string ssort, string ssortdir,int icol)
         {
             using (DMSEntities dms = new DMSEntities())
             {
 
-                var lists = dms.tbl_trx_accounts.Select(m => new Accounts_trxModel() { accounts_trx_id = m.accounts_trx_id, voucher_no = m.voucher_no, project_no = m.project_no, file_voucher = m.file_voucher, file_Namee = m.file_Namee, page_count = m.page_count, uploadedBy = m.uploadedBy, is_spon = m.is_spon, path = m.file_path + m.file_Namee }).ToList();
-                if (ssearch != "")
+                var lists = dms.tbl_trx_accounts.Select(m => new Accounts_trxModel() { accounts_trx_id = m.accounts_trx_id, voucher_no = m.voucher_no, project_no = m.project_no, file_voucher = m.file_voucher, file_Namee = m.file_Namee, page_count = m.page_count,uploadedOn=m.uploadedOn, uploadedBy = m.uploadedBy, is_spon = m.is_spon, path = m.file_path + m.file_Namee }).ToList();
+                if (!string.IsNullOrEmpty(ssearch))
                 {
+                    if(icol!=0)
+                    {
+                        switch(icol)
+                        {
+                            case 1:
+                                lists = lists.Where(m => m.accounts_trx_id.ToString() == ssearch).ToList();
+                                break;
+                            case 2:
+                                lists = lists.Where(m => m.voucher_no.ToUpper().Contains(ssearch.ToUpper())).ToList();
+                                break;
+                            case 3:
+                                lists = lists.Where(m => m.project_no.ToUpper().Contains(ssearch.ToUpper())).ToList();
+                                break;
+                            case 4:
+                                lists = lists.Where(m => m.file_voucher.ToUpper().Contains(ssearch.ToUpper())).ToList();
+                                break;
+                            case 5:
+                                if ("Consultancy".Contains(ssearch))
+                                {
+                                    lists = lists.Where(m => m.is_spon == false).ToList();
+                                    break;
+                                }
+                                else if ("Sponsored".Contains(ssearch))
+                                {
+                                    lists = lists.Where(m => m.is_spon == true).ToList();
+                                    break;
+                                }
+                                else
+                                    break;
+                            case 6:
+                                lists = lists.Where(m => m.uploadedOn.ToString("dd/MM/yyyy") == ssearch).ToList();
+                                break;
+                            case 7:
+                                lists = lists.Where(m => m.uploadedBy == ssearch).ToList();
+                                break;
+                        }
+                    }
+                    else
                     lists = lists.Where(m => m.file_Namee.ToUpper().Contains(ssearch.ToUpper()) || (m.voucher_no != null && m.voucher_no.ToUpper().Contains(ssearch.ToUpper())) || (m.project_no != null && m.project_no.ToUpper().Contains(ssearch.ToUpper())) || m.uploadedBy.ToUpper().Contains(ssearch.ToUpper())).ToList();
                 }
                 //var lists = dms.tbl_trx_recruitment.Select(m => new Recruit_trxModel() { recruit_trx_id = m.recruit_trx_id, EmployeeID = m.EmployeeID, EmployeeName = m.EmployeeName, Appoint_mode = m.Appoint_mode, page_count = m.page_count, file_name = m.file_name, uploadedBy = m.uploadedBy, is_active = m.is_active, path = m.file_path + m.file_name }).ToList();
@@ -284,8 +322,39 @@ namespace BusinessLayer
                         ReceivedDt = list.ReceivedDt==null?"":Convert.ToDateTime(list.ReceivedDt).ToString("dd/MM/yyyy",CultureInfo.InvariantCulture),
                         Remarks = list.Remarks,                                               
                         page_count = list.page_count,                        
-                        path = list.file_path + list.file_name
+                        Path = list.file_path + list.file_name
                     });
+                }
+                if (!string.IsNullOrEmpty(ssearch))
+                {
+                    if (icol != 0)
+                    {
+                        switch (icol)
+                        {
+                            case 1:
+                                tbldean = tbldean.Where(m => m.Category.ToUpper().Contains(ssearch.ToUpper())).ToList();
+                                break;
+                            case 2:
+                                tbldean = tbldean.Where(m => m.SubCategory.ToUpper().Contains(ssearch.ToUpper())).ToList();
+                                break;
+                            case 3:
+                                tbldean = tbldean.Where(m => m.Source.ToUpper().Contains(ssearch.ToUpper())).ToList();
+                                break;                           
+                            case 4:
+                                tbldean = tbldean.Where(m => m.ReceivedDt != null && m.ReceivedDt.Contains(ssearch.ToUpper())).ToList();
+                                break;                           
+                            case 5:
+                                tbldean = tbldean.Where(m => m.Remarks != null && m.Remarks.ToUpper().Contains(ssearch.ToUpper())).ToList();
+                                break;
+                            case 6:
+                                tbldean = tbldean.Where(m => m.deanFile_trx_id.ToString().Contains(ssearch)).ToList();
+                                break;                           
+                        }
+                    }
+                    else
+                    {
+                        tbldean = tbldean.Where(m => m.Category.ToUpper().Contains(ssearch.ToUpper()) || m.SubCategory.ToUpper().Contains(ssearch.ToUpper()) || m.Source.ToUpper().Contains(ssearch.ToUpper()) || m.deanFile_trx_id.ToString().Contains(ssearch) || (!String.IsNullOrEmpty(m.Remarks) && m.Remarks.ToUpper().Contains(ssearch.ToUpper()))).ToList();
+                    }
                 }
                 if (!(String.IsNullOrEmpty(ssort) && string.IsNullOrEmpty(ssortdir)))
                 {
@@ -872,6 +941,31 @@ namespace BusinessLayer
                 return result;
             }
         }
+        public string FindFile(long iID)
+        {
+            using (DMSEntities dms = new DMSEntities())
+            {
+                var file = dms.tbl_trx_accounts.Where(m => m.accounts_trx_id == iID).Select(m => m.file_path + m.file_Namee ).FirstOrDefault();
+                return file;
+            }
+        }
+        public int AddPageDB(long iID,int n,string user)
+        {
+            try
+            {
+                using (DMSEntities dms = new DMSEntities())
+                {
+                    var result = (from m in dms.tbl_trx_accounts where m.accounts_trx_id == iID select m).FirstOrDefault();
+                    result.page_count = n;
+                    result.uploadedBy = user;
 
+                    result.uploadedOn = DateTime.Now;// model.ReceivedDt != null ? (DateTime.ParseExact(model.ReceivedDt, "dd/MM/yyyy", CultureInfo.InvariantCulture)) : (DateTime?)null;
+
+                    dms.SaveChanges();
+                    return 1;
+                }
+            }
+            catch(Exception ex) { return 0; }
+        }
     }
 }

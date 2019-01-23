@@ -25,6 +25,6 @@ namespace Data_Layer.Models
         public string uploadedBy { get; set; }
         public System.DateTime uploadedOn { get; set; }
         public Nullable<bool> is_active { get; set; }
-        public string path { get; set; }
+        public string Path { get; set; }
     }
 }

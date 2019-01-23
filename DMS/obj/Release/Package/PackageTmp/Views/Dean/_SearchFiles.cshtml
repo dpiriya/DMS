@@ -92,14 +92,14 @@
                 }, "orderable": false
             },
             {
-                'data': 'path', 'render': function (data) {
-                    var link = '../Dean/ViewDoc?iID=' + data;
+                'data': 'Path', 'render': function (data) {
+                    var link = '../Dean/ViewDoc?iID=' + data;                       
                     return "<a href=" + link + "  class='glyphicon glyphicon-eye-open view_btn' target=_blank></a>";
                     // return '<button class="btn btn-info btn-sm view_btn" id="' + link + '" onclick="window.open("'+link+'")">View</button>';
                 }, "orderable": false
             },
             {
-                'data': 'path', 'render': function (data) {
+                'data': 'Path', 'render': function (data) {
                     var link = '../Dean/Download?iID=' + data;
                     return "<a href=" + link + "  class='glyphicon glyphicon-download-alt download_btn' target=_blank></a>";
                     //return '<button class="btn btn-info btn-sm download_btn" id="' + data.Agreement_No + '">Download</button>';

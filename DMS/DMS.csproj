@@ -2394,7 +2394,7 @@
     <Content Include="Views\Accounts\_Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\Upload Temp Merge\" />
     <Folder Include="UploadedFiles\" />
     <Folder Include="Views\Approve\" />
   </ItemGroup>

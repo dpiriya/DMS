@@ -15,6 +15,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Text.RegularExpressions;
 using System.Linq.Dynamic;
 using System.Configuration;
+using iTextSharp.text;
 
 namespace DMS.Controllers
 {
@@ -98,7 +99,7 @@ namespace DMS.Controllers
                             {
                                 //check if project no is valid
                                 DataSet ds = new DataSet();
-                                
+
 
 
 
@@ -106,7 +107,7 @@ namespace DMS.Controllers
                                 {
                                     fnArray = filenamewoext.Split('_');
                                     int fnLength = fnArray.Length;
-                                    if(fnLength!=4)
+                                    if (fnLength != 4)
                                     {
                                         if (iTotalFileCount == 1)
                                             return Json(new { success = false, title = "Invalid Project & Voucher No", message = "Filename is not in the correct format" }, JsonRequestBehavior.AllowGet);
@@ -182,7 +183,7 @@ namespace DMS.Controllers
                                 //    //ds.Tables.Add(dMS_BusinessLayer.AccProjectName_verification(postedFile.FileName.Substring(0, postedFile.FileName.IndexOf('_')), Is_Spon));
                                 //    ds.Tables.Add(dMS_BusinessLayer.AccProjectName_verification(projno, Is_Spon));
                                 //else
-                                    ds.Tables.Add(dMS_BusinessLayer.AccProjectName_verification(projno, Is_Spon));
+                                ds.Tables.Add(dMS_BusinessLayer.AccProjectName_verification(projno, Is_Spon));
 
                                 if (AppMode == "file" || AppMode == "F")
                                     AppMode = "F";
@@ -320,7 +321,7 @@ namespace DMS.Controllers
                 }
                 else
                 {
-                    return Json(new { success = false, title = "No File Selected", message = "Kindly select files to Upload" },JsonRequestBehavior.AllowGet);
+                    return Json(new { success = false, title = "No File Selected", message = "Kindly select files to Upload" }, JsonRequestBehavior.AllowGet);
                 }
             }
             else
@@ -372,9 +373,91 @@ namespace DMS.Controllers
                 return View();
             }
         }
-        public ActionResult _Add(string iID)
+        public ActionResult _Add(long iID)
         {
-            return PartialView();
+            return PartialView("_Add", iID);
+        }
+        [HttpPost]
+        public ActionResult AddPagesAcc(long iID)
+        {
+            if (Session["RoleId"] != null)
+            {
+
+                if (iID > 0)
+                {
+                    var upfile = Request.Files[0];
+                    if (upfile != null && upfile.ContentLength > 0)
+                    {
+                        if (upfile.ContentType == "application/pdf")
+                        {
+                            try
+                            {
+                                var newfn = Path.GetFileName(upfile.FileName);
+                                string newpath = Server.MapPath("~/App_Data/Upload Temp Merge");
+                                upfile.SaveAs(newpath + newfn);
+
+                                string file = dMS_BusinessLayer.FindFile(iID);
+                                string exfile = file;
+
+                                byte[] mergedpdf = null; int n = 0;
+                                using (MemoryStream ms = new MemoryStream())
+                                {
+                                    using (Document document = new Document())
+                                    {
+                                        using (PdfCopy copy = new PdfCopy(document, ms))
+                                        {
+                                            document.Open();
+                                            using (PdfReader reader = new PdfReader(exfile))
+                                            {
+                                                n = reader.NumberOfPages;
+                                                for (int page = 0; page < n;)
+                                                {
+                                                    copy.AddPage(copy.GetImportedPage(reader, ++page));
+                                                }
+                                            }
+                                            using (PdfReader reader1 = new PdfReader(newpath + newfn))
+                                            {
+                                                int n1 = reader1.NumberOfPages;
+                                                for (int page = 0; page < n1;)
+                                                {
+                                                    copy.AddPage(copy.GetImportedPage(reader1, ++page));
+                                                }
+                                            }
+                                            document.Close();
+                                        }
+                                    }
+                                    mergedpdf = ms.ToArray();
+                                    System.IO.File.WriteAllBytes(exfile, mergedpdf);
+                                    using (PdfReader pdfreader = new PdfReader(exfile))
+                                    {
+                                        n = pdfreader.NumberOfPages;
+                                    }
+                                    int iUpdateFIle = dMS_BusinessLayer.AddPageDB(iID, n, Session["Username"].ToString());
+                                    if (iUpdateFIle == 1)
+                                        return Json(new { success = true, title = "File Update Status", message = "Updated File Name : " + exfile + " - " + n + " pages", JsonRequestBehavior.AllowGet });
+                                    else
+                                        return Json(new { success = false, title = "File Update Status", message = exfile + "Not Updated", JsonRequestBehavior.AllowGet });
+                                }
+
+                            }
+                            catch (Exception ex) { return Json(new { success = false, title = "Exception", message = ex.ToString(), JsonRequestBehavior.AllowGet }); }
+                        }
+                        else
+                        {
+                            return Json(new
+                            {
+                                success = false,
+                                title = "File Type is not PDF",
+                                message = "File Name : " + Request.Files[0]
+                            });
+                        }
+                    }
+                    else { return Json(new { success = false, title = "No File Selected", message = "Kindly select a file to Upload", JsonRequestBehavior.AllowGet }); }
+
+                }
+                else { return Json(new { success = false, title = "Exception", message = "Error in chosing the record.. Kindly redo the process", JsonRequestBehavior.AllowGet }); }
+            }
+            else { return Json(new { success = false, title = "Session Expired", message = "Page will be redirected to Login screen", JsonRequestBehavior.AllowGet }); }            
         }
         #endregion
         #region Advanced Search
@@ -390,7 +473,7 @@ namespace DMS.Controllers
         #endregion
 
         [HttpPost]
-        public ActionResult LoadData()
+        public ActionResult LoadData(int col)
         {
 
             var draw = Request.Form.GetValues("draw").FirstOrDefault();
@@ -405,14 +488,14 @@ namespace DMS.Controllers
             int pageSize = length != null ? Convert.ToInt32(length) : 0;
             int skip = start != null ? Convert.ToInt32(start) : 0;
             int recordsTotal = 0;
-            var search_accounts = dMS_BusinessLayer.Search_accounts(search, sortColumn, sortColumnDir);
+            var search_accounts = dMS_BusinessLayer.Search_accounts(search, sortColumn, sortColumnDir,col);
             recordsTotal = search_accounts.Count();
             var data = search_accounts.ToList();
-            if(pageSize!=-1)
+            if (pageSize != -1)
             {
                 data = search_accounts.Skip(skip).Take(pageSize).ToList();
             }
-            JsonResult json= Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            JsonResult json = Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
             json.MaxJsonLength = Int32.MaxValue;
             return json;
             // dc.Configuration.LazyLoadingEnabled = false; // if your table is relational, contain foreign key
@@ -438,13 +521,13 @@ namespace DMS.Controllers
 
             var adv_search_accounts = dMS_BusinessLayer.Adv_search_accounts(search, sortColumn, sortColumnDir, mode, coor, dept);
 
-                recordsTotal = adv_search_accounts.Count();
-                var data = adv_search_accounts.ToList();
-            if(pageSize!=-1)
+            recordsTotal = adv_search_accounts.Count();
+            var data = adv_search_accounts.ToList();
+            if (pageSize != -1)
             {
                 data = adv_search_accounts.Skip(skip).Take(pageSize).ToList();
             }
-            JsonResult json= Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            JsonResult json = Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
             json.MaxJsonLength = Int32.MaxValue;
             return json;
 
