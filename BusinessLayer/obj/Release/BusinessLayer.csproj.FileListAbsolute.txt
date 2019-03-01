@@ -64,3 +64,5 @@ E:\Development\DMS Development\DMS\BusinessLayer\obj\Release\BusinessLayer.cspro
 E:\Development\DMS Development\DMS\BusinessLayer\obj\Release\BusinessLayer.csproj.CoreCompileInputs.cache
 E:\Development\DMS Development\DMS\BusinessLayer\obj\Release\BusinessLayer.dll
 E:\Development\DMS Development\DMS\BusinessLayer\obj\Release\BusinessLayer.pdb
+E:\Development\DMS Development\DMS\BusinessLayer\bin\Release\EntityFramework.SqlServer.dll
+E:\Development\DMS Development\DMS\BusinessLayer\bin\Release\EntityFramework.SqlServer.xml

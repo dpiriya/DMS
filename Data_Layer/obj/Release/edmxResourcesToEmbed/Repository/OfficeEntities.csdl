@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FoxOfficeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="PROPOSAL">
+    <Key>
+      <PropertyRef Name="PRONO" />
+    </Key>
+    <Property Name="DINP" Type="DateTime" Precision="0" />
+    <Property Name="PRONO" Type="Int32" Nullable="false" />
+    <Property Name="DATE" Type="DateTime" Precision="0" />
+    <Property Name="datein" Type="DateTime" Precision="0" />
+    <Property Name="TITLE" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="DEPT" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="CoorCode" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="COOR_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="COOR_NAME2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="COOR_NAME3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AGENCY" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="Scheme" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Applicantname" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="VALUE" Type="Double" />
+    <Property Name="DURATION" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="Loginname" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="DispatchDate" Type="DateTime" Precision="0" />
+    <Property Name="inst_id" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="FoxOfficeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="PROPOSAL" EntityType="Self.PROPOSAL" />
+    <EntitySet Name="PCMASTER" EntityType="FoxOfficeModel.PCMASTER" />
+    <EntitySet Name="PMASTER" EntityType="FoxOfficeModel.PMASTER" />
+  </EntityContainer>
+  <EntityType Name="PCMASTER">
+    <Key>
+      <PropertyRef Name="APRLNO" />
+      <PropertyRef Name="COCODE" />
+      <PropertyRef Name="DEPT" />
+      <PropertyRef Name="N_YEAR" />
+    </Key>
+    <Property Name="APRLNO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DINP" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <Property Name="COCODE" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="COOR1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="COOR2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SNAME" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="SNDES" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SCOM" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+    <Property Name="ADD1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ADD2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ADD3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SPANNUMBER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="STANNUMBER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SGSTINNUMBER" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="DEPT" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="TITLE" Type="String" MaxLength="320" FixedLength="false" Unicode="true" />
+    <Property Name="STDATE" Type="DateTime" Precision="0" />
+    <Property Name="ENDDATE" Type="DateTime" Precision="0" />
+    <Property Name="SANVALUE" Type="Double" />
+    <Property Name="SANDATE" Type="DateTime" Precision="0" />
+    <Property Name="EXTN" Type="DateTime" Precision="0" />
+    <Property Name="EXTLETNO" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="EXTN1" Type="DateTime" Precision="0" />
+    <Property Name="EXTLETN1" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="STOROUT" Type="Double" />
+    <Property Name="STORDEPT" Type="Double" />
+    <Property Name="EUC" Type="Double" />
+    <Property Name="CENTLFACI" Type="Double" />
+    <Property Name="OUTFACI" Type="Double" />
+    <Property Name="SALARY" Type="Double" />
+    <Property Name="OTHERS" Type="Double" />
+    <Property Name="ETOTAL" Type="Double" />
+    <Property Name="PROJSTAT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PROJREMA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SLNO" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="RCPTDATE" Type="DateTime" Precision="0" />
+    <Property Name="YEAR" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="DEP_NAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="N_YEAR" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="AGENCY" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="RB" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="USTAT" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="ENT_DATE" Type="DateTime" Precision="0" />
+    <Property Name="Loginname" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="COOR3" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="COOR4" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="COOR5" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CODEPT" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="GOVT" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="VERIFIED" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="DOLL" Type="Double" />
+    <Property Name="curr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ProjectStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InstID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PMASTER">
+    <Key>
+      <PropertyRef Name="APRLNO" />
+      <PropertyRef Name="COOR_CODE" />
+      <PropertyRef Name="DEPT" />
+      <PropertyRef Name="SPON" />
+      <PropertyRef Name="SLNO" />
+      <PropertyRef Name="YEAR" />
+    </Key>
+    <Property Name="APRLNO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ENT_MONTH" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <Property Name="COOR_CODE" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="COOR_CODE2" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="COOR_CODE3" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="COOR_CODE4" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="COOR_CODE5" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="COOR_CODE6" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="COOR_NAME" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="COOR_NAME2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="COOR_NAME3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="COOR_NAME4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="COOR_NAME5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="COOR_NAME6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DEPT" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="SPON" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="SPON_AGEN" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+    <Property Name="TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="LOCL_INT" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="TITLE" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="START_DATE" Type="DateTime" Precision="0" />
+    <Property Name="CLOSE_DATE" Type="DateTime" Precision="0" />
+    <Property Name="SANVALUE" Type="Double" />
+    <Property Name="SAREFNO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SAREFDATE" Type="DateTime" Precision="0" />
+    <Property Name="PROJ_REM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PROJ_STATU" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="SLNO" Type="Int16" Nullable="false" />
+    <Property Name="YEAR" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="DEPT_NAME" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="DURATION" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="REF_FIELD" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="DINP" Type="DateTime" Precision="0" />
+    <Property Name="Loginname" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="webinfo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="govt" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="govt_type_MHRD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="govt_type_MINI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="govt_type_MINI_Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="govt_type_IND" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="govt_type_IND_Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Remarks_Sector" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="verified" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="PRONO" Type="Int16" />
+    <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ProjectType" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="ProjectStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InstID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="ProjectCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

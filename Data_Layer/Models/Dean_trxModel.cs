@@ -53,6 +53,8 @@ namespace Data_Layer.Models
                 return alist;
             }
         }
+        public int Sno { get; set; }
+        
         //public List<SelectListItem> Followuplist()
         //{
         //    List<SelectListItem> fList = new List<SelectListItem>();

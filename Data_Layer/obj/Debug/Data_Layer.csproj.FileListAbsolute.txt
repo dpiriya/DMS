@@ -106,6 +106,7 @@ E:\DMS Development\DMS\Data_Layer\obj\Debug\Data_Layer.csproj.CopyComplete
 E:\DMS Development\DMS\Data_Layer\obj\Debug\Data_Layer.dll
 E:\DMS Development\DMS\Data_Layer\obj\Debug\Data_Layer.pdb
 E:\DMS Development\DMS\Data_Layer\obj\Debug\Data_Layer.csprojResolveAssemblyReference.cache
+E:\Development\DMS Development\DMS\Data_Layer\obj\Debug\Data_Layer.csproj.CoreCompileInputs.cache
 E:\Development\DMS Development\DMS\Data_Layer\bin\Debug\Data_Layer.dll.config
 E:\Development\DMS Development\DMS\Data_Layer\bin\Debug\Data_Layer.dll
 E:\Development\DMS Development\DMS\Data_Layer\bin\Debug\Data_Layer.pdb
@@ -126,6 +127,6 @@ E:\Development\DMS Development\DMS\Data_Layer\bin\Debug\System.Web.Razor.xml
 E:\Development\DMS Development\DMS\Data_Layer\bin\Debug\System.Web.WebPages.xml
 E:\Development\DMS Development\DMS\Data_Layer\bin\Debug\System.Web.WebPages.Deployment.xml
 E:\Development\DMS Development\DMS\Data_Layer\bin\Debug\System.Web.WebPages.Razor.xml
-E:\Development\DMS Development\DMS\Data_Layer\obj\Debug\Data_Layer.csproj.CoreCompileInputs.cache
 E:\Development\DMS Development\DMS\Data_Layer\obj\Debug\Data_Layer.dll
 E:\Development\DMS Development\DMS\Data_Layer\obj\Debug\Data_Layer.pdb
+E:\Development\DMS Development\DMS\Data_Layer\obj\Debug\Data_Layer.csprojResolveAssemblyReference.cache

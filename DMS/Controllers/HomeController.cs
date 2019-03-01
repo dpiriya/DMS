@@ -54,6 +54,8 @@ namespace DMS.Controllers
                                 return RedirectToAction("Recruit_Index", "Recruitment");
                             else if (Session["roleid"].ToString() == "5")
                                 return RedirectToAction("PurchaseIndex", "Purchase");
+                            else if (Session["roleid"].ToString() == "6")
+                                return RedirectToAction("Dean_Index", "Dean");
                             else
                                 return RedirectToAction("login", "Home");
                         }

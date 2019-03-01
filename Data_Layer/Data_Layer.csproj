@@ -71,6 +71,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dataset\AgreementPrintDS.cs">
+      <DependentUpon>AgreementPrintDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\AgreementPrintDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AgreementPrintDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\Accounts_trxModel.cs" />
     <Compile Include="Models\DeanFile_trxModel.cs" />
     <Compile Include="Models\Dean_trxModel.cs" />
@@ -79,6 +87,7 @@
     <Compile Include="Models\FileSearchModel.cs" />
     <Compile Include="Models\Home\UserModel.cs" />
     <Compile Include="Models\ListItemModel.cs" />
+    <Compile Include="Models\MailModel.cs" />
     <Compile Include="Models\Office_trxModel.cs" />
     <Compile Include="Models\Purchase_trxModel.cs" />
     <Compile Include="Models\Recruit_trxModel.cs" />
@@ -128,11 +137,35 @@
     <Compile Include="Repository\NEWREG.cs">
       <DependentUpon>RecruitEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository\OfficeEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OfficeEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\OfficeEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OfficeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\OfficeEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OfficeEntities.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Repository\OutSourcingDesignation.cs">
       <DependentUpon>RecruitEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\PART.cs">
       <DependentUpon>RecruitEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\PCMASTER.cs">
+      <DependentUpon>OfficeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\PMASTER.cs">
+      <DependentUpon>OfficeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\PROPOSAL.cs">
+      <DependentUpon>OfficeEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\RecruitEntities.Context.cs">
       <AutoGen>True</AutoGen>
@@ -211,6 +244,17 @@
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Dataset\AgreementPrintDS.xsc">
+      <DependentUpon>AgreementPrintDS.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\AgreementPrintDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AgreementPrintDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dataset\AgreementPrintDS.xss">
+      <DependentUpon>AgreementPrintDS.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <EntityDeploy Include="Repository\DMSEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -229,6 +273,13 @@
     </EntityDeploy>
     <None Include="Repository\FacultyView.edmx.diagram">
       <DependentUpon>FacultyView.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="Repository\OfficeEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OfficeEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Repository\OfficeEntities.edmx.diagram">
+      <DependentUpon>OfficeEntities.edmx</DependentUpon>
     </None>
     <None Include="Repository\RecruitEntities.edmx.diagram">
       <DependentUpon>RecruitEntities.edmx</DependentUpon>
@@ -257,6 +308,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FacultyView.edmx</DependentUpon>
       <LastGenOutput>FacultyView.cs</LastGenOutput>
+    </Content>
+    <Content Include="Repository\OfficeEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OfficeEntities.edmx</DependentUpon>
+      <LastGenOutput>OfficeEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Repository\OfficeEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OfficeEntities.edmx</DependentUpon>
+      <LastGenOutput>OfficeEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Repository\RecruitEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

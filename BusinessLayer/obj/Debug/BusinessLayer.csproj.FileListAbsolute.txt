@@ -90,11 +90,14 @@ E:\DMS Development\DMS\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileI
 E:\DMS Development\DMS\BusinessLayer\obj\Debug\BusinessLayer.csproj.CopyComplete
 E:\DMS Development\DMS\BusinessLayer\obj\Debug\BusinessLayer.dll
 E:\DMS Development\DMS\BusinessLayer\obj\Debug\BusinessLayer.pdb
+E:\Development\DMS Development\DMS\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+E:\Development\DMS Development\DMS\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
 E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\BusinessLayer.dll
 E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\BusinessLayer.pdb
 E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\Data_Layer.dll
 E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\System.Linq.Dynamic.dll
 E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\System.Web.Mvc.dll
+E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\EntityFramework.SqlServer.dll
 E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\System.Web.Razor.dll
 E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\System.Web.WebPages.Razor.dll
 E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\System.Web.WebPages.dll
@@ -103,11 +106,10 @@ E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\System.Web.WebPages.D
 E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\Data_Layer.pdb
 E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\Data_Layer.dll.config
 E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\System.Web.Mvc.xml
+E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\EntityFramework.SqlServer.xml
 E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\System.Web.Razor.xml
 E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\System.Web.WebPages.Razor.xml
 E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\System.Web.WebPages.xml
 E:\Development\DMS Development\DMS\BusinessLayer\bin\Debug\System.Web.WebPages.Deployment.xml
-E:\Development\DMS Development\DMS\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
-E:\Development\DMS Development\DMS\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
 E:\Development\DMS Development\DMS\BusinessLayer\obj\Debug\BusinessLayer.dll
 E:\Development\DMS Development\DMS\BusinessLayer\obj\Debug\BusinessLayer.pdb

@@ -144,13 +144,13 @@
                     {
                         'data': 'path',
                         "render": function (data) {
-                            var link = '../Accounts/ViewDoc?iID=' + data;
+                            var link = '../Accounts/ViewDoc?iID=' + encodeURIComponent(data);
                             return "<a href=" + link + " class='glyphicon glyphicon-eye-open view_btn' target=_blank></a>"
                         }, "orderable": false
                     },
                     {
                         'data': 'path', "render": function (data) {
-                            var link = '../Accounts/Download?iID=' + data;
+                            var link = '../Accounts/Download?iID=' + encodeURIComponent(data);                            
                             return "<a href=" + link + "  class='glyphicon glyphicon-download-alt download_btn'></a>"
                         }, "orderable": false
                     },

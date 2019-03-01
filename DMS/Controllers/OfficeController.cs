@@ -13,6 +13,9 @@ using System.Web.Mvc;
 using System.Linq.Dynamic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Net.Mail;
+using System.Threading.Tasks;
+using Data_Layer.Dataset;
 
 namespace DMS.Controllers
 {
@@ -288,19 +291,19 @@ namespace DMS.Controllers
             int skip = start != null ? Convert.ToInt32(start) : 0;
             int recordsTotal = 0;
             var search_office = dMS_BusinessLayer.Search_office(search, sortColumn, sortColumnDir);
-            recordsTotal = search_office.Count();            
+            recordsTotal = search_office.Count();
             var data = search_office.ToList();
             if (pageSize != -1)
             {
                 data = search_office.Skip(skip).Take(pageSize).ToList();
             }
-             JsonResult json= Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            JsonResult json = Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
             json.MaxJsonLength = Int32.MaxValue;
             return json;
         }
 
         [HttpPost]
-        public ActionResult Adv_Load(string mode, string dept, string coor,string yr)
+        public ActionResult Adv_Load(string mode, string dept, string coor, string yr)
         {
             var draw = Request.Form.GetValues("draw").FirstOrDefault();
             var start = Request.Form.GetValues("start").FirstOrDefault();
@@ -314,7 +317,7 @@ namespace DMS.Controllers
             int pageSize = length != null ? Convert.ToInt32(length) : 0;
             int skip = start != null ? Convert.ToInt32(start) : 0;
             int recordsTotal = 0;
-            var adv_search_office = dMS_BusinessLayer.Adv_search_office(search, sortColumn, sortColumnDir, mode, dept, coor,yr);
+            var adv_search_office = dMS_BusinessLayer.Adv_search_office(search, sortColumn, sortColumnDir, mode, dept, coor, yr);
 
             recordsTotal = adv_search_office.Count();
             var data = adv_search_office.ToList();
@@ -327,5 +330,111 @@ namespace DMS.Controllers
             return json;
 
         }
+        #region Mail
+        public ActionResult ProposalReport()
+        {
+            MailModel m = new MailModel();
+            m.ProposalList = m.Proposals();
+            m.IdList = m.IDS();
+            return View("ProposalReport", m);
+        }
+        [HttpPost]
+        public ActionResult ProposalReport(MailModel m)
+        {
+            if (m.ProposalNo != null)
+            {
+                m.ProposalTitle = dMS_BusinessLayer.GetProposalTitle(m.ProposalNo);
+            }
+            else if (m.ProjectNo != null)
+            {
+                m.ProposalTitle = dMS_BusinessLayer.GetProjectTitle(m.ProjectNo);
+            }
+            m.FMail = dMS_BusinessLayer.FacDetails(m.InstiId);
+            m.Dean_trxList = dMS_BusinessLayer.MapAgreementToCoor(m.InstiId);
+            m.ProposalList = m.Proposals();
+            m.IdList = m.IDS();
+            return View(m);
+        }
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "SendMail")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SendMail(MailModel mail)
+        {
+            mail.ProposalList = mail.Proposals();
+            mail.IdList = mail.IDS();
+            string body = "<div style='font-family:Calibri;font-size: 10pt;'><p>Dear Project Investigator, </p><br/>" +
+                "<p>Sub: In respect of Project Proposal Title: " + mail.ProposalTitle + "</p><br/>" +
+                "<p> As per our IC & SR record, you have undertaken following agreements as witness/confirming party, which are still effective.</p><p> This is to request you to check that your new project proposal is not conflicting with the existing Agreement(s).</p>";
+            body += "<table style='font-family:Calibri;font-size: 10pt;' border='1' style='border: 1px solid lightgrey;border-collapse: collapse; border-spacing: 0;' class='table table-striped table-bordered'><tr><th>SI.No</th><th>Industry Partner</th><th>Kind of Agreement</th><th>Effective Date</th><th>End Date</th><th>Remarks</th></tr>";
+            foreach (var m in mail.Dean_trxList)
+            {
+                body += "<tr><td>" + m.Sno + "</td>" +
+                    "<td>" + m.Partner + "</td>" +
+                    "<td>" + m.Agreement_type + "</td>" +
+                    "<td>" + m.Signed_date + "</td>" +
+                    "<td>" + m.Expiry_date + "</td>" +
+                    "<td>" + m.Title + "</td>" +
+                    "</tr>";
+            }
+            body += "</table>";
+            body += "<p>Best Regards</p>";
+            body += "<p>Dean IC&SR</p>" +
+                "<p>NOTE: This is a System generated mail, for any queries Contact Project Office IC&SR.</p></div>";
+            var message = new MailMessage();
+            message.To.Add(new MailAddress("cmit-icsr@iitm.ac.in"));
+            message.CC.Add(new MailAddress("cmlegal-icsr@imail.iitm.ac.in"));
+            message.From = new MailAddress("noreply@ioas.iitm.ac.in");
+            message.Subject = "In respect of Project Proposal" + mail.ProposalNo + " Title: " + mail.ProposalTitle;
+            message.Body = string.Format(body);
+            message.IsBodyHtml = true;
+
+            using (var smtp = new SmtpClient())
+            {
+                //var credential = new NetworkCredential
+                //{
+                //    UserName = "noreply@ioas.iitm.ac.in",
+                //    Password = "welcomehbs"
+                //};
+                //smtp.Credentials = credential;
+                //smtp.Host = "smtp.gmail.com";
+                //smtp.Port = 587;
+                //smtp.EnableSsl = true;
+                await smtp.SendMailAsync(message);
+                TempData["message"] = "Sent";
+                return View("ProposalReport", mail);
+                //return Json(new { success = true, title = "Mail Sent", message = "Mail sent to : " + message.To, JsonRequestBehavior.AllowGet });
+            }
+        }
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "Print")]
+        public ActionResult Print(MailModel m)
+        {
+            AgreementPrintDS ds = new AgreementPrintDS();
+            Report.AgreementReport rpt = new Report.AgreementReport();
+            rpt.Load();
+            DataRow dr = ds.Tables["ProposalMail"].NewRow();
+            dr[0] = m.ProposalNo;
+            dr[1] = m.ProjectNo;
+            dr[2] = m.FMail.EMPLOYEEID;
+            dr[3] = m.ProposalTitle;
+            dr[4] = m.FMail.DISPLAYNAME;
+            dr[5] = m.FMail.DEPARTMENTNAME;
+            ds.Tables["ProposalMail"].Rows.Add(dr);
+            foreach(var r in m.Dean_trxList)
+            {
+                DataRow dr1 = ds.Tables["DeanModel"].NewRow();
+                dr1[0] = r.Sno;
+                dr1[1] = r.Partner;
+                dr1[2] = r.Agreement_type;
+                dr1[3] = r.Title;
+                dr1[4] = r.Signed_date;
+                dr1[5] = r.Expiry_date;
+                ds.Tables["DeanModel"].Rows.Add(dr1);
+            }
+            rpt.SetDataSource(ds);
+            Stream filestream = rpt.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            return File(filestream, "application/pdf");
+        }
+        #endregion
     }
 }

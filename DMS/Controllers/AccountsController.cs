@@ -349,7 +349,7 @@ namespace DMS.Controllers
                 {
                     //Saranya
                     // ViewBag.Message += "File Not Exists in the specified path";
-                    return Json(new { success = false, data = "File Not Exists in the specified path" });
+                    return Json(new { success = false, data = "File Not Exists in the specified path" },JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception ex)
@@ -393,7 +393,7 @@ namespace DMS.Controllers
                             try
                             {
                                 var newfn = Path.GetFileName(upfile.FileName);
-                                string newpath = Server.MapPath("~/App_Data/Upload Temp Merge");
+                                string newpath = Server.MapPath("~/Upload Temp Merge");
                                 upfile.SaveAs(newpath + newfn);
 
                                 string file = dMS_BusinessLayer.FindFile(iID);

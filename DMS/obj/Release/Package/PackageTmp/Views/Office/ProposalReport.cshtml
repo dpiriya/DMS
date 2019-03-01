@@ -1,0 +1,218 @@
+﻿@model Data_Layer.Models.MailModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    @Scripts.Render("~/bundles/sweet")
+    @Styles.Render("~/bundles/sweetcss")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/datatable")
+    @Styles.Render("~/bundles/datatablecss")
+    @Scripts.Render("~/bundles/export")
+    @Styles.Render("~/bundles/exportcss")
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DMS - Office</title>
+    <link href="~/Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/sidebar/sideBar.css" rel="stylesheet" />
+    <link href="~/css/Index/mCustomScrollbar.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">*@
+    <link href="~/css/jquery-ui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="~/Assets/bootstrap/js/jquery-ui.min.js"></script>
+    @*<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+    <link href="~/Content/HelperStyle1.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/script/index/jquery.mCustomScrollbar.concat.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div id="dismiss">
+                <i class="glyphicon glyphicon-arrow-left"></i>
+            </div>
+            <div class="sidebar-header">
+                <h3>Categories</h3>
+            </div>
+            <ul class="list-unstyled components">
+                <p>Choose section</p>
+                <li>
+                    <a href="#" id="Sponsored" onclick="_Upload(this.id)">Sponsored</a>
+                </li>
+
+                <li>
+                    <a href="#" id="Consultancy" onclick="_Upload(this.id)">Consultancy</a>
+                </li>
+                <li>
+                    @Html.ActionLink("Report", "ProposalReport", "Office")
+                </li>
+            </ul>
+        </nav>
+        <div id="content" style="padding-top:2%;background:url('../../DMS/images/circles-light.png');">
+            <nav class="navbar navbar-default" style="padding: 0px 0px;">
+                <div class="container-fluid">
+                    <table width="100%">
+                        <tr>
+                            <td width="20%" align="left">
+                                <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                                    <i class="glyphicon glyphicon-align-left"></i>
+                                    <span>Menu</span>
+                                </button>
+                                <button type="button" id="Agreement" class="btn btn-info" onclick="_Upload(this.id)">
+                                    <i class="glyphicon glyphicon-upload"></i>
+                                    <span>Upload Files</span>
+                                </button>
+                            </td>
+                            <td width="50%" align="center">
+                                <h2>Office</h2>
+                            </td>
+                            <td width="15%" align="right">
+                                <a href="@Url.Action("Welcomepage", "Home")">
+                                    <div class="glyphicon glyphicon-home" style="margin-left:80%; color:royalblue">Home</div>
+                                </a>
+                            </td>
+                            <td width="15%" align="left">
+                                <a href="@Url.Action("LogOut", "Home")">
+                                    <div class="glyphicon glyphicon-off" style="margin-left:40%;color:orangered">SignOut</div>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </nav>
+            @using (Html.BeginForm("ProposalReport", "Office", FormMethod.Post, new { @id = "form1" }))
+    {
+        <div class="container" style="width:30%;background-color:white">
+            <table class="table table-hover" width="50%">
+
+                <tr style="width:30%">
+                    <td width="10%">@Html.Label("Project Type")</td>
+                    <td width="10%">
+                        @Html.RadioButton("Ptype", "Sponsored")Sponsored
+                    </td>
+                    <td width="10%">@Html.RadioButton("Ptype", "Consultancy") Consultancy</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(m => m.ProposalNo, new { @id = "ProposalNo" })
+                        @Html.LabelFor(m => m.ProjectNo, new { @id = "ProjectNo" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(m => m.ProposalNo, Model.ProposalList, "--Proposal no--", new { @class = "form-control", @id = "ProposalNo" })
+                        @Html.TextBoxFor(m => m.ProjectNo, new { @id = "ProjectNo", @class = "form-control" })
+                    </td>
+                </tr>
+                <tr style="width:30%">
+                    <td>@Html.LabelFor(m => m.InstiId)</td>
+                    <td>@Html.DropDownListFor(m => m.InstiId, Model.IdList, "--Emp ID--", new { @id = "instid" })</td>
+                </tr>
+            </table>
+        </div>
+}
+            @using (Html.BeginForm("Print", "Office", FormMethod.Post, new { id = "tblform" }))
+    {
+        @Html.DisplayFor(m => m.ProposalTitle)
+        @Html.HiddenFor(m => m.ProposalTitle)
+        <div>
+            <br />
+            <br />
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.FMail.DISPLAYNAME)
+            @Html.HiddenFor(m => m.FMail.DEPARTMENTNAME)
+            @Html.HiddenFor(m => m.FMail.Fmail)
+            @Html.HiddenFor(m => m.ProposalNo)
+            <table id="table_id" class="table table-striped table-bordered">
+                <thead style="color:black">
+                    <tr>
+                        <th>SNo</th>
+                        <th>Industry Partner</th>
+                        <th>Agreement Type</th>
+                        <th>Effective Date</th>
+                        <th>End Date</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                @for (int i = 0; i < Model.Dean_trxList.Count(); i++)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelitem => Model.Dean_trxList[i].Sno)</td>
+                <td>@Html.DisplayFor(modelitem => Model.Dean_trxList[i].Partner)</td>
+                <td>@Html.DisplayFor(modelitem => Model.Dean_trxList[i].Agreement_type)</td>
+                <td>@Html.DisplayFor(modelitem => Model.Dean_trxList[i].Signed_date)</td>
+                <td>@Html.DisplayFor(modelitem => Model.Dean_trxList[i].Expiry_date)</td>
+                <td>@Html.DisplayFor(modelitem => Model.Dean_trxList[i].Title)</td>
+            </tr>
+            @Html.HiddenFor(mi => Model.Dean_trxList[i].Sno)
+            @Html.HiddenFor(mi => Model.Dean_trxList[i].Partner)
+            @Html.HiddenFor(mi => Model.Dean_trxList[i].Agreement_type)
+            @Html.HiddenFor(mi => Model.Dean_trxList[i].Signed_date)
+            @Html.HiddenFor(mi => Model.Dean_trxList[i].Expiry_date)
+            @Html.HiddenFor(mi => Model.Dean_trxList[i].Title)
+
+}
+                <tr>
+                    <td colspan="6" align="center">
+                        <input type="submit" id="Print" value="Print" name="action:Print" />
+                        <input type="submit" id="Mail" value="Send Mail" name="action:SendMail" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        @*@Html.Partial("_AgreementTable", Model.Dean_trxList)*@
+}
+        </div>
+    </div>
+    <div class="overlay"></div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#dismiss, .overlay').on('click', function () {
+            $('#sidebar').removeClass('active');
+            $('.overlay').fadeOut();
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').addClass('active');
+            $('.overlay').fadeIn();
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+    $('#ProposalNo ,#instid').change(function () {
+        if ($('#instid').val() != "") {
+            $('#form1').submit();
+        }
+    });
+   @if (TempData["Message"] != null)
+   {
+      <text>
+    $(document).ready(function () {
+        swal({
+            title: "Mail Sent",
+            type: "success"
+        });
+    });
+    </text>
+   }
+    $(':radio[value=Sponsored]').click(function () {
+        $('[id=ProjectNo]').hide();
+        $('[id=ProposalNo]').show();
+    });
+    $(':radio[value=Consultancy]').click(function () {
+        $('[id=ProjectNo]').show();
+        $('[id=ProposalNo]').hide();
+    });
+</script>

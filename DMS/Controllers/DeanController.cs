@@ -11,6 +11,9 @@ using System.IO;
 using iTextSharp.text.pdf;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Net.Mail;
+using System.Net;
 
 namespace DMS.Controllers
 {
@@ -25,6 +28,11 @@ namespace DMS.Controllers
                 //DataSet ds = new DataSet();
                 DataTable dt = dMS_BusinessLayer.Summary("Dean");
                 //ds.Tables.Add(dMS_BusinessLayer.Summary("Dean"));
+                if (Session["RoleId"] != null)
+                {
+                    ViewData["Role"] = Session["RoleId"].ToString();
+
+                }
                 return View(dt);
             }
             catch (Exception ex)
@@ -351,7 +359,6 @@ namespace DMS.Controllers
                         TempData["msg"] = "Update Failed";
                         return RedirectToAction("DeanFiles_Index");
                     }
-
                 }
                 TempData["msg"] = "Failed..Try Again";
                 return RedirectToAction("Dean_Index");
@@ -366,7 +373,7 @@ namespace DMS.Controllers
         public ActionResult _Search()
         {
             try
-            {
+            {                
                 return View();
             }
             catch (Exception ex)
@@ -469,6 +476,7 @@ namespace DMS.Controllers
             return json;
 
         }
+        
         public ActionResult Delete(Int64 iID,string ssrc)
         {
             try
@@ -550,6 +558,8 @@ namespace DMS.Controllers
                 return View();
             }
         }
-#endregion
+        #endregion
+        
     }
+
 }

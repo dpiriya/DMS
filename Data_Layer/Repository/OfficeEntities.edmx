@@ -1,0 +1,595 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FoxOfficeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FoxOffice.dbo.PCMASTER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PCMASTER">
+          <Key>
+            <PropertyRef Name="APRLNO" />
+            <PropertyRef Name="COCODE" />
+            <PropertyRef Name="DEPT" />
+            <PropertyRef Name="N_YEAR" />
+          </Key>
+          <Property Name="APRLNO" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DINP" Type="nvarchar" MaxLength="7" />
+          <Property Name="COCODE" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="COOR1" Type="nvarchar" MaxLength="50" />
+          <Property Name="COOR2" Type="nvarchar" MaxLength="50" />
+          <Property Name="SNAME" Type="nvarchar" MaxLength="75" />
+          <Property Name="SNDES" Type="nvarchar" MaxLength="100" />
+          <Property Name="SCOM" Type="nvarchar" MaxLength="90" />
+          <Property Name="ADD1" Type="nvarchar" MaxLength="50" />
+          <Property Name="ADD2" Type="nvarchar" MaxLength="50" />
+          <Property Name="ADD3" Type="nvarchar" MaxLength="50" />
+          <Property Name="SPANNUMBER" Type="nvarchar" MaxLength="10" />
+          <Property Name="STANNUMBER" Type="nvarchar" MaxLength="10" />
+          <Property Name="SGSTINNUMBER" Type="nvarchar" MaxLength="15" />
+          <Property Name="DEPT" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="320" />
+          <Property Name="STDATE" Type="smalldatetime" />
+          <Property Name="ENDDATE" Type="smalldatetime" />
+          <Property Name="SANVALUE" Type="float" />
+          <Property Name="SANDATE" Type="smalldatetime" />
+          <Property Name="EXTN" Type="smalldatetime" />
+          <Property Name="EXTLETNO" Type="nvarchar" MaxLength="15" />
+          <Property Name="EXTN1" Type="smalldatetime" />
+          <Property Name="EXTLETN1" Type="nvarchar" MaxLength="15" />
+          <Property Name="STOROUT" Type="float" />
+          <Property Name="STORDEPT" Type="float" />
+          <Property Name="EUC" Type="float" />
+          <Property Name="CENTLFACI" Type="float" />
+          <Property Name="OUTFACI" Type="float" />
+          <Property Name="SALARY" Type="float" />
+          <Property Name="OTHERS" Type="float" />
+          <Property Name="ETOTAL" Type="float" />
+          <Property Name="PROJSTAT" Type="nvarchar" MaxLength="10" />
+          <Property Name="PROJREMA" Type="nvarchar" MaxLength="10" />
+          <Property Name="SLNO" Type="nvarchar" MaxLength="3" />
+          <Property Name="RCPTDATE" Type="smalldatetime" />
+          <Property Name="YEAR" Type="nvarchar" MaxLength="4" />
+          <Property Name="DEP_NAME" Type="nvarchar" MaxLength="40" />
+          <Property Name="N_YEAR" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="AGENCY" Type="nvarchar" MaxLength="5" />
+          <Property Name="RB" Type="nvarchar" MaxLength="2" />
+          <Property Name="USTAT" Type="nvarchar" MaxLength="3" />
+          <Property Name="ENT_DATE" Type="smalldatetime" />
+          <Property Name="Loginname" Type="varchar" MaxLength="15" />
+          <Property Name="COOR3" Type="varchar" MaxLength="30" />
+          <Property Name="COOR4" Type="varchar" MaxLength="30" />
+          <Property Name="COOR5" Type="varchar" MaxLength="30" />
+          <Property Name="CODEPT" Type="char" MaxLength="3" />
+          <Property Name="GOVT" Type="char" MaxLength="5" />
+          <Property Name="VERIFIED" Type="char" MaxLength="5" />
+          <Property Name="DOLL" Type="float" />
+          <Property Name="curr" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remarks" Type="varchar" MaxLength="200" />
+          <Property Name="ProjectStatus" Type="varchar" MaxLength="50" />
+          <Property Name="InstID" Type="varchar" MaxLength="6" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FoxOffice.dbo.PMASTER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PMASTER">
+          <Key>
+            <PropertyRef Name="APRLNO" />
+            <PropertyRef Name="COOR_CODE" />
+            <PropertyRef Name="DEPT" />
+            <PropertyRef Name="SPON" />
+            <PropertyRef Name="SLNO" />
+            <PropertyRef Name="YEAR" />
+          </Key>
+          <Property Name="APRLNO" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ENT_MONTH" Type="nvarchar" MaxLength="7" />
+          <Property Name="COOR_CODE" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="COOR_CODE2" Type="nvarchar" MaxLength="4" />
+          <Property Name="COOR_CODE3" Type="nvarchar" MaxLength="4" />
+          <Property Name="COOR_CODE4" Type="nvarchar" MaxLength="4" />
+          <Property Name="COOR_CODE5" Type="nvarchar" MaxLength="4" />
+          <Property Name="COOR_CODE6" Type="nvarchar" MaxLength="4" />
+          <Property Name="COOR_NAME" Type="nvarchar" MaxLength="35" />
+          <Property Name="COOR_NAME2" Type="nvarchar" MaxLength="50" />
+          <Property Name="COOR_NAME3" Type="nvarchar" MaxLength="50" />
+          <Property Name="COOR_NAME4" Type="nvarchar" MaxLength="50" />
+          <Property Name="COOR_NAME5" Type="nvarchar" MaxLength="50" />
+          <Property Name="COOR_NAME6" Type="nvarchar" MaxLength="50" />
+          <Property Name="DEPT" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="SPON" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="SPON_AGEN" Type="nvarchar" MaxLength="90" />
+          <Property Name="TYPE" Type="nvarchar" MaxLength="10" />
+          <Property Name="LOCL_INT" Type="nvarchar" MaxLength="3" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="250" />
+          <Property Name="START_DATE" Type="smalldatetime" />
+          <Property Name="CLOSE_DATE" Type="smalldatetime" />
+          <Property Name="SANVALUE" Type="float" />
+          <Property Name="SAREFNO" Type="nvarchar" MaxLength="100" />
+          <Property Name="SAREFDATE" Type="smalldatetime" />
+          <Property Name="PROJ_REM" Type="nvarchar" MaxLength="10" />
+          <Property Name="PROJ_STATU" Type="nvarchar" MaxLength="8" />
+          <Property Name="SLNO" Type="smallint" Nullable="false" />
+          <Property Name="YEAR" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="DEPT_NAME" Type="nvarchar" MaxLength="70" />
+          <Property Name="DURATION" Type="nvarchar" MaxLength="20" />
+          <Property Name="REF_FIELD" Type="nvarchar" MaxLength="1" />
+          <Property Name="DINP" Type="smalldatetime" />
+          <Property Name="Loginname" Type="varchar" MaxLength="15" />
+          <Property Name="webinfo" Type="char" MaxLength="1" />
+          <Property Name="govt" Type="char" MaxLength="5" />
+          <Property Name="govt_type_MHRD" Type="nvarchar" MaxLength="50" />
+          <Property Name="govt_type_MINI" Type="nvarchar" MaxLength="50" />
+          <Property Name="govt_type_MINI_Name" Type="varchar" MaxLength="500" />
+          <Property Name="govt_type_IND" Type="nvarchar" MaxLength="50" />
+          <Property Name="govt_type_IND_Name" Type="varchar" MaxLength="500" />
+          <Property Name="Remarks_Sector" Type="varchar" MaxLength="250" />
+          <Property Name="verified" Type="char" MaxLength="5" />
+          <Property Name="PRONO" Type="smallint" />
+          <Property Name="Remarks" Type="varchar" MaxLength="100" />
+          <Property Name="ProjectType" Type="varchar" MaxLength="3" />
+          <Property Name="ProjectStatus" Type="varchar" MaxLength="50" />
+          <Property Name="InstID" Type="varchar" MaxLength="6" />
+          <Property Name="ProjectCategory" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PROPOSAL">
+          <Key>
+            <PropertyRef Name="PRONO" />
+          </Key>
+          <Property Name="DINP" Type="smalldatetime" />
+          <Property Name="PRONO" Type="int" Nullable="false" />
+          <Property Name="DATE" Type="smalldatetime" />
+          <Property Name="datein" Type="smalldatetime" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="300" />
+          <Property Name="DEPT" Type="nvarchar" MaxLength="3" />
+          <Property Name="CoorCode" Type="nvarchar" MaxLength="4" />
+          <Property Name="COOR_NAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="COOR_NAME2" Type="nvarchar" MaxLength="100" />
+          <Property Name="COOR_NAME3" Type="nvarchar" MaxLength="100" />
+          <Property Name="AGENCY" Type="nvarchar" MaxLength="4" />
+          <Property Name="Scheme" Type="varchar" MaxLength="250" />
+          <Property Name="Applicantname" Type="varchar" MaxLength="500" />
+          <Property Name="VALUE" Type="float" />
+          <Property Name="DURATION" Type="nvarchar" MaxLength="12" />
+          <Property Name="Loginname" Type="varchar" MaxLength="15" />
+          <Property Name="DispatchDate" Type="smalldatetime" />
+          <Property Name="inst_id" Type="nvarchar" MaxLength="8" />
+        </EntityType>
+        <EntityContainer Name="FoxOfficeModelStoreContainer">
+          <EntitySet Name="PROPOSAL" EntityType="Self.PROPOSAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PCMASTER" EntityType="Self.PCMASTER" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PCMASTER].[APRLNO] AS [APRLNO], 
+    [PCMASTER].[DINP] AS [DINP], 
+    [PCMASTER].[COCODE] AS [COCODE], 
+    [PCMASTER].[COOR1] AS [COOR1], 
+    [PCMASTER].[COOR2] AS [COOR2], 
+    [PCMASTER].[SNAME] AS [SNAME], 
+    [PCMASTER].[SNDES] AS [SNDES], 
+    [PCMASTER].[SCOM] AS [SCOM], 
+    [PCMASTER].[ADD1] AS [ADD1], 
+    [PCMASTER].[ADD2] AS [ADD2], 
+    [PCMASTER].[ADD3] AS [ADD3], 
+    [PCMASTER].[SPANNUMBER] AS [SPANNUMBER], 
+    [PCMASTER].[STANNUMBER] AS [STANNUMBER], 
+    [PCMASTER].[SGSTINNUMBER] AS [SGSTINNUMBER], 
+    [PCMASTER].[DEPT] AS [DEPT], 
+    [PCMASTER].[TITLE] AS [TITLE], 
+    [PCMASTER].[STDATE] AS [STDATE], 
+    [PCMASTER].[ENDDATE] AS [ENDDATE], 
+    [PCMASTER].[SANVALUE] AS [SANVALUE], 
+    [PCMASTER].[SANDATE] AS [SANDATE], 
+    [PCMASTER].[EXTN] AS [EXTN], 
+    [PCMASTER].[EXTLETNO] AS [EXTLETNO], 
+    [PCMASTER].[EXTN1] AS [EXTN1], 
+    [PCMASTER].[EXTLETN1] AS [EXTLETN1], 
+    [PCMASTER].[STOROUT] AS [STOROUT], 
+    [PCMASTER].[STORDEPT] AS [STORDEPT], 
+    [PCMASTER].[EUC] AS [EUC], 
+    [PCMASTER].[CENTLFACI] AS [CENTLFACI], 
+    [PCMASTER].[OUTFACI] AS [OUTFACI], 
+    [PCMASTER].[SALARY] AS [SALARY], 
+    [PCMASTER].[OTHERS] AS [OTHERS], 
+    [PCMASTER].[ETOTAL] AS [ETOTAL], 
+    [PCMASTER].[PROJSTAT] AS [PROJSTAT], 
+    [PCMASTER].[PROJREMA] AS [PROJREMA], 
+    [PCMASTER].[SLNO] AS [SLNO], 
+    [PCMASTER].[RCPTDATE] AS [RCPTDATE], 
+    [PCMASTER].[YEAR] AS [YEAR], 
+    [PCMASTER].[DEP_NAME] AS [DEP_NAME], 
+    [PCMASTER].[N_YEAR] AS [N_YEAR], 
+    [PCMASTER].[AGENCY] AS [AGENCY], 
+    [PCMASTER].[RB] AS [RB], 
+    [PCMASTER].[USTAT] AS [USTAT], 
+    [PCMASTER].[ENT_DATE] AS [ENT_DATE], 
+    [PCMASTER].[Loginname] AS [Loginname], 
+    [PCMASTER].[COOR3] AS [COOR3], 
+    [PCMASTER].[COOR4] AS [COOR4], 
+    [PCMASTER].[COOR5] AS [COOR5], 
+    [PCMASTER].[CODEPT] AS [CODEPT], 
+    [PCMASTER].[GOVT] AS [GOVT], 
+    [PCMASTER].[VERIFIED] AS [VERIFIED], 
+    [PCMASTER].[DOLL] AS [DOLL], 
+    [PCMASTER].[curr] AS [curr], 
+    [PCMASTER].[Remarks] AS [Remarks], 
+    [PCMASTER].[ProjectStatus] AS [ProjectStatus], 
+    [PCMASTER].[InstID] AS [InstID]
+    FROM [dbo].[PCMASTER] AS [PCMASTER]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PMASTER" EntityType="Self.PMASTER" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PMASTER].[APRLNO] AS [APRLNO], 
+    [PMASTER].[ENT_MONTH] AS [ENT_MONTH], 
+    [PMASTER].[COOR_CODE] AS [COOR_CODE], 
+    [PMASTER].[COOR_CODE2] AS [COOR_CODE2], 
+    [PMASTER].[COOR_CODE3] AS [COOR_CODE3], 
+    [PMASTER].[COOR_CODE4] AS [COOR_CODE4], 
+    [PMASTER].[COOR_CODE5] AS [COOR_CODE5], 
+    [PMASTER].[COOR_CODE6] AS [COOR_CODE6], 
+    [PMASTER].[COOR_NAME] AS [COOR_NAME], 
+    [PMASTER].[COOR_NAME2] AS [COOR_NAME2], 
+    [PMASTER].[COOR_NAME3] AS [COOR_NAME3], 
+    [PMASTER].[COOR_NAME4] AS [COOR_NAME4], 
+    [PMASTER].[COOR_NAME5] AS [COOR_NAME5], 
+    [PMASTER].[COOR_NAME6] AS [COOR_NAME6], 
+    [PMASTER].[DEPT] AS [DEPT], 
+    [PMASTER].[SPON] AS [SPON], 
+    [PMASTER].[SPON_AGEN] AS [SPON_AGEN], 
+    [PMASTER].[TYPE] AS [TYPE], 
+    [PMASTER].[LOCL_INT] AS [LOCL_INT], 
+    [PMASTER].[TITLE] AS [TITLE], 
+    [PMASTER].[START_DATE] AS [START_DATE], 
+    [PMASTER].[CLOSE_DATE] AS [CLOSE_DATE], 
+    [PMASTER].[SANVALUE] AS [SANVALUE], 
+    [PMASTER].[SAREFNO] AS [SAREFNO], 
+    [PMASTER].[SAREFDATE] AS [SAREFDATE], 
+    [PMASTER].[PROJ_REM] AS [PROJ_REM], 
+    [PMASTER].[PROJ_STATU] AS [PROJ_STATU], 
+    [PMASTER].[SLNO] AS [SLNO], 
+    [PMASTER].[YEAR] AS [YEAR], 
+    [PMASTER].[DEPT_NAME] AS [DEPT_NAME], 
+    [PMASTER].[DURATION] AS [DURATION], 
+    [PMASTER].[REF_FIELD] AS [REF_FIELD], 
+    [PMASTER].[DINP] AS [DINP], 
+    [PMASTER].[Loginname] AS [Loginname], 
+    [PMASTER].[webinfo] AS [webinfo], 
+    [PMASTER].[govt] AS [govt], 
+    [PMASTER].[govt_type_MHRD] AS [govt_type_MHRD], 
+    [PMASTER].[govt_type_MINI] AS [govt_type_MINI], 
+    [PMASTER].[govt_type_MINI_Name] AS [govt_type_MINI_Name], 
+    [PMASTER].[govt_type_IND] AS [govt_type_IND], 
+    [PMASTER].[govt_type_IND_Name] AS [govt_type_IND_Name], 
+    [PMASTER].[Remarks_Sector] AS [Remarks_Sector], 
+    [PMASTER].[verified] AS [verified], 
+    [PMASTER].[PRONO] AS [PRONO], 
+    [PMASTER].[Remarks] AS [Remarks], 
+    [PMASTER].[ProjectType] AS [ProjectType], 
+    [PMASTER].[ProjectStatus] AS [ProjectStatus], 
+    [PMASTER].[InstID] AS [InstID], 
+    [PMASTER].[ProjectCategory] AS [ProjectCategory]
+    FROM [dbo].[PMASTER] AS [PMASTER]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FoxOfficeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PROPOSAL">
+          <Key>
+            <PropertyRef Name="PRONO" />
+          </Key>
+          <Property Name="DINP" Type="DateTime" Precision="0" />
+          <Property Name="PRONO" Type="Int32" Nullable="false" />
+          <Property Name="DATE" Type="DateTime" Precision="0" />
+          <Property Name="datein" Type="DateTime" Precision="0" />
+          <Property Name="TITLE" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="DEPT" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CoorCode" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="COOR_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="COOR_NAME2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="COOR_NAME3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AGENCY" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Scheme" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Applicantname" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="VALUE" Type="Double" />
+          <Property Name="DURATION" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Loginname" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DispatchDate" Type="DateTime" Precision="0" />
+          <Property Name="inst_id" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="FoxOfficeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PROPOSAL" EntityType="Self.PROPOSAL" />
+          <EntitySet Name="PCMASTER" EntityType="FoxOfficeModel.PCMASTER" />
+          <EntitySet Name="PMASTER" EntityType="FoxOfficeModel.PMASTER" />
+        </EntityContainer>
+        <EntityType Name="PCMASTER">
+          <Key>
+            <PropertyRef Name="APRLNO" />
+            <PropertyRef Name="COCODE" />
+            <PropertyRef Name="DEPT" />
+            <PropertyRef Name="N_YEAR" />
+          </Key>
+          <Property Name="APRLNO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DINP" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="COCODE" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="COOR1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="COOR2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SNAME" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="SNDES" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SCOM" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+          <Property Name="ADD1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ADD2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ADD3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SPANNUMBER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="STANNUMBER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SGSTINNUMBER" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="DEPT" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="TITLE" Type="String" MaxLength="320" FixedLength="false" Unicode="true" />
+          <Property Name="STDATE" Type="DateTime" Precision="0" />
+          <Property Name="ENDDATE" Type="DateTime" Precision="0" />
+          <Property Name="SANVALUE" Type="Double" />
+          <Property Name="SANDATE" Type="DateTime" Precision="0" />
+          <Property Name="EXTN" Type="DateTime" Precision="0" />
+          <Property Name="EXTLETNO" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="EXTN1" Type="DateTime" Precision="0" />
+          <Property Name="EXTLETN1" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="STOROUT" Type="Double" />
+          <Property Name="STORDEPT" Type="Double" />
+          <Property Name="EUC" Type="Double" />
+          <Property Name="CENTLFACI" Type="Double" />
+          <Property Name="OUTFACI" Type="Double" />
+          <Property Name="SALARY" Type="Double" />
+          <Property Name="OTHERS" Type="Double" />
+          <Property Name="ETOTAL" Type="Double" />
+          <Property Name="PROJSTAT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PROJREMA" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SLNO" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="RCPTDATE" Type="DateTime" Precision="0" />
+          <Property Name="YEAR" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="DEP_NAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="N_YEAR" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="AGENCY" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="RB" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="USTAT" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="ENT_DATE" Type="DateTime" Precision="0" />
+          <Property Name="Loginname" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="COOR3" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="COOR4" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="COOR5" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CODEPT" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="GOVT" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="VERIFIED" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="DOLL" Type="Double" />
+          <Property Name="curr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InstID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PMASTER">
+          <Key>
+            <PropertyRef Name="APRLNO" />
+            <PropertyRef Name="COOR_CODE" />
+            <PropertyRef Name="DEPT" />
+            <PropertyRef Name="SPON" />
+            <PropertyRef Name="SLNO" />
+            <PropertyRef Name="YEAR" />
+          </Key>
+          <Property Name="APRLNO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ENT_MONTH" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="COOR_CODE" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="COOR_CODE2" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="COOR_CODE3" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="COOR_CODE4" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="COOR_CODE5" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="COOR_CODE6" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="COOR_NAME" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="COOR_NAME2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="COOR_NAME3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="COOR_NAME4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="COOR_NAME5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="COOR_NAME6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DEPT" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="SPON" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="SPON_AGEN" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+          <Property Name="TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LOCL_INT" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="TITLE" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="START_DATE" Type="DateTime" Precision="0" />
+          <Property Name="CLOSE_DATE" Type="DateTime" Precision="0" />
+          <Property Name="SANVALUE" Type="Double" />
+          <Property Name="SAREFNO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SAREFDATE" Type="DateTime" Precision="0" />
+          <Property Name="PROJ_REM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PROJ_STATU" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="SLNO" Type="Int16" Nullable="false" />
+          <Property Name="YEAR" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="DEPT_NAME" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="DURATION" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="REF_FIELD" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="DINP" Type="DateTime" Precision="0" />
+          <Property Name="Loginname" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="webinfo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="govt" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="govt_type_MHRD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="govt_type_MINI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="govt_type_MINI_Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="govt_type_IND" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="govt_type_IND_Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks_Sector" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="verified" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="PRONO" Type="Int16" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectType" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InstID" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FoxOfficeModelStoreContainer" CdmEntityContainer="FoxOfficeEntities">
+          <EntitySetMapping Name="PROPOSAL">
+            <EntityTypeMapping TypeName="FoxOfficeModel.PROPOSAL">
+              <MappingFragment StoreEntitySet="PROPOSAL">
+                <ScalarProperty Name="DINP" ColumnName="DINP" />
+                <ScalarProperty Name="PRONO" ColumnName="PRONO" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="datein" ColumnName="datein" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="DEPT" ColumnName="DEPT" />
+                <ScalarProperty Name="CoorCode" ColumnName="CoorCode" />
+                <ScalarProperty Name="COOR_NAME" ColumnName="COOR_NAME" />
+                <ScalarProperty Name="COOR_NAME2" ColumnName="COOR_NAME2" />
+                <ScalarProperty Name="COOR_NAME3" ColumnName="COOR_NAME3" />
+                <ScalarProperty Name="AGENCY" ColumnName="AGENCY" />
+                <ScalarProperty Name="Scheme" ColumnName="Scheme" />
+                <ScalarProperty Name="Applicantname" ColumnName="Applicantname" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+                <ScalarProperty Name="Loginname" ColumnName="Loginname" />
+                <ScalarProperty Name="DispatchDate" ColumnName="DispatchDate" />
+                <ScalarProperty Name="inst_id" ColumnName="inst_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PCMASTER">
+            <EntityTypeMapping TypeName="FoxOfficeModel.PCMASTER">
+              <MappingFragment StoreEntitySet="PCMASTER">
+                <ScalarProperty Name="InstID" ColumnName="InstID" />
+                <ScalarProperty Name="ProjectStatus" ColumnName="ProjectStatus" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="curr" ColumnName="curr" />
+                <ScalarProperty Name="DOLL" ColumnName="DOLL" />
+                <ScalarProperty Name="VERIFIED" ColumnName="VERIFIED" />
+                <ScalarProperty Name="GOVT" ColumnName="GOVT" />
+                <ScalarProperty Name="CODEPT" ColumnName="CODEPT" />
+                <ScalarProperty Name="COOR5" ColumnName="COOR5" />
+                <ScalarProperty Name="COOR4" ColumnName="COOR4" />
+                <ScalarProperty Name="COOR3" ColumnName="COOR3" />
+                <ScalarProperty Name="Loginname" ColumnName="Loginname" />
+                <ScalarProperty Name="ENT_DATE" ColumnName="ENT_DATE" />
+                <ScalarProperty Name="USTAT" ColumnName="USTAT" />
+                <ScalarProperty Name="RB" ColumnName="RB" />
+                <ScalarProperty Name="AGENCY" ColumnName="AGENCY" />
+                <ScalarProperty Name="N_YEAR" ColumnName="N_YEAR" />
+                <ScalarProperty Name="DEP_NAME" ColumnName="DEP_NAME" />
+                <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+                <ScalarProperty Name="RCPTDATE" ColumnName="RCPTDATE" />
+                <ScalarProperty Name="SLNO" ColumnName="SLNO" />
+                <ScalarProperty Name="PROJREMA" ColumnName="PROJREMA" />
+                <ScalarProperty Name="PROJSTAT" ColumnName="PROJSTAT" />
+                <ScalarProperty Name="ETOTAL" ColumnName="ETOTAL" />
+                <ScalarProperty Name="OTHERS" ColumnName="OTHERS" />
+                <ScalarProperty Name="SALARY" ColumnName="SALARY" />
+                <ScalarProperty Name="OUTFACI" ColumnName="OUTFACI" />
+                <ScalarProperty Name="CENTLFACI" ColumnName="CENTLFACI" />
+                <ScalarProperty Name="EUC" ColumnName="EUC" />
+                <ScalarProperty Name="STORDEPT" ColumnName="STORDEPT" />
+                <ScalarProperty Name="STOROUT" ColumnName="STOROUT" />
+                <ScalarProperty Name="EXTLETN1" ColumnName="EXTLETN1" />
+                <ScalarProperty Name="EXTN1" ColumnName="EXTN1" />
+                <ScalarProperty Name="EXTLETNO" ColumnName="EXTLETNO" />
+                <ScalarProperty Name="EXTN" ColumnName="EXTN" />
+                <ScalarProperty Name="SANDATE" ColumnName="SANDATE" />
+                <ScalarProperty Name="SANVALUE" ColumnName="SANVALUE" />
+                <ScalarProperty Name="ENDDATE" ColumnName="ENDDATE" />
+                <ScalarProperty Name="STDATE" ColumnName="STDATE" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="DEPT" ColumnName="DEPT" />
+                <ScalarProperty Name="SGSTINNUMBER" ColumnName="SGSTINNUMBER" />
+                <ScalarProperty Name="STANNUMBER" ColumnName="STANNUMBER" />
+                <ScalarProperty Name="SPANNUMBER" ColumnName="SPANNUMBER" />
+                <ScalarProperty Name="ADD3" ColumnName="ADD3" />
+                <ScalarProperty Name="ADD2" ColumnName="ADD2" />
+                <ScalarProperty Name="ADD1" ColumnName="ADD1" />
+                <ScalarProperty Name="SCOM" ColumnName="SCOM" />
+                <ScalarProperty Name="SNDES" ColumnName="SNDES" />
+                <ScalarProperty Name="SNAME" ColumnName="SNAME" />
+                <ScalarProperty Name="COOR2" ColumnName="COOR2" />
+                <ScalarProperty Name="COOR1" ColumnName="COOR1" />
+                <ScalarProperty Name="COCODE" ColumnName="COCODE" />
+                <ScalarProperty Name="DINP" ColumnName="DINP" />
+                <ScalarProperty Name="APRLNO" ColumnName="APRLNO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PMASTER">
+            <EntityTypeMapping TypeName="FoxOfficeModel.PMASTER">
+              <MappingFragment StoreEntitySet="PMASTER">
+                <ScalarProperty Name="ProjectCategory" ColumnName="ProjectCategory" />
+                <ScalarProperty Name="InstID" ColumnName="InstID" />
+                <ScalarProperty Name="ProjectStatus" ColumnName="ProjectStatus" />
+                <ScalarProperty Name="ProjectType" ColumnName="ProjectType" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="PRONO" ColumnName="PRONO" />
+                <ScalarProperty Name="verified" ColumnName="verified" />
+                <ScalarProperty Name="Remarks_Sector" ColumnName="Remarks_Sector" />
+                <ScalarProperty Name="govt_type_IND_Name" ColumnName="govt_type_IND_Name" />
+                <ScalarProperty Name="govt_type_IND" ColumnName="govt_type_IND" />
+                <ScalarProperty Name="govt_type_MINI_Name" ColumnName="govt_type_MINI_Name" />
+                <ScalarProperty Name="govt_type_MINI" ColumnName="govt_type_MINI" />
+                <ScalarProperty Name="govt_type_MHRD" ColumnName="govt_type_MHRD" />
+                <ScalarProperty Name="govt" ColumnName="govt" />
+                <ScalarProperty Name="webinfo" ColumnName="webinfo" />
+                <ScalarProperty Name="Loginname" ColumnName="Loginname" />
+                <ScalarProperty Name="DINP" ColumnName="DINP" />
+                <ScalarProperty Name="REF_FIELD" ColumnName="REF_FIELD" />
+                <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+                <ScalarProperty Name="DEPT_NAME" ColumnName="DEPT_NAME" />
+                <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+                <ScalarProperty Name="SLNO" ColumnName="SLNO" />
+                <ScalarProperty Name="PROJ_STATU" ColumnName="PROJ_STATU" />
+                <ScalarProperty Name="PROJ_REM" ColumnName="PROJ_REM" />
+                <ScalarProperty Name="SAREFDATE" ColumnName="SAREFDATE" />
+                <ScalarProperty Name="SAREFNO" ColumnName="SAREFNO" />
+                <ScalarProperty Name="SANVALUE" ColumnName="SANVALUE" />
+                <ScalarProperty Name="CLOSE_DATE" ColumnName="CLOSE_DATE" />
+                <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="LOCL_INT" ColumnName="LOCL_INT" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="SPON_AGEN" ColumnName="SPON_AGEN" />
+                <ScalarProperty Name="SPON" ColumnName="SPON" />
+                <ScalarProperty Name="DEPT" ColumnName="DEPT" />
+                <ScalarProperty Name="COOR_NAME6" ColumnName="COOR_NAME6" />
+                <ScalarProperty Name="COOR_NAME5" ColumnName="COOR_NAME5" />
+                <ScalarProperty Name="COOR_NAME4" ColumnName="COOR_NAME4" />
+                <ScalarProperty Name="COOR_NAME3" ColumnName="COOR_NAME3" />
+                <ScalarProperty Name="COOR_NAME2" ColumnName="COOR_NAME2" />
+                <ScalarProperty Name="COOR_NAME" ColumnName="COOR_NAME" />
+                <ScalarProperty Name="COOR_CODE6" ColumnName="COOR_CODE6" />
+                <ScalarProperty Name="COOR_CODE5" ColumnName="COOR_CODE5" />
+                <ScalarProperty Name="COOR_CODE4" ColumnName="COOR_CODE4" />
+                <ScalarProperty Name="COOR_CODE3" ColumnName="COOR_CODE3" />
+                <ScalarProperty Name="COOR_CODE2" ColumnName="COOR_CODE2" />
+                <ScalarProperty Name="COOR_CODE" ColumnName="COOR_CODE" />
+                <ScalarProperty Name="ENT_MONTH" ColumnName="ENT_MONTH" />
+                <ScalarProperty Name="APRLNO" ColumnName="APRLNO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -12,5 +12,7 @@ namespace Data_Layer.Models
         public string DISPLAYNAME { get; set; }
         public string DEPARTMENTNAME { get; set; }
         public string DepartmentCode { get; set; }
+
+        public string Fmail { get; set; }
     }
 }

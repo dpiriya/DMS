@@ -967,5 +967,62 @@ namespace BusinessLayer
             }
             catch(Exception ex) { return 0; }
         }
+        public string GetProposalTitle(string pro)
+        {
+            using (FoxOfficeEntities fv = new FoxOfficeEntities())
+            {
+                int proposal = Convert.ToInt32(pro);
+                var result = fv.PROPOSAL.Where(m => m.PRONO==proposal).Select(m =>m.TITLE).FirstOrDefault();               
+                return result;
+            }
+        }
+        public string GetProjectTitle(string pro)
+        {
+            using (FoxOfficeEntities fv = new FoxOfficeEntities())
+            {                
+                var result = fv.PCMASTER.Where(m => m.APRLNO.Contains(pro)).Select(m => m.TITLE).FirstOrDefault();
+                return result;
+            }
+        }
+        public List<Dean_trxModel> MapAgreementToCoor(string instid)
+        {
+            using (DMSEntities dms = new DMSEntities())
+            {
+                List<Dean_trxModel> tbldean = new List<Dean_trxModel>();
+                string id = instid.TrimStart('0');
+                //string instid = dms.tbl_trx_dean.Where(m => m.Faculty.Contains(coor)).Select(m => m.FacultyID).FirstOrDefault() ;               
+                    var lists = dms.tbl_trx_dean.Where(m => m.FacultyID== id).ToList();
+                    int sno = 1;
+                    foreach (var list in lists)
+                    {
+                        tbldean.Add(new Dean_trxModel()
+                        {
+                            dean_trx_id = list.dean_trx_id,
+                            Agreement_No = list.Agreement_No,
+                            Agreement_type = list.Agreement_type,
+                            Partner = list.Partner,
+                            Title = list.Title,
+                            Expiry_date = list.Expiry_date == null ? "" : Convert.ToDateTime(list.Expiry_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                            Signed_date = list.Signed_date == null ? "" : Convert.ToDateTime(list.Signed_date).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                            FacultyID = list.FacultyID,
+                            Faculty = list.Faculty,
+                            DepartmentCode = list.DepartmentCode,
+                            Sno = sno,
+
+                        });
+                        ++sno;
+                    }
+                
+                return tbldean;
+            }
+        }
+        public Faculty FacDetails(string id)
+        {
+            using (FacultyViewEntities fv = new FacultyViewEntities())
+            {
+                var result = fv.VW_AppDev_FacultyDetails.Where(m => m.EMPLOYEEID.Contains(id)).Select(m => new Faculty { DISPLAYNAME = m.DISPLAYNAME,Fmail=m.EMAIL,DEPARTMENTNAME=m.DEPARTMENTNAME,EMPLOYEEID=m.EMPLOYEEID}).FirstOrDefault();
+                return result;
+            }
+        }
     }
 }

@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FoxOfficeModelStoreContainer" CdmEntityContainer="FoxOfficeEntities">
+    <EntitySetMapping Name="PROPOSAL">
+      <EntityTypeMapping TypeName="FoxOfficeModel.PROPOSAL">
+        <MappingFragment StoreEntitySet="PROPOSAL">
+          <ScalarProperty Name="DINP" ColumnName="DINP" />
+          <ScalarProperty Name="PRONO" ColumnName="PRONO" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="datein" ColumnName="datein" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="DEPT" ColumnName="DEPT" />
+          <ScalarProperty Name="CoorCode" ColumnName="CoorCode" />
+          <ScalarProperty Name="COOR_NAME" ColumnName="COOR_NAME" />
+          <ScalarProperty Name="COOR_NAME2" ColumnName="COOR_NAME2" />
+          <ScalarProperty Name="COOR_NAME3" ColumnName="COOR_NAME3" />
+          <ScalarProperty Name="AGENCY" ColumnName="AGENCY" />
+          <ScalarProperty Name="Scheme" ColumnName="Scheme" />
+          <ScalarProperty Name="Applicantname" ColumnName="Applicantname" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="Loginname" ColumnName="Loginname" />
+          <ScalarProperty Name="DispatchDate" ColumnName="DispatchDate" />
+          <ScalarProperty Name="inst_id" ColumnName="inst_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PCMASTER">
+      <EntityTypeMapping TypeName="FoxOfficeModel.PCMASTER">
+        <MappingFragment StoreEntitySet="PCMASTER">
+          <ScalarProperty Name="InstID" ColumnName="InstID" />
+          <ScalarProperty Name="ProjectStatus" ColumnName="ProjectStatus" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="curr" ColumnName="curr" />
+          <ScalarProperty Name="DOLL" ColumnName="DOLL" />
+          <ScalarProperty Name="VERIFIED" ColumnName="VERIFIED" />
+          <ScalarProperty Name="GOVT" ColumnName="GOVT" />
+          <ScalarProperty Name="CODEPT" ColumnName="CODEPT" />
+          <ScalarProperty Name="COOR5" ColumnName="COOR5" />
+          <ScalarProperty Name="COOR4" ColumnName="COOR4" />
+          <ScalarProperty Name="COOR3" ColumnName="COOR3" />
+          <ScalarProperty Name="Loginname" ColumnName="Loginname" />
+          <ScalarProperty Name="ENT_DATE" ColumnName="ENT_DATE" />
+          <ScalarProperty Name="USTAT" ColumnName="USTAT" />
+          <ScalarProperty Name="RB" ColumnName="RB" />
+          <ScalarProperty Name="AGENCY" ColumnName="AGENCY" />
+          <ScalarProperty Name="N_YEAR" ColumnName="N_YEAR" />
+          <ScalarProperty Name="DEP_NAME" ColumnName="DEP_NAME" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="RCPTDATE" ColumnName="RCPTDATE" />
+          <ScalarProperty Name="SLNO" ColumnName="SLNO" />
+          <ScalarProperty Name="PROJREMA" ColumnName="PROJREMA" />
+          <ScalarProperty Name="PROJSTAT" ColumnName="PROJSTAT" />
+          <ScalarProperty Name="ETOTAL" ColumnName="ETOTAL" />
+          <ScalarProperty Name="OTHERS" ColumnName="OTHERS" />
+          <ScalarProperty Name="SALARY" ColumnName="SALARY" />
+          <ScalarProperty Name="OUTFACI" ColumnName="OUTFACI" />
+          <ScalarProperty Name="CENTLFACI" ColumnName="CENTLFACI" />
+          <ScalarProperty Name="EUC" ColumnName="EUC" />
+          <ScalarProperty Name="STORDEPT" ColumnName="STORDEPT" />
+          <ScalarProperty Name="STOROUT" ColumnName="STOROUT" />
+          <ScalarProperty Name="EXTLETN1" ColumnName="EXTLETN1" />
+          <ScalarProperty Name="EXTN1" ColumnName="EXTN1" />
+          <ScalarProperty Name="EXTLETNO" ColumnName="EXTLETNO" />
+          <ScalarProperty Name="EXTN" ColumnName="EXTN" />
+          <ScalarProperty Name="SANDATE" ColumnName="SANDATE" />
+          <ScalarProperty Name="SANVALUE" ColumnName="SANVALUE" />
+          <ScalarProperty Name="ENDDATE" ColumnName="ENDDATE" />
+          <ScalarProperty Name="STDATE" ColumnName="STDATE" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="DEPT" ColumnName="DEPT" />
+          <ScalarProperty Name="SGSTINNUMBER" ColumnName="SGSTINNUMBER" />
+          <ScalarProperty Name="STANNUMBER" ColumnName="STANNUMBER" />
+          <ScalarProperty Name="SPANNUMBER" ColumnName="SPANNUMBER" />
+          <ScalarProperty Name="ADD3" ColumnName="ADD3" />
+          <ScalarProperty Name="ADD2" ColumnName="ADD2" />
+          <ScalarProperty Name="ADD1" ColumnName="ADD1" />
+          <ScalarProperty Name="SCOM" ColumnName="SCOM" />
+          <ScalarProperty Name="SNDES" ColumnName="SNDES" />
+          <ScalarProperty Name="SNAME" ColumnName="SNAME" />
+          <ScalarProperty Name="COOR2" ColumnName="COOR2" />
+          <ScalarProperty Name="COOR1" ColumnName="COOR1" />
+          <ScalarProperty Name="COCODE" ColumnName="COCODE" />
+          <ScalarProperty Name="DINP" ColumnName="DINP" />
+          <ScalarProperty Name="APRLNO" ColumnName="APRLNO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PMASTER">
+      <EntityTypeMapping TypeName="FoxOfficeModel.PMASTER">
+        <MappingFragment StoreEntitySet="PMASTER">
+          <ScalarProperty Name="ProjectCategory" ColumnName="ProjectCategory" />
+          <ScalarProperty Name="InstID" ColumnName="InstID" />
+          <ScalarProperty Name="ProjectStatus" ColumnName="ProjectStatus" />
+          <ScalarProperty Name="ProjectType" ColumnName="ProjectType" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="PRONO" ColumnName="PRONO" />
+          <ScalarProperty Name="verified" ColumnName="verified" />
+          <ScalarProperty Name="Remarks_Sector" ColumnName="Remarks_Sector" />
+          <ScalarProperty Name="govt_type_IND_Name" ColumnName="govt_type_IND_Name" />
+          <ScalarProperty Name="govt_type_IND" ColumnName="govt_type_IND" />
+          <ScalarProperty Name="govt_type_MINI_Name" ColumnName="govt_type_MINI_Name" />
+          <ScalarProperty Name="govt_type_MINI" ColumnName="govt_type_MINI" />
+          <ScalarProperty Name="govt_type_MHRD" ColumnName="govt_type_MHRD" />
+          <ScalarProperty Name="govt" ColumnName="govt" />
+          <ScalarProperty Name="webinfo" ColumnName="webinfo" />
+          <ScalarProperty Name="Loginname" ColumnName="Loginname" />
+          <ScalarProperty Name="DINP" ColumnName="DINP" />
+          <ScalarProperty Name="REF_FIELD" ColumnName="REF_FIELD" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="DEPT_NAME" ColumnName="DEPT_NAME" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="SLNO" ColumnName="SLNO" />
+          <ScalarProperty Name="PROJ_STATU" ColumnName="PROJ_STATU" />
+          <ScalarProperty Name="PROJ_REM" ColumnName="PROJ_REM" />
+          <ScalarProperty Name="SAREFDATE" ColumnName="SAREFDATE" />
+          <ScalarProperty Name="SAREFNO" ColumnName="SAREFNO" />
+          <ScalarProperty Name="SANVALUE" ColumnName="SANVALUE" />
+          <ScalarProperty Name="CLOSE_DATE" ColumnName="CLOSE_DATE" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="LOCL_INT" ColumnName="LOCL_INT" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="SPON_AGEN" ColumnName="SPON_AGEN" />
+          <ScalarProperty Name="SPON" ColumnName="SPON" />
+          <ScalarProperty Name="DEPT" ColumnName="DEPT" />
+          <ScalarProperty Name="COOR_NAME6" ColumnName="COOR_NAME6" />
+          <ScalarProperty Name="COOR_NAME5" ColumnName="COOR_NAME5" />
+          <ScalarProperty Name="COOR_NAME4" ColumnName="COOR_NAME4" />
+          <ScalarProperty Name="COOR_NAME3" ColumnName="COOR_NAME3" />
+          <ScalarProperty Name="COOR_NAME2" ColumnName="COOR_NAME2" />
+          <ScalarProperty Name="COOR_NAME" ColumnName="COOR_NAME" />
+          <ScalarProperty Name="COOR_CODE6" ColumnName="COOR_CODE6" />
+          <ScalarProperty Name="COOR_CODE5" ColumnName="COOR_CODE5" />
+          <ScalarProperty Name="COOR_CODE4" ColumnName="COOR_CODE4" />
+          <ScalarProperty Name="COOR_CODE3" ColumnName="COOR_CODE3" />
+          <ScalarProperty Name="COOR_CODE2" ColumnName="COOR_CODE2" />
+          <ScalarProperty Name="COOR_CODE" ColumnName="COOR_CODE" />
+          <ScalarProperty Name="ENT_MONTH" ColumnName="ENT_MONTH" />
+          <ScalarProperty Name="APRLNO" ColumnName="APRLNO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

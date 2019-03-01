@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AgreementPrintDS" targetNamespace="http://tempuri.org/AgreementPrintDS.xsd" xmlns:mstns="http://tempuri.org/AgreementPrintDS.xsd" xmlns="http://tempuri.org/AgreementPrintDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AgreementPrintDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AgreementPrintDS" msprop:Generator_UserDSName="AgreementPrintDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ProposalMail" msprop:Generator_TableClassName="ProposalMailDataTable" msprop:Generator_TableVarName="tableProposalMail" msprop:Generator_TablePropName="ProposalMail" msprop:Generator_RowDeletingName="ProposalMailRowDeleting" msprop:Generator_RowChangingName="ProposalMailRowChanging" msprop:Generator_RowEvHandlerName="ProposalMailRowChangeEventHandler" msprop:Generator_RowDeletedName="ProposalMailRowDeleted" msprop:Generator_UserTableName="ProposalMail" msprop:Generator_RowChangedName="ProposalMailRowChanged" msprop:Generator_RowEvArgName="ProposalMailRowChangeEvent" msprop:Generator_RowClassName="ProposalMailRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ProposalNo" msprop:Generator_ColumnVarNameInTable="columnProposalNo" msprop:Generator_ColumnPropNameInRow="ProposalNo" msprop:Generator_ColumnPropNameInTable="ProposalNoColumn" msprop:Generator_UserColumnName="ProposalNo" type="xs:string" minOccurs="0" />
+              <xs:element name="ProjectNo" msprop:Generator_ColumnVarNameInTable="columnProjectNo" msprop:Generator_ColumnPropNameInRow="ProjectNo" msprop:Generator_ColumnPropNameInTable="ProjectNoColumn" msprop:Generator_UserColumnName="ProjectNo" type="xs:string" minOccurs="0" />
+              <xs:element name="InstiId" msprop:Generator_ColumnVarNameInTable="columnInstiId" msprop:Generator_ColumnPropNameInRow="InstiId" msprop:Generator_ColumnPropNameInTable="InstiIdColumn" msprop:Generator_UserColumnName="InstiId" type="xs:string" minOccurs="0" />
+              <xs:element name="ProposalTitle" msprop:Generator_ColumnVarNameInTable="columnProposalTitle" msprop:Generator_ColumnPropNameInRow="ProposalTitle" msprop:Generator_ColumnPropNameInTable="ProposalTitleColumn" msprop:Generator_UserColumnName="ProposalTitle" type="xs:string" minOccurs="0" />
+              <xs:element name="DISPLAYNAME" msprop:Generator_ColumnVarNameInTable="columnDISPLAYNAME" msprop:Generator_ColumnPropNameInRow="DISPLAYNAME" msprop:Generator_ColumnPropNameInTable="DISPLAYNAMEColumn" msprop:Generator_UserColumnName="DISPLAYNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="DEPARTMENTNAME" msprop:Generator_ColumnVarNameInTable="columnDEPARTMENTNAME" msprop:Generator_ColumnPropNameInRow="DEPARTMENTNAME" msprop:Generator_ColumnPropNameInTable="DEPARTMENTNAMEColumn" msprop:Generator_UserColumnName="DEPARTMENTNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="Fmail" msprop:Generator_ColumnVarNameInTable="columnFmail" msprop:Generator_ColumnPropNameInRow="Fmail" msprop:Generator_ColumnPropNameInTable="FmailColumn" msprop:Generator_UserColumnName="Fmail" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DeanModel" msprop:Generator_TableClassName="DeanModelDataTable" msprop:Generator_TableVarName="tableDeanModel" msprop:Generator_TablePropName="DeanModel" msprop:Generator_RowDeletingName="DeanModelRowDeleting" msprop:Generator_RowChangingName="DeanModelRowChanging" msprop:Generator_RowEvHandlerName="DeanModelRowChangeEventHandler" msprop:Generator_RowDeletedName="DeanModelRowDeleted" msprop:Generator_UserTableName="DeanModel" msprop:Generator_RowChangedName="DeanModelRowChanged" msprop:Generator_RowEvArgName="DeanModelRowChangeEvent" msprop:Generator_RowClassName="DeanModelRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Sno" msprop:Generator_ColumnVarNameInTable="columnSno" msprop:Generator_ColumnPropNameInRow="Sno" msprop:Generator_ColumnPropNameInTable="SnoColumn" msprop:Generator_UserColumnName="Sno" type="xs:string" minOccurs="0" />
+              <xs:element name="Partner" msprop:Generator_ColumnVarNameInTable="columnPartner" msprop:Generator_ColumnPropNameInRow="Partner" msprop:Generator_ColumnPropNameInTable="PartnerColumn" msprop:Generator_UserColumnName="Partner" type="xs:string" minOccurs="0" />
+              <xs:element name="Agreement_type" msprop:Generator_ColumnVarNameInTable="columnAgreement_type" msprop:Generator_ColumnPropNameInRow="Agreement_type" msprop:Generator_ColumnPropNameInTable="Agreement_typeColumn" msprop:Generator_UserColumnName="Agreement_type" type="xs:string" minOccurs="0" />
+              <xs:element name="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="Title" type="xs:string" minOccurs="0" />
+              <xs:element name="Signed_date" msprop:Generator_ColumnVarNameInTable="columnSigned_date" msprop:Generator_ColumnPropNameInRow="Signed_date" msprop:Generator_ColumnPropNameInTable="Signed_dateColumn" msprop:Generator_UserColumnName="Signed_date" type="xs:string" minOccurs="0" />
+              <xs:element name="Expiry_date" msprop:Generator_ColumnVarNameInTable="columnExpiry_date" msprop:Generator_ColumnPropNameInRow="Expiry_date" msprop:Generator_ColumnPropNameInTable="Expiry_dateColumn" msprop:Generator_UserColumnName="Expiry_date" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

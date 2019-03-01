@@ -18,19 +18,15 @@
         <br />
         <table align="center" cellpadding="10" style="background-color:lavender;font-family:Calibri">
             <tr>
-                <td>
-                    
+                <td>                    
                         @Html.LabelFor(m => m.Agreement_type)
-                        @Html.DropDownListFor(m => m.Agreement_type, Model.AgreementtypeList, "--Select Agreement Type--", new { @class = "form-control" })
-                    
+                        @Html.DropDownListFor(m => m.Agreement_type, Model.AgreementtypeList, "--Select Agreement Type--", new { @class = "form-control" })                    
                 </td>
             </tr>
             <tr>
-                <td>
-                    
+                <td>                    
                         @Html.LabelFor(m => m.Year)
-                        @Html.TextBoxFor(m => m.Year, new { @class = "form-control", @placeholder = "2000" })
-                    
+                        @Html.TextBoxFor(m => m.Year, new { @class = "form-control", @placeholder = "2000" })                    
                 </td>
             </tr>
             <tr>
